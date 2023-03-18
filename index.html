@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -7,19 +7,93 @@
     <title>Vite App</title>
   </head>
   <body>
-  <header>
-Header
-  </header>
-  <main>
-<section>
-  <article>
-    Article
-  </article>
-</section>
-  </main>
-  <footer>
-Footer
-  </footer>
+    <header>Header не понимаю почему он сюда улетел</header>
+    <main>
+      <div>
+        <h1>Заголовок уровня 1</h1>
+        <h2>А это заголовок уровня 2</h2>
+        <h3>Этот вроде уровня 3</h3>
+        <h4>Походу этот уровня 4</h4>
+        <h5>Этот точно уровня 5</h5>
+        <h6>Ну и в конце аголовок уровня 6</h6>
+      </div>
+      <p>
+        Этот параграф обязан быть <b> жирным</b>, <i> курсивным</i> и
+        <u> подчеркнутым!</u>
+      </p>
+      <ol>
+        <li>Пробуем первый вид списков</li>
+        <li>После него попробуем второй</li>
+        <li>Посмотрим в чем различие</li>
+      </ol>
+      <ul>
+        <li>Это второй вид списков</li>
+        <li>Он маркированный</li>
+        <li>А первый нумерованный</li>
+      </ul>
+      <section>
+        <form onsubmit="return false">
+          <p>Text <input type="text" /></p>
+          <p>Email <input type="email" /></p>
+          <p>Pass <input type="password" /></p>
+          <p>Date <input type="date" /></p>
+          <p>Checkbox <input type="checkbox" /></p>
+          <p>Radio <input type="radio" /></p>
+          <br />
+          Пока не разобрался как вывести текст по кнопке "вы нажали на кнопку"
+          <br />
+          <div><button onclick="">Я кнопка</button></div>
+        </form>
+        <p>Таблица</p>
+        <table border="1" cellpadding="5" width="50%">
+          <tr>
+            <td colspan="2">11</td>
+            <td>13</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+          </tr>
+          <tr>
+            <td>31</td>
+            <td>32</td>
+            <td>33</td>
+            <td>34</td>
+          </tr>
+        </table>
+        <p>Выпадающий список, но пока без загаловка</p>
+        <select id="selectvalue">
+          <option>5</option>
+
+          <option>10</option>
+
+          <option>15</option>
+
+          <option>20</option>
+
+          <option>25</option>
+        </select>
+        <div id="img">
+          <img
+            src="https://klike.net/uploads/posts/2023-01/1674543731_3-86.jpg"
+          />
+        </div>
+        <svg>
+          <circle
+            cx="102"
+            cy="102"
+            r="100"
+            fill="rgb(234,234,234)"
+            stroke-width="1"
+            stroke="rgb(0,0,0)"
+          />
+        </svg>
+      </section>
+    </main>
+    <footer>Footer</footer>
     <div id="app">Welcome</div>
     <script type="module" src="/main.js"></script>
   </body>
