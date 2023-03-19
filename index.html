@@ -4,113 +4,65 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Homework</title>
+    <title>Card practice CSS</title>
+    <style>
+      @import 'public/reset.css';
+      html {
+        background-color: #f9f9f9;
+        font-size: 16px;
+      }
+      .card {
+        width: 144px;
+        margin: 0 auto;
+        text-align: center;
+        border: 1px #1a1a1a solid;
+        background: #cccccc;
+      }
+      .card img {
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-bottom: 1rem;
+      }
+      button {
+        border: none;
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 0.25 rem 0;
+      }
+      button:hover {
+        background: #444444;
+      }
+      p:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+      .card > h1 {
+        font-size: 2rem;
+        line-height: 0.85;
+        letter-spacing: 0 px;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+      }
+      .card .price {
+        color: #666;
+        font-size: 0.85rem;
+        font-weight: bold;
+      }
+      .card .text {
+        font-weight: lighter;
+        font-style: 0.5rem;
+      }
+    </style>
   </head>
   <body>
-    <header>Header не понимаю почему он сюда улетел</header>
-    <main>
-      <div>
-        <h1>Заголовок уровня 1</h1>
-        <h2>А это заголовок уровня 2</h2>
-        <h3>Этот вроде уровня 3</h3>
-        <h4>Походу этот уровня 4</h4>
-        <h5>Этот точно уровня 5</h5>
-        <h6>Ну и в конце аголовок уровня 6</h6>
-      </div>
-      <p>
-        Этот параграф обязан быть <b> жирным</b>, <i> курсивным</i> и
-        <u> подчеркнутым!</u>
-      </p>
-      <ol>
-        <li>Пробуем первый вид списков</li>
-        <li>После него попробуем второй</li>
-        <li>Посмотрим в чем различие</li>
-      </ol>
-      <ul>
-        <li>Это второй вид списков</li>
-        <li>Он маркированный</li>
-        <li>А первый нумерованный</li>
-      </ul>
-      <section>
-        <form onsubmit="return false">
-          <div>
-            <label for="text"> Text: </label>
-            <input id="text" type="text" />
-          </div>
-          <div>
-            <label for="email"> Email: </label>
-            <input id="email" type="email" />
-          </div>
-          <div>
-            <label for="password"> Password: </label>
-            <input id="password" type="password" />
-          </div>
-          <div>
-            <label for="date"> Date: </label>
-            <input id="date" type="date" />
-          </div>
-          <div>
-            <label for="checkbox"> Checkbox: </label>
-            <input id="checkbox" type="checkbox" />
-          </div>
-          <div>
-            <label for="radio"> Radio: </label>
-            <input id="radio" type="radio" />
-          </div>
-          <br />
-          Пока не разобрался как вывести текст по кнопке "вы нажали на кнопку"
-          <br />
-          <div><button onclick="">Я кнопка</button></div>
-        </form>
-        <p>Таблица</p>
-        <table border="1" cellpadding="5" width="50%">
-          <tr>
-            <td colspan="2">11</td>
-            <td>13</td>
-            <td>14</td>
-          </tr>
-          <tr>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-          </tr>
-          <tr>
-            <td>31</td>
-            <td>32</td>
-            <td>33</td>
-            <td>34</td>
-          </tr>
-        </table>
-        <p>Выпадающий список, но пока без загаловка</p>
-        <select id="selectvalue">
-          <option>5</option>
-
-          <option>10</option>
-
-          <option>15</option>
-
-          <option>20</option>
-
-          <option>25</option>
-        </select>
-        <div id="img">
-          <img
-            src="https://klike.net/uploads/posts/2023-01/1674543731_3-86.jpg"
-          />
-        </div>
-        <svg>
-          <circle
-            cx="102"
-            cy="102"
-            r="100"
-            fill="rgb(234,234,234)"
-            stroke-width="1"
-            stroke="rgb(0,0,0)"
-          />
-        </svg>
-      </section>
-    </main>
-    <footer>Footer</footer>
+    <div class="card">
+      <img src="/img.png" alt="Nature" style="width: 100%" />
+      <h1>Ocean water</h1>
+      <p class="price">$19.99</p>
+      <p class="text">Some text about the nature..</p>
+      <p><button>Lets go</button></p>
+    </div>
+    <footer></footer>
   </body>
 </html>
