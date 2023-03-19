@@ -1,6 +1,6 @@
 {
   "singleQuote": true,
-  "trailingComma"; "all",
+  "trailingComma": "all",
   "tabwiath": 2,
   "useTabs": false,
   "printwiath": 100
