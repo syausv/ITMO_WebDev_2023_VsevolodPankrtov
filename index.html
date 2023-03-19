@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Card practice CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       @import 'public/reset.css';
       html {
-        background-color: #f9f9f9;
+        background-color: hsl(30, 38%, 92%);
         font-size: 16px;
       }
       .card {
-        width: 144px;
-        margin: 0 auto;
+        width: 200px;
         text-align: center;
         border: 1px #1a1a1a solid;
-        background: #cccccc;
+        background: hsl(0, 0%, 100%);
       }
       .card img {
+        float: left;
+        padding: 0 20px 20px 0;
         margin-bottom: 0.5rem;
       }
-      p {
+      .price {
+        font-family: 'Fraunces', serif;
         margin-bottom: 1rem;
+        color: hsl(158, 36%, 37%);
+      }
+      .price_back {
+        color: hsl(228, 12%, 48%);
       }
       button {
         border: none;
@@ -34,34 +46,51 @@
       button:hover {
         background: #444444;
       }
-      p:not(:last-child) {
-        margin-bottom: 1rem;
-      }
       .card > h1 {
+        font-family: 'Fraunces', serif;
         font-size: 2rem;
         line-height: 0.85;
         letter-spacing: 1px;
         font-weight: bold;
         margin-bottom: 0.25rem;
       }
+      .card > h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        line-height: 0.85;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+        color: hsl(228, 12%, 48%);
+      }
+      .card > h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        line-height: 0.85;
+        letter-spacing: 1px;
+        font-weight: lighter;
+        margin-bottom: 0.25rem;
+        color: hsl(228, 12%, 48%);
+      }
+
       .card .price {
-        color: #666;
         font-size: 0.85rem;
         font-weight: bold;
-      }
-      .card .text {
-        font-weight: lighter;
-        font-size: 1rem;
       }
     </style>
   </head>
   <body>
     <div class="card">
-      <img src="/img.png" alt="Nature" style="width: 100%" />
-      <h1>Ocean water</h1>
-      <p class="price">$19.99</p>
-      <p class="text">Some text about the nature..</p>
-      <p><button>Lets go</button></p>
+      <img src="/image-product-desktop.png" alt="Nature" style="width: 100%" />
+      <h3>PERFUME</h3>
+      <h1>Gabrielle Essence Eau De Parfum</h1>
+      <h2>
+        A floral, solar and voluptuous interpretation composed by Olivier Polge,
+        Perfumer-Creator for the House of CHANEL.
+      </h2>
+      <p class="price">$149.99</p>
+      <p class="price_back">$169.99</p>
+      <p><button>Add to Cart</button></p>
     </div>
     <footer></footer>
   </body>
