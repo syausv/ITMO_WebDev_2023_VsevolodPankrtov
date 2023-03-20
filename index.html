@@ -11,6 +11,12 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <style>
       @import 'public/reset.css';
       html {
@@ -18,86 +24,112 @@
         font-size: 16px;
       }
       .card {
-        margin-top: 120px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: auto;
-        width: 200px;
-        border-radius: 20px;
-        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        border-radius: 7px;
         background: hsl(0, 0%, 100%);
+        display: flex;
       }
-      .card img {
-        float: left;
-        padding: 0 20px 20px 0;
-        margin-bottom: 0.5rem;
-        border-radius: 10px 10px 0;
+      .card .imgBox {
+        width: 200px;
+        flex: 0 0 200px;
+      }
+      .card .imgBox img {
+        border-radius: 7px 0 0 7px;
+        max-width: 100%;
+      }
+      .card .content {
+        padding-left: 10px;
+        padding-top: 1rem;
+      }
+      .card .content .text {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .card .text > h1 {
+        font-family: 'Fraunces', serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0;
+        padding-left: 0;
+        padding-top: 1rem;
+      }
+      .card .text > h2 {
+        line-height: 1rem;
+        padding-top: 1rem;
+        font-size: 0.6rem;
+        color: hsl(228, 12%, 48%);
+        margin: 0;
+        padding-right: 1rem;
+        font-family: 'Montserrat', sans-serif;
+      }
+      .card .text > h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 9px;
+        font-weight: normal;
+        color: hsl(228, 12%, 48%);
+        margin: 0;
+        padding-left: 0;
+        letter-spacing: 3px;
       }
       .price {
         font-family: 'Fraunces', serif;
         margin-bottom: 1rem;
+        font-size: 14px;
         color: hsl(158, 36%, 37%);
       }
-      .price_back {
-        color: hsl(228, 12%, 48%);
-      }
-      button {
-        border: none;
-        width: 100%;
-        background-color: #1a4031;
-        color: white;
-        padding: 0.25rem 0;
-        border-radius: 7px;
-      }
-      button:hover {
-        background: #444444;
-      }
-      .card > h1 {
-        font-family: 'Fraunces', serif;
-        font-size: 2rem;
-        line-height: 0.85;
-        letter-spacing: 1px;
-        font-weight: bold;
-        margin-bottom: 0.25rem;
-      }
-      .card > h2 {
+      .card .price_back {
+        width: 40px;
+        text-decoration-line: line-through;
         font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        line-height: 0.85;
-        letter-spacing: 1px;
-        font-weight: bold;
-        margin-bottom: 0.25rem;
+        padding-left: 7rem;
+        font-size: 0.6rem;
         color: hsl(228, 12%, 48%);
       }
-      .card > h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        line-height: 0.85;
-        letter-spacing: 1px;
-        font-weight: lighter;
-        margin-bottom: 0.25rem;
-        color: hsl(228, 12%, 48%);
-      }
-
       .card .price {
-        font-size: 0.85rem;
+        width: 100px;
+        padding-top: 2rem;
+        font-size: 1.5rem;
         font-weight: bold;
+      }
+      .card .content button {
+        border: none;
+        color: #1a4031;
+        margin: 0;
+        padding-left: 0;
       }
     </style>
   </head>
   <body>
     <div class="card">
-      <img src="/image-product-desktop.png" alt="Nature" style="width: 100%" />
-      <h3>PERFUME</h3>
-      <h1>Gabrielle Essence Eau De Parfum</h1>
-      <h2>
-        A floral, solar and voluptuous interpretation composed by Olivier Polge,
-        Perfumer-Creator for the House of CHANEL.
-      </h2>
-      <p class="price">$149.99</p>
-      <p class="price_back">$169.99</p>
-      <p><button>Add to Cart</button></p>
+      <div class="imgBox">
+        <img
+          src="/image-product-desktop.png"
+          alt="Nature"
+          style="width: 100%"
+        />
+      </div>
+      <div class="content">
+        <div class="text">
+          <h3>PERFUME</h3>
+          <h1>Gabrielle Essence Eau De Parfum</h1>
+          <h2>
+            A floral, solar and voluptuous interpretation composed by Olivier
+            Polge, Perfumer-Creator for the House of CHANEL.
+          </h2>
+          <div>
+            <p class="price">$149.99</p>
+            <p class="price_back">$169.99</p>
+          </div>
+        </div>
+        <button>Add to Cart</button>
+      </div>
     </div>
+
     <footer></footer>
   </body>
 </html>
