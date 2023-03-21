@@ -5,131 +5,52 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Card practice CSS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
-      rel="stylesheet"
-    />
+
     <style>
-      @import 'public/reset.css';
-      html {
-        background-color: hsl(30, 38%, 92%);
-        font-size: 16px;
+      body {
+        display: grid;
+        grid-template-areas:
+          'header header header'
+          'nav section aside'
+          'footer footer footer';
+        grid-gap: 8px;
       }
-      .card {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 400px;
-        transform: translate(-50%, -50%);
-        box-sizing: border-box;
-        border-radius: 7px;
-        background: hsl(0, 0%, 100%);
-        display: flex;
+      header {
+        grid-area: header;
       }
-      .card .imgBox {
-        width: 200px;
-        flex: 0 0 200px;
+      nav {
+        grid-area: nav;
       }
-      .card .imgBox img {
-        border-radius: 7px 0 0 7px;
-        max-width: 100%;
+      section {
+        grid-area: section;
       }
-      .card .content {
-        padding-left: 10px;
-        padding-top: 1rem;
+      aside {
+        grid-area: aside;
       }
-      .card .content .text {
-        padding-left: 10px;
-        padding-right: 10px;
+      footer {
+        grid-area: footer;
       }
-      .card .text > h1 {
-        font-family: 'Fraunces', serif;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 0;
-        padding-left: 0;
-        padding-top: 1rem;
+      @media (max-width: 720px) {
+      body{
+      'header header'
+      'nav section'
+      'footer footer'
       }
-      .card .text > h2 {
-        line-height: 1rem;
-        padding-top: 1rem;
-        font-size: 0.6rem;
-        color: hsl(228, 12%, 48%);
-        margin: 0;
-        padding-right: 1rem;
-        font-family: 'Montserrat', sans-serif;
       }
-      .card .text > h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 9px;
-        font-weight: normal;
-        color: hsl(228, 12%, 48%);
-        margin: 0;
-        padding-left: 0;
-        letter-spacing: 3px;
-      }
-      .price {
-        font-family: 'Fraunces', serif;
-        margin-bottom: 1rem;
-        font-size: 14px;
-        color: hsl(158, 36%, 37%);
-      }
-      .card .price_back {
-        width: 40px;
-        text-decoration-line: line-through;
-        font-family: 'Montserrat', sans-serif;
-        padding-left: 7rem;
-        font-size: 0.6rem;
-        color: hsl(228, 12%, 48%);
-      }
-      .card .price {
-        width: 100px;
-        padding-top: 2rem;
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-      .card .content button {
-        border: none;
-        color: #1a4031;
-        margin: 0;
-        padding-left: 0;
+      @media (max-width: 480px) {
+        body{
+        'header header'
+        'nav section'
+        'footer footer'
+        }
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <div class="imgBox">
-        <img
-          src="/image-product-desktop.png"
-          alt="Nature"
-          style="width: 100%"
-        />
-      </div>
-      <div class="content">
-        <div class="text">
-          <h3>PERFUME</h3>
-          <h1>Gabrielle Essence Eau De Parfum</h1>
-          <h2>
-            A floral, solar and voluptuous interpretation composed by Olivier
-            Polge, Perfumer-Creator for the House of CHANEL.
-          </h2>
-          <div>
-            <p class="price">$149.99</p>
-            <p class="price_back">$169.99</p>
-          </div>
-        </div>
-        <button>Add to Cart</button>
-      </div>
-    </div>
-
-    <footer></footer>
+    <header style="background-color: #f001">header</header>
+    <nav style="background-color: #ff01">nav</nav>
+    <section style="background-color: #f0f1">section</section>
+    <aside style="background-color: #0ff1">aside</aside>
+    <footer style="background-color: #f001">footer</footer>
   </body>
 </html>
