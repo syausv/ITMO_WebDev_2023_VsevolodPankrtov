@@ -21,115 +21,131 @@
       @import 'public/reset.css';
       html {
         background-color: hsl(30, 38%, 92%);
-        font-size: 16px;
+        font-size: 12px;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      .flex-half-column {
+        flex: 1;
       }
       .card {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 400px;
-        transform: translate(-50%, -50%);
-        box-sizing: border-box;
-        border-radius: 7px;
-        background: hsl(0, 0%, 100%);
         display: flex;
+        flex-direction: row;
+
+        width: 655px;
+        background: white;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
       }
-      .card .imgBox {
-        width: 200px;
-        flex: 0 0 200px;
+      .card-content-wrapper {
+        padding: 2.5rem;
       }
-      .card .imgBox img {
-        border-radius: 7px 0 0 7px;
-        max-width: 100%;
+      .card-content-wrapper > *:not(:last-child) {
+        margin-top: 0;
+        margin-bottom: 2rem;
       }
-      .card .content {
-        padding-left: 10px;
-        padding-top: 1rem;
-      }
-      .card .content .text {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-      .card .text > h1 {
-        font-family: 'Fraunces', serif;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 0;
-        padding-left: 0;
-        padding-top: 1rem;
-      }
-      .card .text > h2 {
-        line-height: 1rem;
-        padding-top: 1rem;
-        font-size: 0.6rem;
-        color: hsl(228, 12%, 48%);
-        margin: 0;
-        padding-right: 1rem;
-        font-family: 'Montserrat', sans-serif;
-      }
-      .card .text > h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 9px;
-        font-weight: normal;
-        color: hsl(228, 12%, 48%);
-        margin: 0;
-        padding-left: 0;
+      .cart-content_parfume {
+        font-family: 'Montserrat', sans;
+        font-size: 1rem;
+        font-weight: 500;
+        text-transform: uppercase;
         letter-spacing: 3px;
+        color: #888;
       }
-      .price {
-        font-family: 'Fraunces', serif;
-        margin-bottom: 1rem;
-        font-size: 14px;
+      .cart-content_title {
+        font-family: 'Fraunces', sans;
+        font-size: 2.75rem;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #222;
+      }
+      .cart-content_text {
+        font-family: 'Montserrat', sans;
+        font-size: 1.15rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #666;
+      }
+      .cart-content_price {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .cart-content_price-current {
+        font-family: 'Fraunces', sans;
+        font-size: 2.75rem;
+        font-weight: 700;
+        line-height: 1;
         color: hsl(158, 36%, 37%);
       }
-      .card .price_back {
-        width: 40px;
-        text-decoration-line: line-through;
+      .cart-content_price-previos {
+        padding: 0 0 0 1rem;
+        font-family: 'Montserrat', sans;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1;
+        color: #888;
+      }
+      .cart-content_button_buy {
         font-family: 'Montserrat', sans-serif;
-        padding-left: 7rem;
-        font-size: 0.6rem;
-        color: hsl(228, 12%, 48%);
+        background: hsl(158, 36%, 37%);
+        width: 100%;
+        outline: 0;
+        border: 0;
+        padding: 1.25rem 0;
+        color: #ffffff;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border-radius: 0.75rem;
       }
-      .card .price {
-        width: 100px;
-        padding-top: 2rem;
-        font-size: 1.5rem;
-        font-weight: bold;
+      .img-data {
+        width: 100%;
+        height: 100%;
+        background-color: lightblue;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
       }
-      .card .content button {
-        border: none;
-        color: #1a4031;
-        margin: 0;
-        padding-left: 0;
+      @media (max-width: 750px) {
+        .card {
+          display: flex;
+          flex-direction: column;
+          width: 355px;
+        }
+        .img-data {
+          width: 100%;
+          height: 300px;
+        }
       }
     </style>
   </head>
-  <body>
+  <body style="background-color: #f001">
     <div class="card">
-      <div class="imgBox">
-        <img
-          src="/image-product-desktop.png"
-          alt="Nature"
-          style="width: 100%"
-        />
+      <div class="flex-half-column">
+        <div class="img-data"></div>
       </div>
-      <div class="content">
-        <div class="text">
-          <h3>PERFUME</h3>
-          <h1>Gabrielle Essence Eau De Parfum</h1>
-          <h2>
+      <div class="flex-half-column card-content">
+        <div class="card-content-wrapper">
+          <p class="cart-content_parfume">Perfume</p>
+          <h1 class="cart-content_title">Gabrielle Essence Eau De Parfum</h1>
+          <p class="cart-content_text">
             A floral, solar and voluptuous interpretation composed by Olivier
             Polge, Perfumer-Creator for the House of CHANEL.
-          </h2>
-          <div>
-            <p class="price">$149.99</p>
-            <p class="price_back">$169.99</p>
+          </p>
+          <div class="cart-content_price">
+            <span class="cart-content_price-current">$149.99</span>
+            <span class="cart-content_price-previos">$169.99</span>
           </div>
+          <button class="cart-content_button_buy">Add to cart</button>
         </div>
-        <button>Add to Cart</button>
       </div>
     </div>
-
-    <footer></footer>
   </body>
 </html>
