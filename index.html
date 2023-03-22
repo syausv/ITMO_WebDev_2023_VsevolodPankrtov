@@ -1,56 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Card practice CSS</title>
-
     <style>
-      body {
-        display: grid;
-        grid-template-areas:
-          'header header header'
-          'nav section aside'
-          'footer footer footer';
-        grid-gap: 8px;
-      }
-      header {
-        grid-area: header;
-      }
-      nav {
-        grid-area: nav;
-      }
-      section {
-        grid-area: section;
-      }
-      aside {
-        grid-area: aside;
-      }
-      footer {
-        grid-area: footer;
-      }
-      @media (max-width: 720px) {
-      body{
-      'header header'
-      'nav section'
-      'footer footer'
-      }
-      }
-      @media (max-width: 480px) {
-        body{
-        'header header'
-        'nav section'
-        'footer footer'
-        }
-      }
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
     </style>
   </head>
   <body>
-    <header style="background-color: #f001">header</header>
-    <nav style="background-color: #ff01">nav</nav>
-    <section style="background-color: #f0f1">section</section>
-    <aside style="background-color: #0ff1">aside</aside>
-    <footer style="background-color: #f001">footer</footer>
+    <div class="w-24 bg-gray-500"></div>
   </body>
 </html>
