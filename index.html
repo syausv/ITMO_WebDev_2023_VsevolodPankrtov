@@ -20,52 +20,68 @@
       @tailwind base;
       @tailwind components;
       @tailwind utilities;
-      body *{
+      body * {
         font-family: 'Epilogue', sans-serif;
       }
-      .attribution {
-        font-size: 11px;
-        text-align: center;
-      }
-      .attribution a {
-        color: hsl(228, 45%, 44%);
+      @layer components {
+        .btn-register {
+          @apply border-2 border-gray-500 rounded-lg px-3 py-1.5 hover:text-black;
+        }
       }
     </style>
   </head>
   <body class="flex flex-col h-screen bg-amber-100/50">
     <header
-      class="flex flex-row justify-between items-center px-6"
-      style="background-color: #f001"
+      class="flex flex-row justify-between items-center px-6 py-4 font-bold text-neutral-500"
+      style="background-color: #f1001"
     >
       <div class="flex flex-row gap-x-8">
         <img class="mt-1" src="public/logo.svg" />
-        <div class="flex flex-row">
-          <nav class="flex flex-row items-center-center gap-x-6">
-            <div class="flex flex-row items-center gap-x-2" >
-
-            <div>Features</div>
-              <img src="public/icon-arrow-down.svg">
+        <div class="flex flex-row items-center">
+          <nav class="flex flex-row items-center gap-x-6">
+            <div class="flex flex-row items-center gap-x-2 hover:text-black">
+              <div>Features</div>
+              <img src="public/icon-arrow-down.svg" />
             </div>
 
-            <div>Company</div>
-            <div>Careers</div>
-            <div>About</div>
+            <div class="hover:text-black">Company</div>
+            <div class="hover:text-black">Careers</div>
+            <div class="hover:text-black">About</div>
           </nav>
         </div>
       </div>
-      <div class=" flex flex-row gap-x-4"> <div  >Login </div> <div class="border-2 border-gray-500 rounded-lg px-3 ">Register</div>
+      <div class="flex flex-row gap-x-4 items-center">
+        <div class="hover:text-black">Login</div>
+        <div
+          class="border-2 border-gray-500 rounded-lg px-3 py-1.5 hover:text-black"
+        >
+          Register
+        </div>
+      </div>
     </header>
-    <div class="flex flex-row" style="background-color: #f001">
-      Make remote work Get your team in sync, no matter your location.
-      Streamline processes, create team rituals, and watch productivity soar.
-      Learn more
-    </div>
-    <main class="flex h-full flex-row" style="background-color: #f001"></main>
-    <div class="attribution">
+    <main class="flex flex-row" style="background-color: #f001">
+      <div class="flex flex-col w-1/2" style="background-color: #0ff1">
+        <div class="flex flex-row">
+          <div class="flex flex-col justify-between w-1/2">
+            <div>Make remote work</div>
+            <div>
+              Get your team in sync, no matter your location. Streamline
+              processes, create team rituals, and watch productivity soar.
+            </div>
+            <div>Learn more</div>
+          </div>
+        </div>
+        <div class="flex flex-row">icons</div>
+      </div>
+      <div class="flex flex-col w-1/2">img</div>
+    </main>
+    <div class="flex h-full flex-row" style="background-color: #f001"></div>
+    <div class="attribution text-neutral-300">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
+      >. Coded by
+      <a href="#" class="font-bold hover:text-black">Vsevolod Pankratov</a>.
     </div>
   </body>
 </html>
