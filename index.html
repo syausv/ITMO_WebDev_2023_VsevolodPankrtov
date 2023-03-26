@@ -30,52 +30,125 @@
       }
     </style>
   </head>
-  <body class="flex flex-col h-screen bg-amber-100/50">
+  <body class="flex flex-col h-screen mx-36 my-20 gap-y-8">
     <header
-      class="flex flex-row justify-between items-center px-6 py-4 font-bold text-neutral-500"
-      style="background-color: #f1001"
+      class="flex flex-row justify-between items-center"
+      style="background-color: #f100"
     >
-      <div class="flex flex-row gap-x-8">
+      <div class="flex flex-row gap-x-6">
         <img class="mt-1" src="public/logo.svg" />
-        <div class="flex flex-row items-center">
-          <nav class="flex flex-row items-center gap-x-6">
-            <div class="flex flex-row items-center gap-x-2 hover:text-black">
-              <div>Features</div>
-              <img src="public/icon-arrow-down.svg" />
-            </div>
-
-            <div class="hover:text-black">Company</div>
-            <div class="hover:text-black">Careers</div>
-            <div class="hover:text-black">About</div>
-          </nav>
-        </div>
       </div>
-      <div class="flex flex-row gap-x-4 items-center">
-        <div class="hover:text-black">Login</div>
-        <div
-          class="border-2 border-gray-500 rounded-lg px-3 py-1.5 hover:text-black"
-        >
-          Register
+      <div class="flex flex-row gap-x-6">
+        <div class="flex flex-row items-center">
+          <nav class="flex flex-row gap-x-6">
+            <div class="hover:text-black">Company</div>
+            <div class="hover:text-black">New</div>
+            <div class="hover:text-black">Popular</div>
+            <div class="hover:text-black">Trending</div>
+            <div class="hover:text-black">Categories</div>
+          </nav>
         </div>
       </div>
     </header>
     <main class="flex flex-row" style="background-color: #f001">
-      <div class="flex flex-col w-1/2" style="background-color: #0ff1">
+      <div class="flex flex-col w-2/3" style="background-color: #0ff1">
         <div class="flex flex-row">
-          <div class="flex flex-col justify-between w-1/2">
-            <div>Make remote work</div>
-            <div>
-              Get your team in sync, no matter your location. Streamline
-              processes, create team rituals, and watch productivity soar.
+          <div class="flex flex-col">
+            <div class="">
+              <img class="flex flex-row" src="public/image-web-3-desktop.jpg" />
             </div>
-            <div>Learn more</div>
+            <div class="flex flex-row">
+              <div class="flex flex-col basis-1/2">
+                <div class="flex flex-row font-bold text-6xl">
+                  The Bright Future Of WEB 3.0?
+                </div>
+              </div>
+              <div
+                class="flex flex-col basis-1/2 justify-between items-start gap-y-6"
+              >
+                <div class="flex flex-row">
+                  <p>
+                    We dive into the next evolution of the web that claims to
+                    put the power of the platforms back into the hands of the
+                    people. But is it really fulfilling its promise?
+                  </p>
+                </div>
+                <div class="flex flex-row">
+                  <button>READ MORE</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="flex flex-row">icons</div>
       </div>
-      <div class="flex flex-col w-1/2">img</div>
+      <div class="flex flex-col w-1/3">
+        <div class="flex flex-col mx-4 my-4 h-full">
+          <div class="flex flex-row">News</div>
+
+          <div class="flex flex-col h-full">
+            <div class="flex flex-col h-1/3">
+              <h1 class="flex flex-row">Hydrogen VS Electric Cars</h1>
+              <h2>Will hydrogen-fueled cars ever catch up to EVs?</h2>
+            </div>
+            <div class="flex flex-col h-1/3">
+              <h1 class="flex flex-row">Hydrogen VS Electric Cars</h1>
+              <h2>
+                What are the possible adverse effects of on-demand AI image
+                generation?
+              </h2>
+            </div>
+            <div class="flex flex-col h-1/3">
+              <h1 class="flex flex-row">Is VC Funding Drying Up?</h1>
+              <h2>
+                Private funding by VC firms is down 50% YOY. We take a look at
+                what that means.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-    <div class="flex h-full flex-row" style="background-color: #f001"></div>
+    <div class="flex h-full flex-row" style="background-color: #ff11">
+      <div class="flex flex-col w-1/3">
+        <div class="flex flex-row">
+          <img class="flex flex-col w-1/2" src="public/image-retro-pcs.jpg" />
+          <div class="flex flex-col w-1/2">
+            <p class="flex h-1/2">01</p>
+            <div class="flex h-1/2">
+              <p class="flex font-bold">Reviving Retro PCs</p>
+              <p>What happens when old PCs are given modern upgrades?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-1/3">
+        <div class="flex flex-row">
+          <img class="flex flex-col w-1/2" src="public/image-top-laptops.jpg" />
+          <div class="flex flex-col w-1/2">
+            <p class="flex h-1/2">02</p>
+            <div class="flex h-1/2">
+              <p class="flex font-bold">Top 10 Laptops of 2022</p>
+              <p>Our best picks for various needs and budgets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-1/3">
+        <div class="flex flex-row">
+          <img
+            class="flex flex-col w-1/2"
+            src="public/image-gaming-growth.jpg"
+          />
+          <div class="flex flex-col w-1/2">
+            <p class="flex h-1/2 items-start">03</p>
+            <div class="flex h-1/2">
+              <p class="flex font-bold">The Growth of Gaming</p>
+              <p>How the pandemic has sparked fresh opportunities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="attribution text-neutral-300">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
