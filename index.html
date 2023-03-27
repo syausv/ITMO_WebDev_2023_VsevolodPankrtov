@@ -12,16 +12,18 @@
       href="./images/favicon-32x32.png"
     />
 
-    <title>Frontend Mentor | Intro section with dropdown navigation</title>
+    <title>News homepage Pankratov</title>
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Fraunces:wght@700&display=swap');
       @tailwind base;
       @tailwind components;
       @tailwind utilities;
+      @font-face {
+        src: local(Inter);
+      }
       body * {
-        font-family: 'Epilogue', sans-serif;
+        font-family: 'Inter', sans-serif;
       }
       @layer components {
         .btn-register {
@@ -30,9 +32,9 @@
       }
     </style>
   </head>
-  <body class="flex flex-col h-screen mx-36 my-20 gap-y-8">
+  <body class="flex flex-col h-screen mx-32 my-20 gap-y-8">
     <header
-      class="flex flex-row justify-between items-center"
+      class="flex flex-row justify-between items-center my-6"
       style="background-color: #f100"
     >
       <div class="flex flex-row gap-x-6">
@@ -40,66 +42,92 @@
       </div>
       <div class="flex flex-row gap-x-6">
         <div class="flex flex-row items-center">
-          <nav class="flex flex-row gap-x-6">
-            <div class="hover:text-black">Company</div>
-            <div class="hover:text-black">New</div>
-            <div class="hover:text-black">Popular</div>
-            <div class="hover:text-black">Trending</div>
-            <div class="hover:text-black">Categories</div>
+          <nav class="flex flex-row justify-between gap-x-12">
+            <div class="hover:text-black text-gray-500 hover:text-red-600">
+              Home
+            </div>
+            <div class="hover:text-black text-gray-500 hover:text-red-600">
+              New
+            </div>
+            <div class="hover:text-black text-gray-500 hover:text-red-600">
+              Popular
+            </div>
+            <div class="hover:text-black text-gray-500 hover:text-red-600">
+              Trending
+            </div>
+            <div class="hover:text-black text-gray-500 hover:text-red-600">
+              Categories
+            </div>
           </nav>
         </div>
       </div>
     </header>
-    <main class="flex flex-row" style="background-color: #f001">
-      <div class="flex flex-col w-2/3" style="background-color: #0ff1">
+    <main class="flex flex-row gap-x-8">
+      <div class="flex flex-col w-2/3">
         <div class="flex flex-row">
           <div class="flex flex-col">
             <div class="">
               <img class="flex flex-row" src="public/image-web-3-desktop.jpg" />
             </div>
-            <div class="flex flex-row">
-              <div class="flex flex-col basis-1/2">
+            <div class="flex flex-row justify-between gap-x-8">
+              <div class="flex flex-col basis-1/2 py-8">
                 <div class="flex flex-row font-bold text-6xl">
-                  The Bright Future Of WEB 3.0?
+                  The Bright Future of Web 3.0?
                 </div>
               </div>
               <div
-                class="flex flex-col basis-1/2 justify-between items-start gap-y-6"
+                class="flex flex-col basis-1/2 py-8 justify-between items-start gap-y-8"
               >
                 <div class="flex flex-row">
-                  <p>
+                  <p class="text-sm leading-6 text-gray-600">
                     We dive into the next evolution of the web that claims to
                     put the power of the platforms back into the hands of the
                     people. But is it really fulfilling its promise?
                   </p>
                 </div>
-                <div class="flex flex-row">
-                  <button>READ MORE</button>
+                <div class="flex flex-row w-1/2">
+                  <button
+                    class="bg-black text-white w-full h-10 tracking-widest text-xs font-bold hover:bg-red-600"
+                  >
+                    READ MORE
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex flex-col w-1/3">
-        <div class="flex flex-col mx-4 my-4 h-full">
-          <div class="flex flex-row">News</div>
+      <div class="flex flex-col w-1/3 text-gray-50 bg-gray-900">
+        <div
+          class="flex flex-col mx-7 my-9 h-full bg-gray-900 justify-between gap-y-8"
+        >
+          <div class="flex flex-row text-yellow-400 font-bold text-5xl">
+            New
+          </div>
 
-          <div class="flex flex-col h-full">
-            <div class="flex flex-col h-1/3">
-              <h1 class="flex flex-row">Hydrogen VS Electric Cars</h1>
-              <h2>Will hydrogen-fueled cars ever catch up to EVs?</h2>
+          <div class="flex flex-col h-full gap-y-14">
+            <div class="flex flex-col h-1/3 gap-y-2">
+              <h1 class="flex flex-row font-bold hover:text-yellow-400 text-xl">
+                Hydrogen VS Electric Cars
+              </h1>
+              <h2 class="font-light text-gray-300">
+                Will hydrogen-fueled cars ever catch up to EVs?
+              </h2>
             </div>
-            <div class="flex flex-col h-1/3">
-              <h1 class="flex flex-row">Hydrogen VS Electric Cars</h1>
-              <h2>
+            <div class="flex flex-col h-1/3 gap-y-2">
+              <h1 class="flex flex-row font-bold hover:text-yellow-400 text-xl">
+                Hydrogen VS Electric Cars
+              </h1>
+              <h2 class="font-light text-gray-300">
                 What are the possible adverse effects of on-demand AI image
                 generation?
               </h2>
             </div>
-            <div class="flex flex-col h-1/3">
-              <h1 class="flex flex-row">Is VC Funding Drying Up?</h1>
-              <h2>
+            <div class="flex flex-col h-1/3 gap-y-2">
+              <h1 class="flex flex-row font-bold hover:text-yellow-400 text-xl">
+                Is VC Funding Drying Up?
+              </h1>
+              <h2 class="font-light text-gray-300">
                 Private funding by VC firms is down 50% YOY. We take a look at
                 what that means.
               </h2>
@@ -107,48 +135,68 @@
           </div>
         </div>
       </div>
+      <!-- Новости боковые -->
     </main>
-    <div class="flex h-full flex-row" style="background-color: #ff11">
-      <div class="flex flex-col w-1/3">
-        <div class="flex flex-row">
-          <img class="flex flex-col w-1/2" src="public/image-retro-pcs.jpg" />
-          <div class="flex flex-col w-1/2">
-            <p class="flex h-1/2">01</p>
-            <div class="flex h-1/2">
-              <p class="flex font-bold">Reviving Retro PCs</p>
-              <p>What happens when old PCs are given modern upgrades?</p>
+    <div class="flex flex-row justify-between gap-x-4">
+      <div class="flex flex-col h-full">
+        <div class="flex flex-row gap-x-4">
+          <img class="flex flex-col w-1/3" src="public/image-retro-pcs.jpg" />
+          <div class="flex flex-col w-2/3 gap-y-2">
+            <p class="flex flex-col text-3xl font-bold text-gray-300">01</p>
+            <div class="flex flex-col gap-y-2">
+              <p class="flex flex-col font-bold hover:text-red-600">
+                Reviving Retro PCs
+              </p>
+              <p class="flex flex-col text-xs leading-5 text-gray-500">
+                What happens when old PCs are given modern upgrades?
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex flex-col w-1/3">
-        <div class="flex flex-row">
-          <img class="flex flex-col w-1/2" src="public/image-top-laptops.jpg" />
-          <div class="flex flex-col w-1/2">
-            <p class="flex h-1/2">02</p>
-            <div class="flex h-1/2">
-              <p class="flex font-bold">Top 10 Laptops of 2022</p>
-              <p>Our best picks for various needs and budgets.</p>
+      <!-- Retro computer -->
+
+      <div class="flex flex-col">
+        <div class="flex flex-row gap-x-4">
+          <img class="flex flex-col w-1/3" src="public/image-top-laptops.jpg" />
+          <div class="flex flex-col w-2/3 gap-y-2">
+            <p class="flex flex-col text-3xl font-bold text-gray-300">02</p>
+            <div class="flex flex-col gap-y-2">
+              <p class="flex flex-col font-bold hover:text-red-600">
+                Top 10 Laptops of 2022
+              </p>
+              <p class="flex flex-col text-xs leading-5 text-gray-500">
+                Our best picks for various needs and budgets.
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex flex-col w-1/3">
-        <div class="flex flex-row">
+      <!-- keyboard laptop -->
+
+      <div class="flex flex-col">
+        <div class="flex flex-row gap-x-4">
           <img
-            class="flex flex-col w-1/2"
+            class="flex flex-col w-1/3"
             src="public/image-gaming-growth.jpg"
           />
-          <div class="flex flex-col w-1/2">
-            <p class="flex h-1/2 items-start">03</p>
-            <div class="flex h-1/2">
-              <p class="flex font-bold">The Growth of Gaming</p>
-              <p>How the pandemic has sparked fresh opportunities.</p>
+          <div class="flex flex-col w-2/3 gap-y-2">
+            <p class="flex flex-row text-3xl font-bold text-gray-300">03</p>
+            <div class="flex flex-col gap-y-2">
+              <p class="flex font-bold flex-col hover:text-red-600">
+                The Growth of Gaming
+              </p>
+              <p class="flex flex-co text-xs leading-5 text-gray-500">
+                How the pandemic has sparked fresh opportunities.
+              </p>
             </div>
           </div>
         </div>
       </div>
+      <!-- Gamer -->
     </div>
+    <!--Новости с картинками-->
+
     <div class="attribution text-neutral-300">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
