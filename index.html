@@ -1,38 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
-
-    <title>Frontend Mentor | Intro section with dropdown navigation</title>
-
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-
+    <title>JS Intro</title>
   </head>
-  <body class="flex flex-col h-screen w-screen h-screen grid place-items-center p-12">
-  <div class="container flex flex-row w-full h-full bg-neutral-200 rounded-3xl p-4">
-    <aside class='flex flex-col min-w-[114px]' style="background-color: #f001">
-<i class="iconify-inline text-teal-700 text-3xl"
-  data-icon="ph:cube-focus-bold"></i>
-      <span class="font-bold text-xl">Taski</span>
-    </aside>
-    <main class="flex flex-col bg-gray-50 rounded-2xl w-full">
-
-      <div class="flex flex-row justify-between">
-        <div class="flex flex-col"></div>
-        <div class="flex flex-col"></div>
+  <body>
+    <div id="app">
+      <div style='margin-bottom: 1rem'>
+        <span>Name:</span>
+        <input id='inpName'/>
       </div>
-    </main>
-  </div>
+      <div style='margin-bottom: 1rem'>
+        <span>Surname:</span>
+        <input id='inpSurname'/>
+      </div>
+      <div style='margin-bottom: 1rem'>
+        <span>Result:</span>
+        <input id='conResult'/>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
   </body>
-  <script type="module" src="main.js"></script>
 </html>

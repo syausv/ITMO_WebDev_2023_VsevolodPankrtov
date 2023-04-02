@@ -1,7 +1,25 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const DOM = document.getElementById.bind(document);
 
-// main.ts
-import 'uno.css'
+const domInpName = DOM("inpName");
+const domInpSurname = DOM("inpSurname");
+const domConResult = DOM("conResult");
+
+domInpName.oninput = function (event) {
+  console.log("onInpNameInput:", { event });
+  renderFullName();
+};
+
+domInpSurname.oninput = function (event) {
+  console.log("onInpNameInput:", { event });
+  renderFullName();
+};
+
+const getFullName = () => `${domInpName.value} ${domInpSurname.value}`;
+
+function renderFullName() {
+  const fullName = getFullName();
+  console.log("renderFullName:", { fullName });
+  domConResult.textContent = fullName;
+}
+
+console.log(domInpName, domInpSurname);
