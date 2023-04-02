@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Homework</title>
+    <title>Tags HTML #1 Homework </title>
   </head>
   <body>
     <header></header>
@@ -32,6 +32,7 @@
         <li>А первый нумерованный</li>
       </ul>
       <section>
+        <p>Небольшая форма</p>
         <form onsubmit="return false">
           <div>
             <label for="text"> Text: </label>
@@ -57,11 +58,11 @@
             <label for="radio"> Radio: </label>
             <input id="radio" type="radio" />
           </div>
-          <br />
-          Пока не разобрался как вывести текст по кнопке "вы нажали на кнопку"
-          <br />
-          <div><button onclick="">Я кнопка</button></div>
-        </form>
+
+          <p>Кнопка с сообщением</p>
+          
+          <button onclick="alert('Я разобрался как вывести текст по кнопке')">Я кнопка</button>
+       </form>
         <p>Таблица</p>
         <table border="1" cellpadding="5" width="50%">
           <tr>
@@ -82,8 +83,10 @@
             <td>34</td>
           </tr>
         </table>
-        <p>Выпадающий список, но пока без загаловка</p>
+        <p>Выпадающий список</p>
         <select id="selectvalue">
+          <option>Выберете значение из списка</option>
+
           <option>5</option>
 
           <option>10</option>
@@ -94,23 +97,32 @@
 
           <option>25</option>
         </select>
-        <div id="img">
+        <div >
+          <p> Картинка</p>
           <img
-            src="https://klike.net/uploads/posts/2023-01/1674543731_3-86.jpg"
+            src="https://klike.net/uploads/posts/2023-01/1674543731_3-86.jpg" width="240px" height="200px"
           />
         </div>
-        <svg>
-          <circle
-            cx="102"
-            cy="102"
-            r="100"
-            fill="rgb(234,234,234)"
-            stroke-width="1"
-            stroke="rgb(0,0,0)"
-          />
-        </svg>
+
+        <div>
+          <p>Веторное изображение</p>
+          <svg>
+            <circle
+              cx="50"
+              cy="50"
+              r="50"
+              fill="rgb(234,234,234)"
+              stroke-width="1"
+              stroke="rgb(0,0,0)"
+            />
+          </svg>
+        </div>
       </section>
     </main>
-    <footer></footer>
+    <footer>
+      <p>
+        Конец домашней работы
+      </p>
+    </footer>
   </body>
 </html>
