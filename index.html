@@ -114,20 +114,25 @@
       @media screen and (max-width: 600px) {
         .card{
 
-          padding-bottom: 3rem;
+
           display: flex;
           flex-direction: column;
-          width: 355px;
-          margin: 0 auto
+          width: 50%;
+          height: min-content;
         }
 
         .card-image-mobile{
           display: block;
-           width: 100%;
+           width: auto;
+
+        }
+        .card .imgBox{
+          flex: 0 0 0px;
         }
         .card .imgBox img {
-          border-radius: 0px;
+          border-radius: 7px 7px 0 0;
           max-width: 100%;
+
         }
         .card-image-desktop{
           display: none;
@@ -144,7 +149,7 @@
           style="width: 100%"
         />
         <img class="card-image-mobile"
-          src="/image-product-desktop.png"
+          src="/image-product-mobile.png"
           alt="Nature"
           style="width: 100%"
         />
