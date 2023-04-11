@@ -1,5 +1,5 @@
-const appendBlock = (block) => document.getElementById("app").appendChild(block);
-const randomRange = (min, max) => Math.floor(Math.random()*(max - min) + min);
+const  DOM = (id) => document.getElementById("app");
+const appendBlockToContainer = (block, container) => container.appendChild(block);
 const getColorOrEmptyOnRandom = () => {
   const isNotEmpty = Math.random()> 0.5;
   if (isNotEmpty) {
@@ -9,7 +9,7 @@ const getColorOrEmptyOnRandom = () => {
 return null;
 
 }
-const createBlock = (x,y, size, color) => {
+const createBlockWithSizeAndColorAtPosition = (x,y, size, color) => {
   const result =  document.createElement("div");
   if(color) {
 
@@ -21,37 +21,37 @@ const createBlock = (x,y, size, color) => {
   result.style.left = `${x}px` ;
   result.style.top = `${y}px`;
   return result;
-};
+}
+const container = DOM('app');
 
 const BLOCK_SIZE = 50;
-const DIMENSION = 5;
+const STEP_DELTA_X = BLOCK_SIZE;
+const DIMENSION = 8;
 
-let columns = DIMENSION;
-let rows = columns *2;
-let xPos = 0;
+let columns = 0;
+let rows = 0;
 let yPos = 0;
+let xPos = 0;
 
-
-
-while (rows-- > 0) {
-  let line = [];
-  xPos = 0;
-  columns = DIMENSION;
+const saveColorForFutureUse = (color) => colorsInLine.push(color);
+//while (rows-- > 0) {
+  let colorsInLine = [];
+ columns = DIMENSION/2;
   while (columns-- >0) {
   const color = getColorOrEmptyOnRandom();
-  const block = createBlock(xPos,yPos,BLOCK_SIZE,color);
-  line.push(color);
-  xPos += BLOCK_SIZE;
-  appendBlock(block);
+  const block = createBlockWithSizeAndColorAtPosition(xPos,yPos,BLOCK_SIZE,color);
+  saveColorForFutureUse(color);
+  appendBlockToContainer(block, container);
+  xPos += STEP_DELTA_X;
   }
 
 
+const rightHalfOffsetX = (DIMENSION/2)* BLOCK_SIZE;
+colorsInLine.reverse().forEach((color, index) => {
 
-line.reverse().forEach((color) => {
+  const block = createBlockWithSizeAndColorAtPosition(BLOCK_SIZE* index + rightHalfOffsetX ,yPos,BLOCK_SIZE, color);
+  appendBlockToContainer(block, container);
 
-  const block = createBlock(xPos,yPos,BLOCK_SIZE, color);
-  appendBlock(block);
-  xPos += BLOCK_SIZE;
 });
-yPos += BLOCK_SIZE;
-}
+//yPos += BLOCK_SIZE;
+//}
