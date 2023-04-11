@@ -3,18 +3,22 @@
 // main.ts
 import "uno.css";
 import "@unocss/reset/tailwind.css";
+import Key from "./src/constants/dom.js";
 
+const DOM = (id) => document.getElementById(id);
+const QUERY = (container, id) => container.querySelector(`[data-id="${id}"]`);
 const domBtnCreateTask = document.getElementById("btnCreateTask");
-const dompopupCreateTask = document.getElementById("popupCreateTask");
 
 
-domBtnCreateTask.onclick = (e) => {
+DOM(Key.Button.CREATE_TASK).onclick = (e) => {
   console.log("click");
-  dompopupCreateTask.classList.remove("hidden");
-  const dombtnCloseCreateTaskPopup = document.getElementById("btnCloseCreateTaskPopup");
+  const domPopupCreateTask = DOM(Key.Popup.CREATE_TASK);
+  const domClosePopupCreateTask = QUERY(domPopupCreateTask, Key.Button.CLOSE_POPUP_CREATE_TASK);
+  domPopupCreateTask.classList.remove("hidden");
 
-  dombtnCloseCreateTaskPopup.onclick = (e) => {
-    dompopupCreateTask.classList.add("hidden");
-    dombtnCloseCreateTaskPopup.onclick = null;
+
+  QUERY(domPopupCreateTask, Key.Button.CLOSE_POPUP_CREATE_TASK).onclick = (e) => {
+    DOM(Key.Popup.CREATE_TASK).classList.add("hidden");
+    DOM(Key.Button.CLOSE_POPUP_CREATE_TASK).onclick = null;
   }
 };
