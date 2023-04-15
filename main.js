@@ -3,22 +3,52 @@
 // main.ts
 import "uno.css";
 import "@unocss/reset/tailwind.css";
-import Key from "./src/constants/dom.js";
+import Dom from "./src/constants/dom.js";
+import {randomString} from "./src/utils/stringUtils.js";
 
-const DOM = (id) => document.getElementById(id);
+
+const Tags = ["Web","Design","Content"]
+class TaskVO {
+  constructor(title, date, tag) {
+    this.title = title;
+    this.date = date;
+    this.tag = tag;
+  }
+
+}
+
+
+
+const task = new TaskVO("Read", Date.now(),Tags[0]);
+const getDOM = (id) => document.getElementById(id);
 const QUERY = (container, id) => container.querySelector(`[data-id="${id}"]`);
-const domBtnCreateTask = document.getElementById("btnCreateTask");
+const domTask = getDOM(Dom.template.TASK);
+const tasks = [];
 
+getDOM(Dom.Button.CREATE_TASK).onclick = () => {
+  console.log("click")
 
-DOM(Key.Button.CREATE_TASK).onclick = (e) => {
-  console.log("click");
-  const domPopupCreateTask = DOM(Key.Popup.CREATE_TASK);
-  const domClosePopupCreateTask = QUERY(domPopupCreateTask, Key.Button.CLOSE_POPUP_CREATE_TASK);
+  const domPopupCreateTask = getDOM(Dom.Popup.CREATE_TASK);
+  const domClosePopupCreateTask = QUERY(domPopupCreateTask, Dom.Button.POPUP_CREATE_TASK_CLOSE);
+  const domConfirmPopupCreateTask = QUERY(domPopupCreateTask, Dom.Button.POPUP_CREATE_TASK_CONFIRM);
   domPopupCreateTask.classList.remove("hidden");
+  const onClosePopup = () => {
+    domPopupCreateTask.classList.add("hidden");
+    domClosePopupCreateTask.onclick = null;
+    domConfirmPopupCreateTask.onclick = null;
+  }
 
-
-  QUERY(domPopupCreateTask, Key.Button.CLOSE_POPUP_CREATE_TASK).onclick = (e) => {
-    DOM(Key.Popup.CREATE_TASK).classList.add("hidden");
-    DOM(Key.Button.CLOSE_POPUP_CREATE_TASK).onclick = null;
+  domClosePopupCreateTask.onclick = onClosePopup;
+  domConfirmPopupCreateTask.onclick = () =>{
+    const taskVO = new TaskVO(
+      randomString(12),
+      Date.now(),
+      Tags[0]);
+    const taskView = domTask.cloneNode(true);
+    QUERY(taskView,Dom.template.Task.TITLE).innerText = taskVO.title;
+    domTask.parentNode.prepend(taskView);
+    tasks.push(taskVO);
+    console.log("confirm", taskVO);
+    onClosePopup();
   }
 };
