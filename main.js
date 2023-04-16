@@ -102,7 +102,7 @@ function renderTaskPopup(popupTitle, btnConfirmText, confirmCallback){
     const taskTitle = randomString(12);
     const taskDate = randomString(12);
     const taskTags = Tags [0];
-    confirmCallback && confirmCallback();
+    confirmCallback && confirmCallback(taskTitle,taskDate,taskTags);
 
     onClosePopup();
   };
