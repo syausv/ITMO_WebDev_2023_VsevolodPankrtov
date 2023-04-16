@@ -5,6 +5,7 @@ import "uno.css";
 import "@unocss/reset/tailwind.css";
 import Dom from "./src/constants/dom.js";
 import {randomString} from "./src/utils/stringUtils.js";
+import dom from "./src/constants/dom.js";
 
 const KEY_LOCAL_TASKS  = "tasks";
 
@@ -77,33 +78,31 @@ function renderTask(taskVO) {
   QUERY(domTaskClone,Dom.template.Task.TITLE).innerText = taskVO.title;
   domTaskColumn.prepend(domTaskClone);
 }
-function renderTaskPopup(popupTitle, btnConfirmText, confirmCallback){
-  console.log("click");
-
-  const domPopupCreateTask = getDOM(Dom.Popup.CREATE_TASK);
-  const domBtnClose = QUERY(domPopupCreateTask, Dom.Button.POPUP_CREATE_TASK_CLOSE);
-  const domBtnConfirm = QUERY(domPopupCreateTask, Dom.Button.POPUP_CREATE_TASK_CONFIRM);
-  const domTitle = QUERY(domPopupCreateTask, Dom.Popup.CreateTask.TITLE)
-
-   domBtnConfirm.innerText = btnConfirmText;
-  domTitle.innerText = popupTitle;
+async  function renderTaskPopup(popupTitle, confirmText, confirmCallback){
+  const domPopupContainer = getDOM(Dom.Popup.CONTAINER);
+  const domSpinner = domPopupContainer.querySelector('.spinner');
 
 
-  domPopupCreateTask.classList.remove("hidden");
-  const onClosePopup = () => {
-    domPopupCreateTask.classList.add("hidden");
-    domBtnClose.onclick = null;
-    domBtnConfirm.onclick = null;
-  }
 
-  domBtnClose.onclick = onClosePopup;
 
-  domBtnConfirm.onclick = () => {
-    const taskTitle = randomString(12);
-    const taskDate = randomString(12);
-    const taskTags = Tags [0];
-    confirmCallback && confirmCallback(taskTitle,taskDate,taskTags);
+  const TaskPopup = (await import('./src/view/popup/TaskPopup')).default;
+  const taskPopupInstance = new TaskPopup(
+    popupTitle,
+    confirmText,
+    confirmCallback,
+    () => {
+      domPopupContainer.innerHTML = "";
+      domPopupContainer.append(domSpinner);
+      domPopupContainer.classList.remove('hidden');
+    }
 
-    onClosePopup();
-  };
+  )
+  setTimeout(() => {
+    domSpinner.remove();
+    domPopupContainer.append(taskPopupInstance.render());
+  }, 1000);
+
+
+  return;
+
 }
