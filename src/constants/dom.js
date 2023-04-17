@@ -1,10 +1,10 @@
-const Dom = {
+const DOM = {
     Button: {
       CREATE_TASK: "btnCreateTask",
       POPUP_CREATE_TASK_CLOSE: "btnCloseCreateTaskPopup",
       POPUP_CREATE_TASK_CONFIRM: "btnConfirmTaskPopup",
     },
-    template:{
+    Template:{
       TASK: "templateTask",
       Task: {
         TITLE: "templateTaskTitle"
@@ -17,4 +17,4 @@ const Dom = {
       }
     },
 };
-export  default Dom;
+export  default DOM;
