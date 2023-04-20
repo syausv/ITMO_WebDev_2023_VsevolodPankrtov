@@ -7,7 +7,9 @@ const DOM = {
     Template:{
       TASK: "templateTask",
       Task: {
-        TITLE: "templateTaskTitle"
+        TITLE: "templateTaskTitle",
+        BTN_EDIT: "btnEdit",
+        BTN_DELETE: "btnDelete"
       }
     },
     Popup:{

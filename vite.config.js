@@ -5,6 +5,8 @@ import presetIcons from '@unocss/preset-icons'
 export default {
   plugins: [
     UnoCSS({
+
+      include: ['./index.html', 'main.js', './src/**/**.js'],
       presets: [
         presetUno(),
         presetIcons({ /* options */ }),

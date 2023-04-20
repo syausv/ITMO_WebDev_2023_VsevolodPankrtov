@@ -78,8 +78,8 @@ set taskTitle(value) {
 
     const popup = div.children[0];
 
-    const domBtnClose = popup.querySelector('[data-id="btnClose"]');
-    const domBtnConfirm = popup.querySelector('[data-id="btnConfirm"]');
+    const domBtnClose = popup.querySelector('[data-btn="btnClose"]');
+    const domBtnConfirm = popup.querySelector('[data-btn="btnConfirm"]');
 
     domBtnClose.onclick = () => {
       domBtnClose.onclick = null;
