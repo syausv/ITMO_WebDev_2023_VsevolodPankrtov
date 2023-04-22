@@ -21,7 +21,7 @@ set taskTitle(value) {
   render() {
     const div = document.createElement('div');
     div.innerHTML = `
-      <div class="flex flex-col relative min-w-[377px] bg-white p-6 rounded-2xl gap-y-4">
+      <div data-testid="task-popup" class="flex flex-col relative min-w-[377px] bg-white p-6 rounded-2xl gap-y-4">
         <button class="absolute top-4 right-4" data-id="btnClose">
           <i class="i-material-symbols-cancel-outline block text-neutral-400 hover:text-neutral-800 text-2xl"></i>
         </button>
