@@ -35,7 +35,27 @@ tasks.forEach((taskVO) => renderTask(taskVO));
 console.log('> tasks:', tasks);
 
 const taskOperations = {
-  [DOM.Template.Task.BTN_DELETE]: (taskVO, domTask) => {},
+  [DOM.Template.Task.BTN_DELETE]: (taskVO, domTask) => {
+    renderTaskPopup(
+      taskVO,
+      'Confirm delete task?',
+      'Delete',
+      (taskTitle, taskDate, taskTag) => {
+        console.log('> Delete task -> On Confirm', {
+          taskTitle,
+          taskDate,
+          taskTag,
+        });
+        tasks.splice(tasks.indexOf(TaskVO),1);
+        domTaskColumn.removeChild(domTask);
+        saveTask();
+      }
+    )
+
+    tasks.splice(tasks.index(taskVO), 1);
+    domTaskColumn.removeChild(domTask);
+    saveTask();
+  },
   [DOM.Template.Task.BTN_EDIT]: (taskVO, domTask) => {
     renderTaskPopup(
       taskVO,
