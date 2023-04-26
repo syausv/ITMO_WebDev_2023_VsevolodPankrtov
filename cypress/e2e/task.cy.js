@@ -1,7 +1,7 @@
 import DOM from '../../src/constants/dom.js';
 
-const SERVER_URL = 'http://127.0.0.1:4173/';
-
+const SERVER_URL = 'http://localhost:5173/';
+//http://127.0.0.1:4173/
 describe('Test Todo Page', () => {
   beforeEach(() => {
     cy.intercept('/**/TaskPopup**').as('getTaskPopup');
