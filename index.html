@@ -6,7 +6,6 @@
   <title>Vite App</title>
   <style>
     .spinner {
-
       display: inline-block;
       width: 50px;
       height: 50px;
@@ -14,16 +13,10 @@
       border-radius: 50%;
       border-top-color: #fff;
       animation: spin 1s ease-in-out infinite;
-      -webkit-animation: spin 1s ease-in-out infinite;}
-
-
+    }
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-    @-webkit-keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
   </style>
 </head>
 <body class="bg-teal-100/50 w-screen h-screen grid place-items-center p-12 font-sans">
@@ -96,12 +89,13 @@
         </div>
         <div class="flex flex-row pt-2">
           <div class="flex flex-col justify-start w-full gap-y-4 justify-between">
-            <div id="templateTask"
+            <div
+              id="templateTask"
               class="flex flex-row shadow rounded-lg px-3 py-3 bg-neutral-50 border-1 border-neutral-100"
             >
-              <div class="flex flex-col w-full  pointer-events-none">
-                <span data-id="templateTaskTitle"  class="font-bold">Layout Design</span>
-                <div class="flex flex-row  -space-x-2">
+              <div class="flex flex-col w-full gap-y-3">
+                <span data-id="templateTaskTitle" class="font-bold pointer-events-none">Layout Design</span>
+                <div class="flex flex-row justify-between">
                   <div class="flex flex-row gap-x-2">
                     <div
                       class="text-xs rounded-lg py-1 px-2 bg-neutral-200/60 text-neutral-600"
@@ -120,28 +114,23 @@
                   </div>
                 </div>
                 <div class="flex flex-row justify-between">
-                  <div class="flex flex-row -space-x-2 ">
-                      <span
-                        class="w-6 h-6 rounded-full bg-green-300 border-2 border-green-500"></span>
-                    <span
-                      class="w-6 h-6 rounded-full bg-yellow-300 border-2 border-yellow-500">
-                    </span>
-                    <span
-                      class="grid place-items-center w-6 h-6 rounded-full bg-blue-300 border-2 border-blue-500"><span class="text-xs font-bold text-blue-600">+2</span>
-                    </span>
+                  <div class="flex flex-row -space-x-2">
+                    <span class="w-6 h-6 rounded-full bg-green-300 border-2 border-green-500"></span>
+                    <span class="w-6 h-6 rounded-full bg-yellow-300 border-2 border-yellow-500"></span>
+                    <span class="grid place-items-center w-6 h-6 rounded-full bg-blue-300 border-2 border-blue-500">
+                          <span class="text-xs font-bold text-blue-600">+2</span>
+                        </span>
                   </div>
                   <div class="flex flex-row gap-2">
-                    <button data-id="btnEdit" class="hover:text-neutral-800 text-2xl text-neutral-400">
-                      <i class="i-material-symbols-edit block text-neutral-400 hover:text-neutral-800 text-2xl"></i>
+                    <button data-btn="btnEdit" class="text-neutral-400 hover:text-neutral-800 ">
+                      <i class="i-material-symbols-edit block text-2xl pointer-events-none"></i>
                     </button>
-                    <button data-id="btnDelete" class="hover:text-neutral-800 text-2xl text-neutral-400" >
-                      <i class="i-material-symbols-delete block pointer-events-none  "></i>
+                    <button data-btn="btnDelete" class="text-neutral-400 hover:text-neutral-800">
+                      <i class="i-material-symbols-delete block text-2xl pointer-events-none"></i>
                     </button>
                   </div>
-
-
+                </div>
               </div>
-            </div>
             </div>
             <button class="rounded-lg bg-neutral-50 w-full py-2 shadow text-neutral-500">
               + Add task

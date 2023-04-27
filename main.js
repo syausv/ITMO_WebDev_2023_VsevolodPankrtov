@@ -28,6 +28,16 @@ domTemplateTask.remove();
 
 const rawTasks = localStorage.getItem(KEY_LOCAL_TASKS);
 
+fetch('http://localhost:3000/tasks').then( (response) => {
+  return response.ok && response.json();
+}).then((rawTasks) => {
+  if (rawTasks && rawTasks instanceof Object) {
+    console.log("json",rawTasks)
+    const serverTasks = rawTasks.map((json)=> TaskVO.fromJSON(json));
+    tasks.push(...serverTasks);
+  }
+});
+
 const tasks = rawTasks
   ? JSON.parse(rawTasks).map((json) => TaskVO.fromJSON(json))
   : [];
@@ -35,7 +45,24 @@ tasks.forEach((taskVO) => renderTask(taskVO));
 console.log('> tasks:', tasks);
 
 const taskOperations = {
-  [DOM.Template.Task.BTN_DELETE]: (taskVO, domTask) => {},
+  [DOM.Template.Task.BTN_DELETE]: (taskVO, domTask) => {
+    renderTaskPopup(
+      taskVO,
+      'Confirm delete task?',
+      'Delete',
+      (taskTitle, taskDate, taskTag) => {
+        console.log('> Delete task -> On Confirm', {
+          taskTitle,
+          taskDate,
+          taskTag,
+        });
+        const indexOfTaks = tasks.indexOf(taskVO);
+        tasks.splice(indexOfTaks, 1);
+        domTaskColumn.removeChild(domTask);
+        saveTask();
+      }
+    )
+  },
   [DOM.Template.Task.BTN_EDIT]: (taskVO, domTask) => {
     renderTaskPopup(
       taskVO,
@@ -53,10 +80,6 @@ const taskOperations = {
         saveTask();
       }
     )
-    const indexOfTaks = tasks.indexOf(taskVO);
-    tasks.splice(tasks.index(taskVO), 1);
-    domTaskColumn.removeChild(domTask);
-    saveTask();
   },
 };
 
