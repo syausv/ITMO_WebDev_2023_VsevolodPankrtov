@@ -1,6 +1,7 @@
 import 'uno.css';
 import '@unocss/reset/tailwind.css';
 import DOM from './src/constants/dom';
+import { delay } from './src/utils/timeUtils.js';
 
 const KEY_LOCAL_TASKS = 'tasks';
 
@@ -8,13 +9,13 @@ const Tags = ['Web', 'Update', 'Design', 'Content'];
 
 class TaskVO {
   static fromJSON(json) {
-    return new TaskVO(json.id, json.title, json.date, json.tag);
+    return new TaskVO(json.id, json.title, json.date, json.tags);
   }
-  constructor(id, title, date, tag) {
+  constructor(id, title, date, tags) {
     this.id = id;
     this.title = title;
     this.date = date;
-    this.tag = tag;
+    this.tags = tags;
   }
 }
 
@@ -27,16 +28,18 @@ domTemplateTask.removeAttribute('id');
 domTemplateTask.remove();
 
 const rawTasks = localStorage.getItem(KEY_LOCAL_TASKS);
-
-fetch('http://localhost:3000/tasks').then( (response) => {
-  return response.ok && response.json();
-}).then((rawTasks) => {
-  if (rawTasks && rawTasks instanceof Object) {
-    console.log("json",rawTasks)
-    const serverTasks = rawTasks.map((json)=> TaskVO.fromJSON(json));
-    tasks.push(...serverTasks);
-  }
-});
+fetch('http://localhost:3000/tasks')
+  .then((response) => {
+    return response.ok && response.json();
+  })
+  .then((rawTasks) => {
+    if (rawTasks && rawTasks instanceof Object) {
+      console.log('json', rawTasks);
+      const serverTasks = rawTasks.map((json) => TaskVO.fromJSON(json));
+      serverTasks.forEach((taskVO) => renderTask(taskVO));
+      tasks.push(...serverTasks);
+    }
+  });
 
 const tasks = rawTasks
   ? JSON.parse(rawTasks).map((json) => TaskVO.fromJSON(json))
@@ -56,12 +59,12 @@ const taskOperations = {
           taskDate,
           taskTag,
         });
-        const indexOfTaks = tasks.indexOf(taskVO);
-        tasks.splice(indexOfTaks, 1);
+        const indexOfTask = tasks.indexOf(taskVO);
+        tasks.splice(indexOfTask, 1);
         domTaskColumn.removeChild(domTask);
         saveTask();
       }
-    )
+    );
   },
   [DOM.Template.Task.BTN_EDIT]: (taskVO, domTask) => {
     renderTaskPopup(
@@ -79,7 +82,7 @@ const taskOperations = {
         domTaskColumn.replaceChild(domTaskUpdated, domTask);
         saveTask();
       }
-    )
+    );
   },
 };
 
@@ -113,16 +116,17 @@ domTaskColumn.onclick = (e) => {
     taskOperation(taskVO, domTask);
   }
 };
+
 getDOM(DOM.Button.CREATE_TASK).onclick = () => {
   console.log('> domPopupCreateTask.classList');
   renderTaskPopup(
     null,
     'Create task',
     'Create',
-    (taskTitle, taskDate, taskTag) => {
+    (taskTitle, taskDate, taskTags) => {
       console.log('> Create task -> On Confirm');
       const taskId = `task_${Date.now()}`;
-      const taskVO = new TaskVO(taskId, taskTitle, taskDate, taskTag);
+      const taskVO = new TaskVO(taskId, taskTitle, taskDate, taskTags);
 
       renderTask(taskVO);
       tasks.push(taskVO);
@@ -152,6 +156,7 @@ async function renderTaskPopup(
   domPopupContainer.classList.remove('hidden');
 
   const onClosePopup = () => {
+    document.onkeyup = null;
     domPopupContainer.children[0].remove();
     domPopupContainer.append(domSpinner);
     domPopupContainer.classList.add('hidden');
@@ -178,15 +183,18 @@ async function renderTaskPopup(
     taskPopupInstance.taskTitle = taskVO.title;
   }
 
-  // setTimeout(() => {
-  domSpinner.remove();
-  document.onkeyup = (e) => {
-    if (e.key === 'Escape') {
-      onClosePopup();
-    }
-  };
-  domPopupContainer.append(taskPopupInstance.render());
-  // }, 1000);
+  delay(1000).then(() => {
+    console.log('render 1');
+    domSpinner.remove();
+    document.onkeyup = (e) => {
+      if (e.key === 'Escape') {
+        onClosePopup();
+      }
+    };
+    domPopupContainer.append(taskPopupInstance.render());
+  });
+
+  console.log('render 0');
 }
 
 function saveTask() {
