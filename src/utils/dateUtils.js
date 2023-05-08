@@ -1,5 +1,7 @@
-const formattedMsToDateString = (ms, format ="en-Us") => {
+const formattedMsToDateString = (ms, format = 'en-US') => {
   const tempDate = new Date();
-  tempDate.setTime(this.date);
-  return new Intl.DateTimeFormat('en-US').format(new date(this.date));
-}
+  tempDate.setTime(ms);
+  return new Intl.DateTimeFormat('en-US').format(tempDate);
+};
+
+export { formattedMsToDateString };

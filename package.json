@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "mkcert": "^1.5.1",
-    "reset-css": "^5.0.1"
+    "reset-css": "^5.0.1",
+    "toastify-js": "^1.12.0"
   }
 }
