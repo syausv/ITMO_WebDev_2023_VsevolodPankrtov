@@ -1,20 +1,7 @@
-// vite.config.ts
-import UnoCSS from 'unocss/vite'
-import {presetUno} from "unocss";
-import presetIcons from '@unocss/preset-icons'
-export default {
-  plugins: [
-    UnoCSS({
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
-      include: ['./index.html', 'main.js', './src/**/**.js'],
-      presets: [
-        presetUno(),
-        presetIcons({ /* options */ }),
-        // ...other presets
-      ], // disable default preset
-      rules: [
-        // your custom rules
-      ],
-    }),
-  ],
-}
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()],
+})
