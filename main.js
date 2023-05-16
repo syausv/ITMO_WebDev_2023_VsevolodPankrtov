@@ -27,51 +27,37 @@ const createBlock = (x,y, size, color) => {
 
 
   const BLOCK_SIZE = 50;
-  const DIMENSION = 5;
+  const DIMENSION = 8;
 
-  let columns = DIMENSION;
+  let columns = DIMENSION /2 ;
   let rows = columns * 2;
   let yPos = 0;
 
-  function Monster(xPos) {
-    while (rows-- > 0) {
-      let xPos = 0;
-      let line = [];
-      columns = DIMENSION;
+
+
+   // while (rows-- > 0) {
+
+      let halfLineColors = [];
+      columns = DIMENSION/2;
       while (columns-- > 0) {
         const color = getColorOrEmptyOnRandom();
-        const block = createBlock(xPos, yPos, BLOCK_SIZE, color);
-        line.push(color);
-        xPos += BLOCK_SIZE;
+        const block = createBlock(columns * BLOCK_SIZE, yPos, BLOCK_SIZE, color);
+        halfLineColors.push(color);
         appendBlock(block);
       }
 
-      line.reverse().forEach((color) => {
-        const block = createBlock(xPos, yPos, BLOCK_SIZE, color);
+      const rightHalfOffsetX = (DIMENSION/2)*BLOCK_SIZE;
+      halfLineColors.reverse().forEach((color, index) => {
+        const block = createBlock(BLOCK_SIZE * index + rightHalfOffsetX, yPos, BLOCK_SIZE, color);
         appendBlock(block);
-        xPos += BLOCK_SIZE;
+
       });
-      yPos += BLOCK_SIZE;
-
-    }
-    console.log('xPos = ', xPos);
-    return BLOCK_SIZE;
-    return xPos;
 
 
-  }
 
-//Monster(0);
 
-  function MonstersInLine() {
-    let countMonsters = 8;
-    let xPos = 0;
-    while (countMonsters >= 0) {
-      Monster(xPos);
-      xPos += BLOCK_SIZE;
-      console.log('xPos2 = ', xPos);
-      countMonsters--;
-    }
 
-  }
-MonstersInLine()
+
+
+
+
