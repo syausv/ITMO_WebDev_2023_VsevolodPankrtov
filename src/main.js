@@ -1,5 +1,27 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import {createRouter, createWebHashHistory} from 'vue-router';
 
-createApp(App).mount('#app')
+import './style.css';
+
+import AppComposition from './AppComposition.vue';
+
+import TodosPage from './components/TodosPage.vue';
+import IndexPage from './components/IndexPage.vue';
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: [
+    {
+      path: '/',
+      component: IndexPage
+    },
+    {
+      path: '/todos',
+      component: TodosPage
+    }
+  ],
+});
+
+createApp(AppComposition)
+  .use(router)
+  .mount('#app');

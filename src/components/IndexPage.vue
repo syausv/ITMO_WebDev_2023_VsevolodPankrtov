@@ -1,13 +1,10 @@
 <template>
-$END$
+  <div>
+    INDEX PAGE
+  </div>
 </template>
-
 <script>
 export default {
-name: "IndexPage"
-}
+  name: 'IndexPage'
+};
 </script>
-
-<style scoped>
-
-</style>

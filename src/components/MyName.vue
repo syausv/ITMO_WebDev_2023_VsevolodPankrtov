@@ -7,16 +7,22 @@
     </span>
   </div>
   <small>
-    <div>
-      <span class='flex flex-col'
-            :class="{'selected': !!status,
-             'unselected': !status} "
-      >Status:</span>
-      <span >{{ status }}</span>
-    </div>
+    <span
+      class="flex flex-col"
+      :class="{
+        'selected': !!status,
+        'unselected': !status
+      }"
+    >
+      Status:
+    </span>
+    <span>{{ status }}</span>
     <div>
       <button
-        :style='{visibility: !!status}' @click='onResetClick'
+        :style="{
+          visibility: status ? 'visible' : 'hidden'
+        }"
+        @click="onResetClick"
       >Reset</button>
     </div>
   </small>
@@ -24,32 +30,31 @@
 
 <script>
 export default {
-  name: "MyName",
+  name: 'MyName',
   props: {
-    status:{
+    status: {
       type: String,
-      default: "-"
-    }
+      default: '-'
+    },
   },
-  emits:['reset'],
+  emits: ['reset'],
   data: () => ({
-    firstName: "Vsevolod",
-    lastName: "Pankratov"
+    firstName: 'Vsevolod',
+    lastName: 'Pankratov'
   }),
   methods: {
-    onResetClick(){
-      console.log(' MyName -> onResetClick');
+    onResetClick() {
+      console.log('> MyName -> onResetClick');
       this.$emit('reset');
     }
   }
 };
 </script>
-
 <style scoped>
 .selected {
-color: green;
+  color: green;
 }
-.unselected{
+.unselected {
   color: red;
 }
 </style>
