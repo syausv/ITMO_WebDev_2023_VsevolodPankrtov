@@ -1,30 +1,25 @@
-const appendBlock = (block) => document.getElementById("app").appendChild(block);
-
+const appendBlock = (block) =>
+  document.getElementById('app').appendChild(block);
 
 const getColorOrEmptyOnRandom = () => {
-  const isNotEmpty = Math.random()> 0.5;
+  const isNotEmpty = Math.random() > 0.5;
   if (isNotEmpty) {
-    return "black";
+    return 'black';
+  } else {
+    return '#DCDCDC';
   }
-  else {
-    return "#DCDCDC";
-  }
-}
-const createBlock = (x,y, size, color) => {
-  const result =  document.createElement("div");
-  if(color) {
+};
+const createBlock = (x, y, size, color) => {
+  const result = document.createElement('div');
+  if (color) {
     result.style.backgroundColor = color;
   }
-  result.style.width = result.style.height =`${size}px`;
-  result.style.position = "absolute";
-  result.style.left = `${x}px` ;
+  result.style.width = result.style.height = `${size}px`;
+  result.style.position = 'absolute';
+  result.style.left = `${x}px`;
   result.style.top = `${y}px`;
   return result;
 };
-
-
-
-
 
 const BLOCK_SIZE = 50;
 const DIMENSION = 5;
@@ -52,13 +47,10 @@ function Monster(xPos) {
       xPos += BLOCK_SIZE;
     });
     yPos += BLOCK_SIZE;
-
   }
   console.log('xPos = ', xPos);
   return BLOCK_SIZE;
   return xPos;
-
-
 }
 
 //Monster(0);
@@ -72,6 +64,5 @@ function MonstersInLine() {
     console.log('xPos2 = ', xPos);
     countMonsters--;
   }
-
 }
-MonstersInLine()
+MonstersInLine();

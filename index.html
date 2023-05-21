@@ -2,14 +2,93 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <title>Java loops</title>
-
-
-
+    <title>Invoice</title>
   </head>
-  <body>
-  <div id="app"></div>
-  <script type="module" src="/main.js"></script>
+  <style>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+  </style>
+  <body class="flex flex-col mx-32 my-12">
+    <div class="flex flex-row w-[1024px] py-4 justify-between">
+      <div data-id="numberOfInvoice" class="flex flex-row w-1/2">
+        <div class="flex flex-col">
+          <div class="flex flex-row">
+            <p>№</p>
+            <input class="border-b-4 border-slate-500" />
+          </div>
+        </div>
+      </div>
+
+      <div data-id="invoiceStaticInformation" class="flex flex-col w-1/2">
+        <div class="flex flex-col">Invoice</div>
+        <div class="flex grid grid-cols-2 gap-4">
+          <div class='flex flex-col'>
+            <h4> Issued </h4>
+            <h5 class='text-xs'>21 May, 2023</h5>
+          </div>
+          <div class='flex flex-col'>
+            <h4>Due</h4>
+            <h5 class='text-xs'>30 May, 2023</h5>
+          </div>
+          <div class='flex flex-col'><h4>From</h4>
+            <h5 class='text-xs'>
+              Name or Company
+              123 Godly Street
+              Internet, 198233
+              Saint-Petersburg, Russia</h5>
+          </div>
+          <div class='flex flex-col'>
+            <h4>To</h4>
+            <h5 class='text-xs'>
+              Payer Company
+              Unknown Street, 832/6
+              Extranet TF, 99321
+              Another City, Country</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-row w-[1024px] justify-between py-2">
+      <div class="flex flex-row w-full justify-between">
+        <div>Item</div>
+        <div>Qty</div>
+        <div>Cost</div>
+        <div>Total</div>
+      </div>
+    </div>
+    <hr class='w-[1024px]'>
+
+    <div data-id="itemList" class="flex flex-row w-[1024px] py-4">
+      <div data-id="itemAded"></div>
+    </div>
+
+    <div data-id="btnAddItem" class="flex flex-row w-[1024px] mt-10">
+      <button class="rounded-full bg-black text-white px-2 py-1">+</button>
+    </div>
+
+    <div data-id='discountAndTotal' class="flex flex-row place-items-end py-4 w-[1024px]">
+      <div class="flex flex-col w-1/2"></div>
+      <div class="flex flex-col w-1/2">
+        <hr>
+        <div class="flex flex-row justify-between pt-2">
+          <div>Subtotal</div>
+          <div>0</div>
+
+        </div>
+        <div class="flex flex-row justify-between pb-2">
+        <div class='flex flex-row w-[200px]'>Discount (<input class='w-[20px]'>%)</div>
+        <div>0</div>
+        </div>
+        <hr>
+        <div class="flex flex-row justify-between py-2">
+        <div>Total</div>
+          <div>0</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
