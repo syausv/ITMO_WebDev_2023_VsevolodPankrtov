@@ -8,8 +8,8 @@
   </div>
   <small>
     <span
-      class="flex flex-col"
-      :class="{
+        class="flex flex-col"
+        :class="{
         'selected': !!status,
         'unselected': !status
       }"
@@ -19,10 +19,10 @@
     <span>{{ status }}</span>
     <div>
       <button
-        :style="{
+          :style="{
           visibility: status ? 'visible' : 'hidden'
         }"
-        @click="onResetClick"
+          @click="onResetClick"
       >Reset</button>
     </div>
   </small>

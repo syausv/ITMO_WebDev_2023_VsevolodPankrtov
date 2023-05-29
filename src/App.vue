@@ -7,9 +7,9 @@
     </template>
   </AppHeader>
   <input
-    ref="domInput"
-    v-model="inputText"
-    @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
+      ref="domInput"
+      v-model="inputText"
+      @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
   >
   <div>
     List:
@@ -18,11 +18,11 @@
     </span>
     <span v-else>empty</span>
     <TodoItem
-      v-for="(item, index) in todos"
-      :key="item"
-      :index="index + 1"
-      :text="item"
-      @delete="onDeleteTodo(index)"
+        v-for="(item, index) in todos"
+        :key="item"
+        :index="index + 1"
+        :text="item"
+        @delete="onDeleteTodo(index)"
     />
   </div>
 </template>
