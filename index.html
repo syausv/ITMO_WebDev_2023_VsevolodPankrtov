@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Invoice</title>
+    <script type="module" src="main.js"></script>
   </head>
   <style>
     @tailwind base;
@@ -60,12 +61,12 @@
     </div>
     <hr class='w-[1024px]'>
 
-    <div data-id="itemList" class="flex flex-row w-[1024px] py-4">
-      <div data-id="itemAded"></div>
+    <div id="templateItem" class="flex flex-col w-[1024px] py-4">
+        <span data-id="templateItemTitle" class="font-bold">Layout Design</span>
     </div>
 
-    <div data-id="btnAddItem" class="flex flex-row w-[1024px] mt-10">
-      <button class="rounded-full bg-black text-white px-2 py-1">+</button>
+    <div class="flex flex-row w-[1024px] mt-10">
+      <button data-id="btnCreateItem" class="rounded-full bg-black text-white px-2 py-1">+</button>
     </div>
 
     <div data-id='discountAndTotal' class="flex flex-row place-items-end py-4 w-[1024px]">
@@ -88,7 +89,6 @@
         </div>
       </div>
     </div>
-
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
