@@ -8,6 +8,10 @@ const Dom = {
     ITEM: 'templateItem',
     Item: {
       TITLE: 'templateItemTitle',
+      DESCRIPTION: 'templateItemDescription',
+      QTY: 'templateItemQty',
+      COST: 'templateItemCost',
+
     },
   },
   Popup: {

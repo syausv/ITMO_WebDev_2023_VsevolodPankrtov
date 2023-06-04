@@ -3,20 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <title>Invoice</title>
-    <script type="module" src="main.js"></script>
   </head>
   <style>
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
   </style>
-  <body class="flex flex-col mx-32 my-12">
+  <body class="flex flex-col place-items-center mx-32 my-12">
+  <div id='popupContainer' class='hidden flex flex-col mx-32 w-[1024px]'>
+
+    <div class='flex flex-row justify-between'>
+      <div class='flex flex-row'>Delete</div>
+      <button data-id="btnCloseCreateItemPopup" class='flex flex-row'>close</button>
+    </div>
+
+
+    <div class='flex flex-row justify-between'>
+      <div class='text-2xl'>Add</div>
+      <div>Qty: <input></div>
+      <div>Cost:<input></div>
+      <div>
+        <button data-id="btnConfirmItemPopup" class='bg-slate-500 text-white rounded px-2 py-1'>Create</button>
+      </div>
+    </div>
+
+    <div class='flex flex-col'>
+      <div class='flex flex-row ml-2'>Work item:</div>
+      <input class='border-solid border-2 border-slate-500 rounded'>
+    </div>
+
+    <div class='flex flex-col'>
+      <div class='flex flex-row ml-2'>Description:</div>
+      <input class='border-solid border-2 border-slate-500 rounded'>
+    </div>
+  </div> <!--Popup-->
+  <div class="container flex flex-col w-full h-full">
     <div class="flex flex-row w-[1024px] py-4 justify-between">
       <div data-id="numberOfInvoice" class="flex flex-row w-1/2">
         <div class="flex flex-col">
           <div class="flex flex-row">
             <p>№</p>
-            <input class="border-b-4 border-slate-500" />
+            <input class="border-b-4 border-slate-500"/>
           </div>
         </div>
       </div>
@@ -49,25 +76,29 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> <!--Number of Invoice-->
 
     <div class="flex flex-row w-[1024px] justify-between py-2">
-      <div class="flex flex-row w-full justify-between">
-        <div>Item</div>
-        <div>Qty</div>
-        <div>Cost</div>
-        <div>Total</div>
+      <div class="flex flex-row w-[1024px]">
+        <div class="font-bold flex-row w-1/4"><span>Item</span></div>
+        <div class="font-bold flex-row w-1/4 text-center"><span>Qty</span></div>
+        <div class="font-bold flex-row w-1/4 text-center"><span>Cost</span></div>
+        <div class="font-bold flex-row w-1/4 text-end"><span>Total</span></div>
       </div>
-    </div>
+    </div> <!--Table head-->
     <hr class='w-[1024px]'>
 
-    <div id="templateItem" class="flex flex-col w-[1024px] py-4">
-        <span data-id="templateItemTitle" class="font-bold">Layout Design</span>
-    </div>
+    <div id="templateItem" class="flex flex-row w-[1024px] justify-between py-4">
+
+      <span data-id="templateItemTitle" class="flex-row w-1/4">Layout Design</span>
+      <div class="flex-row w-1/4 text-center">Qty</div>
+      <div class="flex-row w-1/4 text-center">Cost</div>
+      <div class="flex-row w-1/4 text-end">Total</div>
+    </div>  <!-- Invoices-->
 
     <div class="flex flex-row w-[1024px] mt-10">
-      <button data-id="btnCreateItem" class="rounded-full bg-black text-white px-2 py-1">+</button>
-    </div>
+      <button id="btnCreateItem" class="rounded-full bg-black text-white px-2 py-1">+</button>
+    </div>  <!--Add Invoice button-->
 
     <div data-id='discountAndTotal' class="flex flex-row place-items-end py-4 w-[1024px]">
       <div class="flex flex-col w-1/2"></div>
@@ -79,16 +110,16 @@
 
         </div>
         <div class="flex flex-row justify-between pb-2">
-        <div class='flex flex-row w-[200px]'>Discount (<input class='w-[20px]'>%)</div>
-        <div>0</div>
+          <div class='flex flex-row w-[200px]'>Discount (<input class='w-[20px]'>%)</div>
+          <div>0</div>
         </div>
         <hr>
         <div class="flex flex-row justify-between py-2">
-        <div>Total</div>
+          <div>Total</div>
           <div>0</div>
         </div>
       </div>
-    </div>
+    </div> <!--Total--></div>
     <script type="module" src="main.js"></script>
   </body>
 </html>
