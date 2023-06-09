@@ -11,6 +11,8 @@ const Dom = {
       DESCRIPTION: 'templateItemDescription',
       QTY: 'templateItemQty',
       COST: 'templateItemCost',
+      TOTAL: 'templateItemTotal',
+
 
     },
   },

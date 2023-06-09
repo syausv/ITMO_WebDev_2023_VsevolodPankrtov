@@ -88,12 +88,17 @@
     </div> <!--Table head-->
     <hr class='w-[1024px]'>
 
-    <div id="templateItem" class="flex flex-row w-[1024px] justify-between py-4">
+    <div class="flex flex-col w-[1024px] py-1">
 
-      <span data-id="templateItemTitle" class="flex-row w-1/4">Layout Design</span>
-      <div class="flex-row w-1/4 text-center">Qty</div>
-      <div class="flex-row w-1/4 text-center">Cost</div>
-      <div class="flex-row w-1/4 text-end">Total</div>
+      <div class="flex flex-row w-full justify-between py-2" id="templateItem">
+        <div  class="flex-col w-1/4">
+          <div data-id="templateItemTitle" class="flex-row"> Layout Design</div>
+          <div data-id="templateItemDescription" class="flex-row text-xs"> description </div>
+         </div>
+        <div data-id="templateItemQty" class="flex-row w-1/4 text-center">Qty</div>
+        <div data-id="templateItemCost" class="flex-row w-1/4 text-center">Cost</div>
+        <div data-id="templateItemTotal" class="flex-row w-1/4 text-end">Total</div>
+      </div>
     </div>  <!-- Invoices-->
 
     <div class="flex flex-row w-[1024px] mt-10">
