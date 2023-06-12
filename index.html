@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Invoice</title>
+
   </head>
   <style>
     @tailwind base;
@@ -19,7 +20,7 @@
 
 
     <div class='flex flex-row justify-between'>
-      <div class='text-2xl'>Add</div>
+      <div data-id="title" class='text-2xl'>Add</div>
       <div>Qty: <input></div>
       <div>Cost:<input></div>
       <div>
@@ -91,13 +92,15 @@
     <div class="flex flex-col w-[1024px] py-1">
 
       <div class="flex flex-row w-full justify-between py-2" id="templateItem">
-        <div  class="flex-col w-1/4">
-          <div data-id="templateItemTitle" class="flex-row"> Layout Design</div>
-          <div data-id="templateItemDescription" class="flex-row text-xs"> description </div>
-         </div>
-        <div data-id="templateItemQty" class="flex-row w-1/4 text-center">Qty</div>
-        <div data-id="templateItemCost" class="flex-row w-1/4 text-center">Cost</div>
-        <div data-id="templateItemTotal" class="flex-row w-1/4 text-end">Total</div>
+        <div class="flex flex-row w-full pointer-events-none">
+          <div class="flex-col w-1/4">
+            <div data-id="templateItemTitle" class="flex-row"> Layout Design</div>
+            <div data-id="templateItemDescription" class="flex-row text-xs"> description</div>
+          </div>
+          <div data-id="templateItemQty" class="flex-row w-1/4 text-center">Qty</div>
+          <div data-id="templateItemCost" class="flex-row w-1/4 text-center">Cost</div>
+          <div data-id="templateItemTotal" class="flex-row w-1/4 text-end">Total</div>
+        </div>
       </div>
     </div>  <!-- Invoices-->
 
@@ -125,6 +128,7 @@
         </div>
       </div>
     </div> <!--Total--></div>
-    <script type="module" src="main.js"></script>
+
   </body>
+  <script type="module" src="main.js" ></script>
 </html>
