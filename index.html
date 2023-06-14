@@ -11,32 +11,8 @@
     @tailwind utilities;
   </style>
   <body class="flex flex-col place-items-center mx-32 my-12">
-  <div id='popupContainer' class='hidden flex flex-col mx-32 w-[1024px]'>
+  <div id='popupContainer' class='hidden fixed flex flex-col mx-32 w-[1024px]'>
 
-    <div class='flex flex-row justify-between'>
-      <div class='flex flex-row'>Delete</div>
-      <button data-id="btnCloseCreateItemPopup" class='flex flex-row'>close</button>
-    </div>
-
-
-    <div class='flex flex-row justify-between'>
-      <div data-id="title" class='text-2xl'>Add</div>
-      <div>Qty: <input></div>
-      <div>Cost:<input></div>
-      <div>
-        <button data-id="btnConfirmItemPopup" class='bg-slate-500 text-white rounded px-2 py-1'>Create</button>
-      </div>
-    </div>
-
-    <div class='flex flex-col'>
-      <div class='flex flex-row ml-2'>Work item:</div>
-      <input class='border-solid border-2 border-slate-500 rounded'>
-    </div>
-
-    <div class='flex flex-col'>
-      <div class='flex flex-row ml-2'>Description:</div>
-      <input class='border-solid border-2 border-slate-500 rounded'>
-    </div>
   </div> <!--Popup-->
   <div class="container flex flex-col w-full h-full">
     <div class="flex flex-row w-[1024px] py-4 justify-between">

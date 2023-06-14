@@ -1,5 +1,6 @@
 import Dom from './src/constants/Dom';
 
+
 const KEY_LOCAL_ITEM = 'item';
 
 class ItemVO {
@@ -57,7 +58,6 @@ domItemColumn.onclick = (e) => {
 }
 
 getDOM(Dom.Button.CREATE_ITEM).onclick = () => {
-  console.log('> domPopupCreateItem.classList');
   renderItemPopup(null,
     'Add',
     'Create',
@@ -95,7 +95,7 @@ async function renderItemPopup(
   processDataCallback
 )  {
   const domPopupContainer = getDOM(Dom.Popup.CONTAINER);
-
+ console.log("classList", domPopupContainer)
   domPopupContainer.classList.remove('hidden');
 
   const onClosePopup = () => {
@@ -119,6 +119,12 @@ if (itemVO) {
   itemPopupInstance.itemTitle = itemVO.title;
 }
 
+  document.onkeyup = (e) => {
+    if (e.key === 'Escape') {
+      onClosePopup();
+    }
+  };
+console.log(itemPopupInstance);
 domPopupContainer.append(itemPopupInstance.render());
 }
 

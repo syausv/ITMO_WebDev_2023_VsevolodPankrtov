@@ -19,7 +19,7 @@ class ItemPopup {
 
   render() {
     const div = document.createElement('div');
-    div.innerHTML = ` 
+    div.innerHTML = `
     <div class='flex flex-row justify-between'>
       <div class='flex flex-row'>Delete</div>
       <button data-id="close" class='flex flex-row'>close</button>
@@ -60,7 +60,7 @@ class ItemPopup {
     };
 
     domBtnConfirm.onclick = () => {
-      const itemTitle = 'Juice';
+      const itemTitle = domInpTitle.value;
       const itemDescription = 'orange juice without added sugar';
       const itemQty = '1';
       const itemCost = '3';
