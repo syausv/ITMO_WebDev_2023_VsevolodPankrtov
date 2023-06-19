@@ -47,6 +47,6 @@ app.use((req, res, next) => {
   res.status(404).send('Sorry can\'t find that!');
 });
 
-app.listen(process.env.NODE_PORT || 3000, () => {
+app.listen(process.env.NODE_PORT || 3222, () => {
   console.log('Example app listening');
 });
