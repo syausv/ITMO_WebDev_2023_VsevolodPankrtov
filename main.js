@@ -36,8 +36,8 @@ console.log('> items', items);
 domItemColumn.onclick = (e) => {
   e.stopPropagation();
   console.log(e.target);
-  const domItemSelected = e.target;
-  const itemId = domItemSelected.dataset.id;
+  const domItemElement = e.target;
+  const itemId = domItemElement.dataset.id;
   if (!itemId) return;
 
 
@@ -52,12 +52,13 @@ domItemColumn.onclick = (e) => {
         itemQty, itemCost, itemTotal});
     itemVO.title = itemTitle;
     const domItemUpdated = renderItem(itemVO);
-    domItemColumn.replaceChild(domItemUpdated,domItemSelected);
+    domItemColumn.replaceChild(domItemUpdated,domItemElement);
     saveItem();
   });
 }
 
 getDOM(Dom.Button.CREATE_ITEM).onclick = () => {
+  console.log('> domPopupCreateItem.classList');
   renderItemPopup(null,
     'Add',
     'Create',
@@ -70,6 +71,7 @@ getDOM(Dom.Button.CREATE_ITEM).onclick = () => {
 
     renderItem(itemVO);
     items.push(itemVO);
+
     saveItem();
   });
 };
@@ -119,12 +121,12 @@ if (itemVO) {
   itemPopupInstance.itemTitle = itemVO.title;
 }
 
-  document.onkeyup = (e) => {
-    if (e.key === 'Escape') {
-      onClosePopup();
-    }
-  };
-console.log(itemPopupInstance);
+ // document.onkeyup = (e) => {
+ //   if (e.key === 'Escape') {
+ //     onClosePopup();
+  //  }
+ // };
+console.log("itemPopupInstance",itemPopupInstance);
 domPopupContainer.append(itemPopupInstance.render());
 }
 

@@ -46,12 +46,17 @@ class ItemPopup {
     </div>
     `;
 
+    console.log('div.firstChild', div.children);
+    console.log('Popup', div);
+
     const popup = div.children[0];
 
     const domBtnClose = popup.querySelector('[ data-id="close"]');
     const domBtnConfirm = popup.querySelector('[ data-id="btnConfirm"]');
     const domInpTitle = popup.querySelector('[ data-id="inpTitle"]');
 
+    console.log('domBtnConfirm',domBtnConfirm)
+    console.log('domBtnClose',domBtnClose)
 
     domBtnClose.onclick = () => {
       domBtnClose.onclick = null;
