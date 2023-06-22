@@ -20,6 +20,7 @@ class ItemPopup {
   render() {
     const div = document.createElement('div');
     div.innerHTML = `
+<div>
     <div class='flex flex-row justify-between'>
       <div class='flex flex-row'>Delete</div>
       <button data-id="close" class='flex flex-row'>close</button>
@@ -44,12 +45,16 @@ class ItemPopup {
       <div class='flex flex-row ml-2'>Description:</div>
       <input class='border-solid border-2 border-slate-500 rounded'>
     </div>
+    </div>
     `;
 
     console.log('div.firstChild', div.children);
     console.log('Popup', div);
 
     const popup = div.children[0];
+
+    console.log('div.firstChild[1]', popup);
+
 
     const domBtnClose = popup.querySelector('[ data-id="close"]');
     const domBtnConfirm = popup.querySelector('[ data-id="btnConfirm"]');
