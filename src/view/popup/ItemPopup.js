@@ -1,3 +1,5 @@
+import Dom from "../../constants/Dom.js";
+
 class ItemPopup {
   #title;
   #confirmText;
@@ -67,6 +69,7 @@ class ItemPopup {
       domBtnClose.onclick = null;
       domBtnConfirm.onclick = null;
       this.#closeCallback();
+      document.getElementById(Dom.Button.CREATE_ITEM).disabled = false;
     };
 
     domBtnConfirm.onclick = () => {
@@ -76,6 +79,7 @@ class ItemPopup {
       const itemCost = '3';
       const itemTotal = '3';
       this.#confirmCallback(itemTitle, itemDescription, itemQty, itemCost, itemTotal);
+      document.getElementById(Dom.Button.CREATE_ITEM).disabled = false;
     };
     return div.children[0];
   }

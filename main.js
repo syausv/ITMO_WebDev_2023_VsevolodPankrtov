@@ -34,7 +34,7 @@ items.forEach((itemVO) => renderItem(itemVO));
 console.log('> items', items);
 
 domItemColumn.onclick = (e) => {
-  e.stopPropagation();
+
   console.log(e.target);
   const domItemElement = e.target;
   const itemId = domItemElement.dataset.id;
@@ -54,7 +54,10 @@ domItemColumn.onclick = (e) => {
     const domItemUpdated = renderItem(itemVO);
     domItemColumn.replaceChild(domItemUpdated,domItemElement);
     saveItem();
+
   });
+  e.stopPropagation();
+  getDOM(Dom.Button.CREATE_ITEM).disabled = true;
 }
 
 getDOM(Dom.Button.CREATE_ITEM).onclick = () => {
@@ -73,7 +76,9 @@ getDOM(Dom.Button.CREATE_ITEM).onclick = () => {
     items.push(itemVO);
 
     saveItem();
+
   });
+  getDOM(Dom.Button.CREATE_ITEM).disabled = true;
 };
 
 function renderItem (itemVO) {
