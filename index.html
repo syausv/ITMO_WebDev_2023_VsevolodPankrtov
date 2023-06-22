@@ -10,100 +10,51 @@
     @tailwind components;
     @tailwind utilities;
   </style>
-  <body class="flex flex-col place-items-center mx-32 my-12">
-  <div id='popupContainer' class='hidden fixed flex flex-col mx-32 w-[1024px]'>
+  <body class="flex flex-col place-items-center bg-slate-500">
+  <div class="flex flex-col bg-slate-400 p-1 m-20 rounded  w-[480px] h-auto">
+    <div data-id="calculator" class="grid grid-rows-3 grid-flow-col bg-slate-300 gap-4 rounded">
+      <div class="col-span-4 p-2...">
 
-  </div> <!--Popup-->
-  <div class="container flex flex-col w-full h-full">
-    <div class="flex flex-row w-[1024px] py-4 justify-between">
-      <div data-id="numberOfInvoice" class="flex flex-row w-1/2">
-        <div class="flex flex-col">
-          <div class="flex flex-row">
-            <p>№</p>
-            <input class="border-b-4 border-slate-500"/>
-          </div>
+        <div class="flex flex-row w-full h-full justify-between p-2 place-items-center">
+
+            <input id='firstNumber' type="number" class="border-solid border-black w-[7rem] h-[2rem] border-solid border-black"/>
+            <input id='secondNumber' type="number" class="border-solid border-black w-[7rem] h-[2rem] border-solid border-black"/>
+            <input id="resultCalc" type="number" class="border-solid border-black w-[9rem] h-[2rem] border-solid border-black"/>
+
+        </div>
+
+
+      </div>
+      <div class="row-span-2 col-span-2 p-2 ...">
+        <div class="grid grid-rows-4 grid-flow-col gap-2">
+          <button value="1" class="bg-slate-500 h-[2rem] rounded">1</button>
+          <button value="2" class="bg-slate-500 h-[2rem] rounded">2</button>
+          <button value="3" class="bg-slate-500 h-[2rem] rounded">3</button>
+          <button value="4" class="bg-slate-500 h-[2rem] rounded">4</button>
+          <button value="5" class="bg-slate-500 h-[2rem] rounded">5</button>
+          <button value="6" class="bg-slate-500 h-[2rem] rounded">6</button>
+          <button value="7" class="bg-slate-500 h-[2rem] rounded">7</button>
+          <button value="8" class="bg-slate-500 h-[2rem] rounded">8</button>
+          <button value="9" class="bg-slate-500 h-[2rem] rounded">9</button>
+          <button value="10" class="bg-slate-500 h-[2rem] rounded">0</button>
+          <button value="11" class="bg-slate-500 h-[2rem] rounded">00</button>
+          <button value="12" class="bg-slate-500 h-[2rem] rounded">.</button>
+        </div>
+
+      </div>
+      <div class="row-span-2 col-span-2 p-2 ...">
+        <div class="grid grid-rows-3 grid-flow-col gap-2">
+          <button id="btnMinus" class="bg-slate-500 h-[3rem] rounded">―</button>
+          <button id="btnDel" class="bg-slate-500 h-[3rem] rounded">/</button>
+          <button id="btnPlus" class="bg-slate-500 h-[3rem] rounded">✛</button>
+          <button id="btnUmn" class="bg-slate-500 h-[3rem] rounded">X</button>
+          <button id='btnResult' class="bg-slate-500 h-[3rem] rounded">=</button>
+          <button class="bg-slate-500 h-[3rem] rounded">C</button>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div data-id="invoiceStaticInformation" class="flex flex-col w-1/2">
-        <div class="flex flex-col">Invoice</div>
-        <div class="flex grid grid-cols-2 gap-4">
-          <div class='flex flex-col'>
-            <h4> Issued </h4>
-            <h5 class='text-xs'>21 May, 2023</h5>
-          </div>
-          <div class='flex flex-col'>
-            <h4>Due</h4>
-            <h5 class='text-xs'>30 May, 2023</h5>
-          </div>
-          <div class='flex flex-col'><h4>From</h4>
-            <h5 class='text-xs'>
-              Name or Company
-              123 Godly Street
-              Internet, 198233
-              Saint-Petersburg, Russia</h5>
-          </div>
-          <div class='flex flex-col'>
-            <h4>To</h4>
-            <h5 class='text-xs'>
-              Payer Company
-              Unknown Street, 832/6
-              Extranet TF, 99321
-              Another City, Country</h5>
-          </div>
-        </div>
-      </div>
-    </div> <!--Number of Invoice-->
-
-    <div class="flex flex-row w-[1024px] justify-between py-2">
-      <div class="flex flex-row w-[1024px]">
-        <div class="font-bold flex-row w-1/4"><span>Item</span></div>
-        <div class="font-bold flex-row w-1/4 text-center"><span>Qty</span></div>
-        <div class="font-bold flex-row w-1/4 text-center"><span>Cost</span></div>
-        <div class="font-bold flex-row w-1/4 text-end"><span>Total</span></div>
-      </div>
-    </div> <!--Table head-->
-    <hr class='w-[1024px]'>
-
-    <div class="flex flex-col w-[1024px] py-1">
-
-      <div class="flex flex-row w-full justify-between py-2" id="templateItem">
-        <div class="flex flex-row w-full pointer-events-none">
-          <div class="flex-col w-1/4">
-            <div data-id="templateItemTitle" class="flex-row"> Layout Design</div>
-            <div data-id="templateItemDescription" class="flex-row text-xs"> description</div>
-          </div>
-          <div data-id="templateItemQty" class="flex-row w-1/4 text-center">Qty</div>
-          <div data-id="templateItemCost" class="flex-row w-1/4 text-center">Cost</div>
-          <div data-id="templateItemTotal" class="flex-row w-1/4 text-end">Total</div>
-        </div>
-      </div>
-    </div>  <!-- Invoices-->
-
-    <div class="flex flex-row w-[1024px] mt-10">
-      <button id="btnCreateItem" class="rounded-full bg-black text-white px-2 py-1">+</button>
-    </div>  <!--Add Invoice button-->
-
-    <div data-id='discountAndTotal' class="flex flex-row place-items-end py-4 w-[1024px]">
-      <div class="flex flex-col w-1/2"></div>
-      <div class="flex flex-col w-1/2">
-        <hr>
-        <div class="flex flex-row justify-between pt-2">
-          <div>Subtotal</div>
-          <div>0</div>
-
-        </div>
-        <div class="flex flex-row justify-between pb-2">
-          <div class='flex flex-row w-[200px]'>Discount (<input class='w-[20px]'>%)</div>
-          <div>0</div>
-        </div>
-        <hr>
-        <div class="flex flex-row justify-between py-2">
-          <div>Total</div>
-          <div>0</div>
-        </div>
-      </div>
-    </div> <!--Total--></div>
-  <script type="module" src="main.js" ></script>
   </body>
+  <script type="module" src="main.js"></script>
 </html>
