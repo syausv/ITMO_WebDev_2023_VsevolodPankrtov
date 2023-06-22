@@ -17,8 +17,8 @@
 
         <div class="flex flex-row w-full h-full justify-between p-2 place-items-center">
 
-            <input id='firstNumber' type="number" class="border-solid border-black w-[7rem] h-[2rem] border-solid border-black"/>
-            <input id='secondNumber' type="number" class="border-solid border-black w-[7rem] h-[2rem] border-solid border-black"/>
+            <input id='firstNumber' type="text" pattern="^[ 0-9]+$" class="border-solid border-black w-[7rem] h-[2rem] border-solid border-black"/>
+            <input id='secondNumber' type="text" pattern="^[ 0-9]+$" class="border-solid border-black w-[7rem] h-[2rem] border-solid border-black"/>
             <input id="resultCalc" type="number" class="border-solid border-black w-[9rem] h-[2rem] border-solid border-black"/>
 
         </div>
@@ -27,18 +27,18 @@
       </div>
       <div class="row-span-2 col-span-2 p-2 ...">
         <div class="grid grid-rows-4 grid-flow-col gap-2">
-          <button value="1" class="bg-slate-500 h-[2rem] rounded">1</button>
-          <button value="2" class="bg-slate-500 h-[2rem] rounded">2</button>
-          <button value="3" class="bg-slate-500 h-[2rem] rounded">3</button>
-          <button value="4" class="bg-slate-500 h-[2rem] rounded">4</button>
-          <button value="5" class="bg-slate-500 h-[2rem] rounded">5</button>
-          <button value="6" class="bg-slate-500 h-[2rem] rounded">6</button>
-          <button value="7" class="bg-slate-500 h-[2rem] rounded">7</button>
-          <button value="8" class="bg-slate-500 h-[2rem] rounded">8</button>
-          <button value="9" class="bg-slate-500 h-[2rem] rounded">9</button>
-          <button value="10" class="bg-slate-500 h-[2rem] rounded">0</button>
-          <button value="11" class="bg-slate-500 h-[2rem] rounded">00</button>
-          <button value="12" class="bg-slate-500 h-[2rem] rounded">.</button>
+          <button id="one" value="1" class="bg-slate-500 h-[2rem] rounded">1</button>
+          <button id="two" value="2" class="bg-slate-500 h-[2rem] rounded">2</button>
+          <button id="three" value="3" class="bg-slate-500 h-[2rem] rounded">3</button>
+          <button id="four" value="4" class="bg-slate-500 h-[2rem] rounded">4</button>
+          <button id="five" value="5" class="bg-slate-500 h-[2rem] rounded">5</button>
+          <button id="six" value="6" class="bg-slate-500 h-[2rem] rounded">6</button>
+          <button id="seven" value="7" class="bg-slate-500 h-[2rem] rounded">7</button>
+          <button id="eight" value="8" class="bg-slate-500 h-[2rem] rounded">8</button>
+          <button id="nine" value="9" class="bg-slate-500 h-[2rem] rounded">9</button>
+          <button id="zero" value="10" class="bg-slate-500 h-[2rem] rounded">0</button>
+          <button id="doubleZero" value="11" class="bg-slate-500 h-[2rem] rounded">00</button>
+          <button id="point" value="12" class="bg-slate-500 h-[2rem] rounded">.</button>
         </div>
 
       </div>
@@ -49,7 +49,7 @@
           <button id="btnPlus" class="bg-slate-500 h-[3rem] rounded">✛</button>
           <button id="btnUmn" class="bg-slate-500 h-[3rem] rounded">X</button>
           <button id='btnResult' class="bg-slate-500 h-[3rem] rounded">=</button>
-          <button class="bg-slate-500 h-[3rem] rounded">C</button>
+          <button id='btnClear' class="bg-slate-500 h-[3rem] rounded">C</button>
         </div>
       </div>
     </div>
