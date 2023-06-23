@@ -34,7 +34,7 @@ items.forEach((itemVO) => renderItem(itemVO));
 console.log('> items', items);
 
 domItemColumn.onclick = (e) => {
-
+  e.stopPropagation();
   console.log(e.target);
   const domItemElement = e.target;
   const itemId = domItemElement.dataset.id;
@@ -50,13 +50,23 @@ domItemColumn.onclick = (e) => {
      itemQty, itemCost, itemTotal) => {
     console.log('> Update item -> On confirm',{itemTitle, itemDescription,
         itemQty, itemCost, itemTotal});
+    console.log('>>>>itemTitle',itemTitle);
+
+
     itemVO.title = itemTitle;
+    itemVO.description = itemDescription;
+    itemVO.qty = itemQty;
+    itemVO.cost = itemCost;
+    itemVO.total = itemTotal;
+
+      console.log('>>>>>itemVO.all',itemVO);
+
     const domItemUpdated = renderItem(itemVO);
     domItemColumn.replaceChild(domItemUpdated,domItemElement);
     saveItem();
 
   });
-  e.stopPropagation();
+
   getDOM(Dom.Button.CREATE_ITEM).disabled = true;
 }
 
@@ -78,6 +88,7 @@ getDOM(Dom.Button.CREATE_ITEM).onclick = () => {
     saveItem();
 
   });
+
   getDOM(Dom.Button.CREATE_ITEM).disabled = true;
 };
 
@@ -124,6 +135,11 @@ const itemPopupInstance = new ItemPopup(
 
 if (itemVO) {
   itemPopupInstance.itemTitle = itemVO.title;
+  itemPopupInstance.itemDescription = itemVO.description;
+  itemPopupInstance.itemQty = itemVO.qty;
+  itemPopupInstance.itemCost = itemVO.cost;
+  itemPopupInstance.itemTotal = itemVO.total;
+
 }
 
  // document.onkeyup = (e) => {
