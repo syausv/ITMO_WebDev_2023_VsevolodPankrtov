@@ -6,11 +6,14 @@ class ItemPopup {
   #confirmCallback;
   #closeCallback;
 
-  constructor(title, confirmText, confirmCallback, closeCallback) {
+  #deleteCallback;
+
+  constructor(title, confirmText, confirmCallback, closeCallback, deleteCallback) {
     this.#title = title;
     this.#confirmText = confirmText;
     this.#confirmCallback = confirmCallback;
     this.#closeCallback = closeCallback;
+    this.#deleteCallback = deleteCallback;
   }
 
   #itemTitle = '';
@@ -40,7 +43,7 @@ class ItemPopup {
     div.innerHTML = `
 <div>
     <div class='flex flex-row justify-between'>
-      <div class='flex flex-row'>Delete</div>
+      <button  data-id="delete" class='flex flex-row'>Delete</button>
       <button data-id="close" class='flex flex-row'>close</button>
     </div>
 
@@ -73,10 +76,11 @@ class ItemPopup {
 
     const popup = div.children[0];
 
-    console.log('div.firstChild[0]', popup);
+
 
 
     const domBtnClose = popup.querySelector('[ data-id="close"]');
+    const domBtnDelete = popup.querySelector('[ data-id="delete"]');
     const domInpQty = popup.querySelector('[ data-id="inpQty"]');
     const domInpCost = popup.querySelector('[ data-id="inpCost"]');
     const domInpTotal = popup.querySelector('[ data-id="inpTotal"]');
@@ -97,6 +101,7 @@ class ItemPopup {
 
     };
 
+
     domBtnConfirm.onclick = () => {
 
       const itemTitle = domInpTitle.value;
@@ -107,6 +112,14 @@ class ItemPopup {
       this.#confirmCallback(itemTitle, itemDescription, itemQty, itemCost, itemTotal);
       document.getElementById(Dom.Button.CREATE_ITEM).disabled = false;
       console.log('domInpTitle.value',domInpTitle.value)
+    };
+
+    domBtnDelete.onclick = () => {
+      domBtnClose.onclick = null;
+      domBtnDelete.onclick = null;
+      domBtnConfirm.onclick = null;
+      this.#deleteCallback();
+      document.getElementById(Dom.Button.CREATE_ITEM).disabled = false;
     };
     //console.log( this.#itemTitle);
     return div.children[0];

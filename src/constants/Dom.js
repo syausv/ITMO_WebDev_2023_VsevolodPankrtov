@@ -12,6 +12,7 @@ const Dom = {
       QTY: 'templateItemQty',
       COST: 'templateItemCost',
       TOTAL: 'templateItemTotal',
+      BTN_DELETE: 'btnDelete',
 
 
     },
