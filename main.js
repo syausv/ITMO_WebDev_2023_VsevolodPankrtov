@@ -79,7 +79,7 @@ domItemColumn.onclick = (e) => {
 
 
   console.log('domItemElement after column',domItemElement);
-  domItemColumn.onclick = null;
+ // domItemColumn.onclick = null;
   getDOM(Dom.Button.CREATE_ITEM).disabled = true;
 }
 
@@ -138,7 +138,7 @@ function deleteItem (itemVO) {
   console.log('domItemColumn.children(domItemElement) in deleteItem',domItemColumn.children[domItemElement]);
 
   domItemColumn.removeChild(domItemElement);
-
+  saveItem();
 }
 
 async function renderItemPopup(
