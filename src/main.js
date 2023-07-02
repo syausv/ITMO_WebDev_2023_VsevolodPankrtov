@@ -7,7 +7,7 @@ import PocketBase from 'pocketbase';
 import router from './router.js';
 
 import AppComposition from './App.vue';
-import PROVIDE from './constants/provides';
+import PROVIDE from '@/constants/provides.js';
 
 const pb = new PocketBase(import.meta.env.VITE_SERVER_PATH);
 console.log('pb.authStore.isValid:', pb.authStore.isValid);

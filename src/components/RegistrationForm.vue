@@ -30,7 +30,7 @@ const onSendClick = async () => {
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
+  <h1 >{{ title }}</h1>
   <hr>
   <div v-if="errors.length > 0">
     <div
