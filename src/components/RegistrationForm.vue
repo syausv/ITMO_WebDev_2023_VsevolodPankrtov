@@ -10,15 +10,20 @@ const props = defineProps({
 const emit = defineEmits(['login', 'register']);
 
 const inputUsername = ref(null);
+const inputName = ref(null);
+const inputEmail = ref(null);
 const inputPassword = ref(null);
 const inputConfirm = ref(null);
 
 const checkPasswordsMatch = () => inputPassword.value.value === inputConfirm.value?.value;
+//const checkEmailsMatch = () => inputEmail.value.value === inputConfirm.value?.value;
 
 const onSendClick = async () => {
   const username = inputUsername.value.value || '';
   const password = inputPassword.value.value || '';
-  const dto = { username, password };
+  const email = inputEmail.value.value || '';
+  const name = inputName.value.value || '';
+  const dto = { name, username, email, password };
   const canRegister = props.registration && checkPasswordsMatch();
   console.log('> RegistrationForm -> onSendClick', canRegister);
   if (canRegister) {
@@ -42,11 +47,25 @@ const onSendClick = async () => {
     </div>
     <hr>
   </div>
+  <div v-if="registration">
+    <label for="Name">Name:</label>
+    <input
+        id="name"
+        ref="inputName"
+    >
+  </div>
   <div>
     <label for="username">Username:</label>
     <input
         id="username"
         ref="inputUsername"
+    >
+  </div>
+  <div v-if="registration">
+    <label for="email">Email:</label>
+    <input
+        id="email"
+        ref="inputEmail"
     >
   </div>
   <div>

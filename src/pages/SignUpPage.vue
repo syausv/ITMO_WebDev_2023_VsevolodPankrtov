@@ -18,7 +18,9 @@ const onRegister = (dto) => {
     errors.value = ['Password required'];
   } else {
     pb.collection('users').create({
+      name: dto.name,
       username: dto.username,
+      email: dto.email,
       password: dto.password,
       passwordConfirm: dto.password,
     }).then((record) => {
@@ -28,12 +30,17 @@ const onRegister = (dto) => {
         router.replace({ path: ROUTES.INDEX });
       }
     }).catch((error) => {
-      console.log('> SignUpPage - onRegister: error = ', error);
       const errorData = error.data.data;
+      console.log('> SignUpPage - onRegister: error = ', {error, errorData});
+      if (errorData) {
       for (const item in errorData) {
         const data = errorData[item];
         console.log('> item', data);
         errors.value.push(data.message);
+      }
+      }
+      else {
+        errors.value.push(error.message);
       }
     });
   }
