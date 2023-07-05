@@ -19,11 +19,17 @@ const checkPasswordsMatch = () => inputPassword.value.value === inputConfirm.val
 //const checkEmailsMatch = () => inputEmail.value.value === inputConfirm.value?.value;
 
 const onSendClick = async () => {
+  let dto;
   const username = inputUsername.value.value || '';
   const password = inputPassword.value.value || '';
-  const email = inputEmail.value.value || '';
-  const name = inputName.value.value || '';
-  const dto = { name, username, email, password };
+    const email = inputEmail.value ? inputEmail.value.value : '';
+    console.log('email',email);
+
+    const name = inputName.value ? inputName.value.value : '';
+  console.log('name',name);
+
+    dto = {name, username, email, password};
+
   const canRegister = props.registration && checkPasswordsMatch();
   console.log('> RegistrationForm -> onSendClick', canRegister);
   if (canRegister) {

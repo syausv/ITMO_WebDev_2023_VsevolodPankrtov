@@ -1,12 +1,54 @@
 <script setup>
 import RegistrationForm from '@/components/RegistrationForm.vue';
 import ROUTES from '@/constants/routes.js';
+import PROVIDE from '@/constants/provides.js';
+import {inject, ref} from 'vue';
+
+
+const pb = inject(PROVIDE.PB);
+const isSuccess = ref(false);
+const errors = ref([]);
+
+const onLogin = (dto) => {
+  errors.value = [];
+  if (!dto.password || dto.password.length === 0 || !dto.username || dto.username === 0) {
+    errors.value = ['Login and password are required'];
+  }
+  else {
+    pb.collection('users').authWithPassword(
+        dto.username,
+        dto.password,
+    ).then(() => {
+      isSuccess.value = true;
+    }).catch((error) =>  {
+      const errorData = error.data;
+      console.log('> SignUpPage - onRegister: error = ', {error, errorData});
+      if (errorData) {
+
+          errors.value.push(errorData.message);
+
+      }
+      else {
+        errors.value.push(error.message);
+      }
+    });
+  }
+
+};
 </script>
 <template>
-  <div>
-    <RegistrationForm />
+  <div v-if="!isSuccess">
+    <RegistrationForm
+        :errors="errors"
+        @login="onLogin" />
     <router-link :to="ROUTES.SIGNUP">
       Sign Up
+    </router-link>
+  </div>
+  <div v-else>
+    <div>You have been successfully logged in</div>
+    <router-link :to="ROUTES.INDEX">
+      Home
     </router-link>
   </div>
 </template>
