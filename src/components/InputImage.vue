@@ -36,7 +36,6 @@ export default {
 
   methods: {
     async selectImage(e) {
-      const fileRaw = e;
       const file = e.target.files[0];
 
 
@@ -53,11 +52,14 @@ export default {
       const data = await readData(file);
       console.log('data',data);
       this.imagePreview = data;
+      this.$emit('picture', {
+        imagePreview: this.imagePreview});
     },
 
     async clearImagePreview() {
       this.imagePreview = '';
     },
+
   },
 };
 </script>

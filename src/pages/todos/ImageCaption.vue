@@ -17,9 +17,18 @@ const { todos, getTodosCount } = storeToRefs(todoStore);
 const canAddItemToTodoList = computed(() => true);
 const getTodoText = computed(() => inputText.value?.trim());
 
+let picture;
+
+
+const onSelectImage = (data) => {
+  console.log('> TodosPage -> onSelectImage:', data);
+  picture = data;
+};
+
 const onSendClick = async () => {
-  console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
-  todoStore.createTodo(getTodoText.value);
+
+  console.log('> TodosPage -> onSendClick:', getTodoText.value);
+  todoStore.createTodo(getTodoText.value, picture);
   inputText.value = '';
 };
 /*const onInputEnterKeyUp = () => {
@@ -47,7 +56,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 
     </v-col>
     <v-row class="pa-2 ma-2 mb-2" >
-      <InputImage></InputImage>
+      <InputImage  @picture='onSelectImage'></InputImage>
     <v-col>
       <v-textarea
           v-model="inputText"

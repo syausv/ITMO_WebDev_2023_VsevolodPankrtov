@@ -10,9 +10,9 @@ export const useTodosStore = defineStore('todos', {
     getTodosCount: (state) => state.todos.length,
   },
   actions: {
-    createTodo(todoText) {
-      console.log('> useTodosStore -> createTodo: ', { todoText });
-      this.todos.push(todoText);
+    createTodo(todoText,inputImage) {
+      console.log('> useTodosStore -> createTodo: ', { todoText, inputImage});
+      this.todos.push(todoText,inputImage);
       console.log('createTodo',this.createTodo);
     },
     deleteTodoByIndex(index) {

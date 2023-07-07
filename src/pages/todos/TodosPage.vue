@@ -19,7 +19,7 @@ const getTodoText = computed(() => inputText.value?.trim());
 
 const onInputEnterKeyUp = () => {
   console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
-  todoStore.createTodo(getTodoText.value);
+  todoStore.createTodo(getTodoText.value, imagePreview);
   inputText.value = '';
 };
 const onDeleteTodo = (index) => {
