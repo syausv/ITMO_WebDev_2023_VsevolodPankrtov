@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia';
 
+
 export const useTodosStore = defineStore('todos', {
   state: () => ({ todos: [], }),
   getters: {
@@ -12,6 +13,7 @@ export const useTodosStore = defineStore('todos', {
     createTodo(todoText) {
       console.log('> useTodosStore -> createTodo: ', { todoText });
       this.todos.push(todoText);
+      console.log('createTodo',createTodo);
     },
     deleteTodoByIndex(index) {
       console.log('> useTodosStore -> deleteTodoByIndex: ', { index });

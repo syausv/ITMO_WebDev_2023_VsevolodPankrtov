@@ -5,7 +5,14 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), eslint()],
+  plugins: [vue({
+    template: {
+      compilerOptions: {
+
+
+      }
+    }
+  }), eslint()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -22,12 +22,10 @@ const onSendClick = async () => {
   let dto;
   const username = inputUsername.value.value || '';
   const password = inputPassword.value.value || '';
-    const email = inputEmail.value ? inputEmail.value.value : '';
-    console.log('email',email);
-
+  const email = inputEmail.value ? inputEmail.value.value : '';
+  console.log('email',email);
     const name = inputName.value ? inputName.value.value : '';
   console.log('name',name);
-
     dto = {name, username, email, password};
 
   const canRegister = props.registration && checkPasswordsMatch();

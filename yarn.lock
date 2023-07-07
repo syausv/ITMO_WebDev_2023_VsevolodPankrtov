@@ -2616,6 +2616,11 @@ vue@^3.2.47:
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
 
+vuetify@3.3.6:
+  version "3.3.6"
+  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.6.tgz#58f620cedd9445686a4a694b78a61c3f0ecc1369"
+  integrity sha512-9QHh3mY5dK2Y4FGGBHFaIl/RVoP3Wg+XzP/pvruAoglIsUqzMlHrUOYAjO6/SWTxmhsiPI1jl4TyEBlppMXtNQ==
+
 webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"

@@ -1,6 +1,7 @@
 <script setup>
 import {computed, ref, watch} from 'vue';
 import TodoItem from '@/components/TodoItem.vue';
+import InputImage from '@/components/InputImage.vue';
 import {parseLocalStorage, saveToLocalStorage} from '@/utils/storageUtils.js';
 import {useTodosStore} from '@/store/todosStore.js';
 import {storeToRefs} from 'pinia';
@@ -28,30 +29,54 @@ const onDeleteTodo = (index) => {
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 
+
+
+/*imgInput.onchange = evt => {
+  const [file] = imgInput.files;
+  if (file) {
+    previewImg.src = URL.createObjectURL(file);
+  }
+};*/
+
+
+
 </script>
 <template>
-  <input
-      ref="domInput"
-      v-model="inputText"
-      @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
-  >
-  <div>
-    List:
-    <span v-if="todos.length">
+
+  <div style="margin: 5rem 10rem 10rem">
+    <InputImage/>
+    <div>
+      
+
+      
+    </div>
+    <div>
+      <input
+        ref="domInput"
+        v-model="inputText"
+        @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
+    >
+    </div>
+
+    <div>
+      List:
+      <span v-if="todos.length">
       {{ getTodosCount }}
     </span>
-    <span v-else>empty</span>
-    <template
-        v-for="(item, index) in todos"
-        :key="item"
-    >
-      <TodoItem
-          :index="index + 1"
-          :text="item"
-          @delete="onDeleteTodo(index)"
-      />
-    </template>
+      <span v-else>empty</span>
+      <template
+          v-for="(item, index) in todos"
+          :key="item"
+      >
+        <TodoItem
+            :index="index + 1"
+            :text="item"
+            @delete="onDeleteTodo(index)"
+        />
+      </template>
+    </div>
   </div>
+
 </template>
 
 <script>

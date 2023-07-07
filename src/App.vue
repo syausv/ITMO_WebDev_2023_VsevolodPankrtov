@@ -8,6 +8,7 @@ import PROVIDE from '@/constants/provides.js';
 import ROUTES from '@/constants/routes.js';
 import {useRoute} from 'vue-router';
 
+
 const pb = inject(PROVIDE.PB);
 const user = ref(pb.authStore.model);
 pb.authStore.onChange(() => {
