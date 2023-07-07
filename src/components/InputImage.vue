@@ -1,23 +1,40 @@
 <template>
   <v-card
-      height="30vh"
-      width ="40vh">
-    <v-card-text>
-      <v-img
-          :src="imagePreview"
-          height="20vh"
-          width="30vh"
-      ></v-img>
-      <v-file-input
-          v-model="image"
-          accept="image/png, image/jpeg, image/bmp"
-          placeholder="Pick an image"
-          prepend-icon="mdi-camera"
-          @change="selectImage"
-          @click:clear="clearImagePreview()"
-          label="Image"
-      ></v-file-input>
-    </v-card-text>
+      class="mx-auto"
+     max-height="600px"
+      width="800px"
+  >
+<!--    <v-card-text>-->
+    <v-row class="pa-2 ma-2 bg-grey mb-2" >
+      <v-col  class="">
+        <v-file-input
+            chips
+            multiple
+            v-model="image"
+            accept="image/png, image/jpeg, image/bmp"
+            placeholder="Pick an image"
+            @change="selectImage"
+            @click:clear="clearImagePreview()"
+            label="Click to choose image"
+            class="bg-white"
+        ></v-file-input>
+        <v-img
+            :src="imagePreview"
+            height="auto"
+            class="pa-2 bg-white"
+        ></v-img>
+      </v-col>
+        <v-col>
+          <v-text-field
+              v-model="imageCaption"
+              :rules="rules"
+              label="Your caption"
+              class="pa-2 bg-white"
+          ></v-text-field>
+        </v-col>
+
+    </v-row>
+<!--    </v-card-text>-->
   </v-card>
 </template>
 
