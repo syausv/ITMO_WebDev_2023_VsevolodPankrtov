@@ -12,7 +12,7 @@ const router = createRouter({
     },
     {
       path: ROUTES.TODOS,
-      component: () => import('./pages/todos/TodosPage.vue')
+      component: () => import('./pages/todos/ImageCaption.vue')
     },
     {
       path: ROUTES.TODOS_ID,

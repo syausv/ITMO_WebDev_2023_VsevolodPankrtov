@@ -17,11 +17,16 @@ const { todos, getTodosCount } = storeToRefs(todoStore);
 const canAddItemToTodoList = computed(() => true);
 const getTodoText = computed(() => inputText.value?.trim());
 
-const onInputEnterKeyUp = () => {
+const onSendClick = async () => {
   console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
   todoStore.createTodo(getTodoText.value);
   inputText.value = '';
 };
+/*const onInputEnterKeyUp = () => {
+  console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
+  todoStore.createTodo(getTodoText.value);
+  inputText.value = '';
+};*/
 const onDeleteTodo = (index) => {
   console.log('> TodosPage -> onDeleteTodo:', index);
   todoStore.deleteTodoByIndex(index);
@@ -35,37 +40,47 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 <template>
 
   <div style="margin: 5rem 10rem 10rem">
-    <InputImage/>
-    <div>
-Проверка 2
-
-
-    </div>
-    <div>
-      <input
-        ref="domInput"
-        v-model="inputText"
-        @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
-    >
-    </div>
-
-    <div>
-      List:
-      <span v-if="todos.length">
+    <v-col>
+      <v-textarea
+          v-model="inputText"
+          ref="domInput"
+          :rules="rules"
+          label="Your caption"
+          auto-grow
+          variant="outlined"
+          rows="3"
+          row-height="25"
+          shaped
+          
+      ></v-textarea>
+      <v-btn
+          @click="onSendClick"
+          :loading="loading"
+          type="submit"
+          block
+          variant="outlined"
+          class="mt-2 align-self-end"
+          text="Post"
+          shaped
+      ></v-btn>
+    </v-col>
+  </div>
+  <div>
+    List:
+    <span v-if="todos.length">
       {{ getTodosCount }}
     </span>
-      <span v-else>empty</span>
-      <template
-          v-for="(item, index) in todos"
-          :key="item"
-      > Проверка 3
-        <TodoItem
-            :index="index + 1"
-            :text="item"
-            @delete="onDeleteTodo(index)"
-        />
-      </template>
-    </div>
+    <span v-else>empty</span>
+    <template
+        v-for="(item, index) in todos"
+        :key="item"
+    > Проверка 3
+      <TodoItem
+          :index="index + 1"
+          :text="item"
+          @delete="onDeleteTodo(index)"
+      />
+    </template>
   </div>
 
 </template>

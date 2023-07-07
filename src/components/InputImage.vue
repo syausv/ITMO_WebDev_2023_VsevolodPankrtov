@@ -5,7 +5,7 @@
       width="800px"
   >
 <!--    <v-card-text>-->
-    <v-row class="pa-2 ma-2 bg-grey mb-2" >
+    <v-row class="pa-2 ma-2 mb-2" >
       <v-col  class="">
         <v-file-input
             chips
@@ -16,21 +16,42 @@
             @change="selectImage"
             @click:clear="clearImagePreview()"
             label="Click to choose image"
-            class="bg-white"
+            prepend-icon="mdi-camera"
+            variant="outlined"
+            shaped
         ></v-file-input>
-        <v-img
-            :src="imagePreview"
-            height="auto"
-            class="pa-2 bg-white"
-        ></v-img>
+       <v-container
+              shaped>
+         <v-img
+             :src="imagePreview"
+             height="auto"
+             class="pa-2"
+
+         ></v-img>
+       </v-container>
       </v-col>
         <v-col>
-          <v-text-field
-              v-model="imageCaption"
+          <v-textarea
+              v-model="inputText"
+              ref="domInput"
               :rules="rules"
               label="Your caption"
-              class="pa-2 bg-white"
-          ></v-text-field>
+              auto-grow
+              variant="outlined"
+              rows="3"
+              row-height="25"
+              shaped
+              @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
+          ></v-textarea>
+          <v-btn
+              :loading="loading"
+              type="submit"
+              block
+              variant="outlined"
+              class="mt-2 align-self-end"
+              text="Post"
+              shaped
+          ></v-btn>
         </v-col>
 
     </v-row>

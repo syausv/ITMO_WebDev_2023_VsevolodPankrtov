@@ -21,12 +21,13 @@ onMounted(() => {
 </script>
 <template>
   <div>
+    Проверка
     {{ index }})
     <router-link :to="pathToEdit">
       {{ text }}
     </router-link>
     <button @click="$emit('delete')">
-      x
+
     </button>
   </div>
 </template>

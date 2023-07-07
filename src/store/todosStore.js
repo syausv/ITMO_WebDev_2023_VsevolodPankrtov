@@ -13,7 +13,7 @@ export const useTodosStore = defineStore('todos', {
     createTodo(todoText) {
       console.log('> useTodosStore -> createTodo: ', { todoText });
       this.todos.push(todoText);
-      console.log('createTodo',createTodo);
+      console.log('createTodo',this.createTodo);
     },
     deleteTodoByIndex(index) {
       console.log('> useTodosStore -> deleteTodoByIndex: ', { index });
