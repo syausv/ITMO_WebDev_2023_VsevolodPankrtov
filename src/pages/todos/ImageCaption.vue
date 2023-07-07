@@ -38,8 +38,16 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 
 </script>
 <template>
+  <v-card
+      class="mx-auto"
+      width="800px"
+  >
+    <v-col>
 
-  <div style="margin: 5rem 10rem 10rem">
+
+    </v-col>
+    <v-row class="pa-2 ma-2 mb-2" >
+      <InputImage></InputImage>
     <v-col>
       <v-textarea
           v-model="inputText"
@@ -51,7 +59,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
           rows="3"
           row-height="25"
           shaped
-          
+
       ></v-textarea>
       <v-btn
           @click="onSendClick"
@@ -64,25 +72,25 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
           shaped
       ></v-btn>
     </v-col>
-  </div>
-  <div>
-    List:
-    <span v-if="todos.length">
+      </v-row>
+    <div>
+      List:
+      <span v-if="todos.length">
       {{ getTodosCount }}
     </span>
-    <span v-else>empty</span>
-    <template
-        v-for="(item, index) in todos"
-        :key="item"
-    > Проверка 3
-      <TodoItem
-          :index="index + 1"
-          :text="item"
-          @delete="onDeleteTodo(index)"
-      />
-    </template>
-  </div>
-
+      <span v-else>empty</span>
+      <template
+          v-for="(item, index) in todos"
+          :key="item"
+      > Проверка 3
+        <TodoItem
+            :index="index + 1"
+            :text="item"
+            @delete="onDeleteTodo(index)"
+        />
+      </template>
+    </div>
+  </v-card>
 </template>
 
 <script>

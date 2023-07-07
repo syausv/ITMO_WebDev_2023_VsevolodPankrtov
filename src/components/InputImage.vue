@@ -1,12 +1,5 @@
 <template>
-  <v-card
-      class="mx-auto"
-     max-height="600px"
-      width="800px"
-  >
-<!--    <v-card-text>-->
-    <v-row class="pa-2 ma-2 mb-2" >
-      <v-col  class="">
+      <v-col >
         <v-file-input
             chips
             multiple
@@ -26,37 +19,9 @@
              :src="imagePreview"
              height="auto"
              class="pa-2"
-
          ></v-img>
        </v-container>
       </v-col>
-        <v-col>
-          <v-textarea
-              v-model="inputText"
-              ref="domInput"
-              :rules="rules"
-              label="Your caption"
-              auto-grow
-              variant="outlined"
-              rows="3"
-              row-height="25"
-              shaped
-              @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
-          ></v-textarea>
-          <v-btn
-              :loading="loading"
-              type="submit"
-              block
-              variant="outlined"
-              class="mt-2 align-self-end"
-              text="Post"
-              shaped
-          ></v-btn>
-        </v-col>
-
-    </v-row>
-<!--    </v-card-text>-->
-  </v-card>
 </template>
 
 <script>
