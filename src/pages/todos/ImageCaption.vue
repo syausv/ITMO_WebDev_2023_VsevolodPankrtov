@@ -28,14 +28,11 @@ const onSelectImage = (data) => {
 const onSendClick = async () => {
 
   console.log('> TodosPage -> onSendClick:', getTodoText.value);
-  todoStore.createTodo(getTodoText.value, picture);
+  todoStore.createTodo(getTodoText.value,picture);
+ // todoStore.createImage(picture);
   inputText.value = '';
 };
-/*const onInputEnterKeyUp = () => {
-  console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
-  todoStore.createTodo(getTodoText.value);
-  inputText.value = '';
-};*/
+
 const onDeleteTodo = (index) => {
   console.log('> TodosPage -> onDeleteTodo:', index);
   todoStore.deleteTodoByIndex(index);
@@ -94,7 +91,8 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
       > Проверка 3
         <TodoItem
             :index="index + 1"
-            :text="item"
+            :text="item[0]"
+            :image = "item[1]"
             @delete="onDeleteTodo(index)"
         />
       </template>

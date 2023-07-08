@@ -2,7 +2,7 @@ import {defineStore} from 'pinia';
 
 
 export const useTodosStore = defineStore('todos', {
-  state: () => ({ todos: [], }),
+  state: () => ({ todos: [],}),
   getters: {
     getTodoByIndex: (state) => {
       return (index) => state.todos[index];
@@ -10,11 +10,18 @@ export const useTodosStore = defineStore('todos', {
     getTodosCount: (state) => state.todos.length,
   },
   actions: {
-    createTodo(todoText,inputImage) {
-      console.log('> useTodosStore -> createTodo: ', { todoText, inputImage});
-      this.todos.push(todoText,inputImage);
+    createTodo(todoText,picture) {
+      console.log('> useTodosStore -> createTodo: ', { todoText});
+     let ImageAndCaption = [todoText,picture];
+      this.todos.push(ImageAndCaption);
+
       console.log('createTodo',this.createTodo);
     },
+  /*  createImage(inputImage) {
+      console.log('> useTodosStore -> createTodo: ', {inputImage});
+      this.todos.push(inputImage);
+      console.log('createTodo',this.createTodo);
+    },*/
     deleteTodoByIndex(index) {
       console.log('> useTodosStore -> deleteTodoByIndex: ', { index });
       this.todos.splice(index, 1);

@@ -50,10 +50,11 @@ export default {
           });
 
       const data = await readData(file);
-      console.log('data',data);
+      console.log('data 111',data);
       this.imagePreview = data;
-      this.$emit('picture', {
-        imagePreview: this.imagePreview});
+
+      this.$emit('picture',
+         this.imagePreview);
     },
 
     async clearImagePreview() {
