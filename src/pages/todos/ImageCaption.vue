@@ -29,7 +29,6 @@ const onSendClick = async () => {
 
   console.log('> TodosPage -> onSendClick:', getTodoText.value);
   todoStore.createTodo(getTodoText.value,picture);
- // todoStore.createImage(picture);
   inputText.value = '';
 };
 
@@ -88,7 +87,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
       <template
           v-for="(item, index) in todos"
           :key="item"
-      > Проверка 3
+      >
         <TodoItem
             :index="index + 1"
             :text="item[0]"

@@ -17,11 +17,6 @@ export const useTodosStore = defineStore('todos', {
 
       console.log('createTodo',this.createTodo);
     },
-  /*  createImage(inputImage) {
-      console.log('> useTodosStore -> createTodo: ', {inputImage});
-      this.todos.push(inputImage);
-      console.log('createTodo',this.createTodo);
-    },*/
     deleteTodoByIndex(index) {
       console.log('> useTodosStore -> deleteTodoByIndex: ', { index });
       this.todos.splice(index, 1);

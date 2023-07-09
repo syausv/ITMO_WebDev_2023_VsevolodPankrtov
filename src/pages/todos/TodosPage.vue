@@ -37,7 +37,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
   <div style="margin: 5rem 10rem 10rem">
     <InputImage/>
     <div>
-Проверка 2
+
 
 
     </div>

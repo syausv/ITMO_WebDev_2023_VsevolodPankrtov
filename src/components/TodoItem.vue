@@ -40,16 +40,21 @@ onMounted(() => {
         <v-img v-bind:src="Image"
                cover/>
 
-        <v-card-title>
-          {{ index }})
+        <v-card-text>
           {{ text }}
-        </v-card-title>
+        </v-card-text>
 
         <v-card-subtitle>
-          1,000 miles of wonder
+          today at time
         </v-card-subtitle>
 
         <v-card-actions>
+          <v-card-subtitle class="text-grey-lighten-1">
+            post: {{ index }}
+          </v-card-subtitle>
+
+          <v-spacer></v-spacer>
+
           <router-link :to="pathToEdit">
           <v-btn
               color="orange-lighten-2"
