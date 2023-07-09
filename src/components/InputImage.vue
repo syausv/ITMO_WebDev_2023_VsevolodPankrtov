@@ -50,7 +50,7 @@ export default {
           });
 
       const data = await readData(file);
-      console.log('data 111',data);
+      console.log('readData -> data base64');
       this.imagePreview = data;
 
       this.$emit('picture',

@@ -11,6 +11,7 @@ const route = useRoute();
 const status = ref(route.query.status);
 
 const todoIndex = parseInt(route.params.id) - 1;
+console.log('todoIndex',todoIndex);
 const todo = ref(todoStore.getTodoByIndex(todoIndex));
 
 const onSelectChange = ({ target }) => {
@@ -18,7 +19,7 @@ const onSelectChange = ({ target }) => {
   status.value = target.value;
   router.replace({ ...route, query: { status: status.value } });
 };
-
+let caption =  todo.value[0];
 const onEditConfirm = () => {
   console.log('> TodoEditPage -> onEditConfirm: ', todo.value);
   todoStore.editTodoTextByIndex(todoIndex, todo.value);
@@ -30,13 +31,16 @@ const checkInputOnValidLengthAndNumberOnly = (input, length) => {
 
 const onTodoTextInput = ({ currentTarget }) => {
   if (checkInputOnValidLengthAndNumberOnly(todo.value, 8)) {
-    todo.value = currentTarget.value.substring(0, currentTarget.value.length - 1);
+    todo.value[0] = currentTarget.value.substring(0, currentTarget.value.length - 1);
   }
 };
 
+
+
+
 onMounted(() => {
   console.log('> TodoEditPage -> onMounted: route.params.id -> ', route.params.id);
-  console.log('> TodoEditPage -> onMounted: todos -> ', todo);
+  console.log('> TodoEditPage -> onMounted: todos -> ', todo.value[0]);
 });
 
 </script>
@@ -49,7 +53,7 @@ onMounted(() => {
       <label for="inpTodoEdit">Todo text</label>
       <input
           id="inpTodoEdit"
-          v-model="todo"
+          v-model="caption"
           pattern=""
           @input="onTodoTextInput"
       >
@@ -71,10 +75,10 @@ onMounted(() => {
       <option
           v-for="item in ['Ready', 'Start', 'Stop']"
           :key="item"
-          :value="item"
-          :selected="item === status"
+          :value="item[0]"
+          :selected="item[0] === status"
       >
-        {{ item }}
+        {{ item[0]}}
       </option>
     </select>
   </div>

@@ -25,7 +25,6 @@ const Image = computed(() => `${props.image}`);
 
 onMounted(() => {
   console.log('> TodoItem -> onMounted: props.text =', props.text);
-  console.log('> TodoItem -> onMounted: props.image =', props.image);
 
 });
 
@@ -34,12 +33,34 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    Проверка
-    {{ index }})
-    <router-link :to="pathToEdit">
-      {{ text }}
-      <div id="postImage"><img v-bind:src="Image" /></div>
-    </router-link>
+      <v-card
+          class="mx-auto"
+          max-width="344"
+      >
+        <v-img v-bind:src="Image"
+               cover/>
+
+        <v-card-title>
+          {{ index }})
+          {{ text }}
+        </v-card-title>
+
+        <v-card-subtitle>
+          1,000 miles of wonder
+        </v-card-subtitle>
+
+        <v-card-actions>
+          <router-link :to="pathToEdit">
+          <v-btn
+              color="orange-lighten-2"
+              variant="text"
+          >
+            Edit
+          </v-btn>
+          </router-link>
+        </v-card-actions>
+
+      </v-card>
 
     <button @click="$emit('delete')">
 

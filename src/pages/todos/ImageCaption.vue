@@ -21,7 +21,7 @@ let picture;
 
 
 const onSelectImage = (data) => {
-  console.log('> TodosPage -> onSelectImage:', data);
+  console.log('> TodosPage -> onSelectImage: data base64');
   picture = data;
 };
 
