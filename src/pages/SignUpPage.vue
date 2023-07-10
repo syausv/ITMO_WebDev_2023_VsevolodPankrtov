@@ -48,14 +48,11 @@ const onRegister = (dto) => {
 
 </script>
 <template>
-  <div>
+
     <RegistrationForm
         :registration="true"
         :errors="errors"
         @register="onRegister"
     />
-    <router-link :to="ROUTES.SIGNIN">
-      Sign In
-    </router-link>
-  </div>
+
 </template>

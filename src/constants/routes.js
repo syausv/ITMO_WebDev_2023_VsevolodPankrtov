@@ -1,7 +1,7 @@
 const ROUTES = {
   INDEX: '/',
-  TODOS: '/todos',
-  TODOS_ID: '/todos/:id',
+  POSTCARDS: '/postcards',
+  POSTCARD_ID: '/postcards/:id',
   SIGNIN: '/signin',
   SIGNUP: '/signup',
 };

@@ -37,18 +37,27 @@ const onLogin = (dto) => {
 };
 </script>
 <template>
+<div class="flex-col">
+
   <div v-if="!isSuccess">
     <RegistrationForm
         :errors="errors"
-        @login="onLogin" />
-    <router-link :to="ROUTES.SIGNUP">
-      Sign Up
-    </router-link>
+        @login="onLogin" >
+    </RegistrationForm>
+
   </div>
+
   <div v-else>
     <div>You have been successfully logged in</div>
     <router-link :to="ROUTES.INDEX">
       Home
     </router-link>
   </div>
+  <div class="pa-4 ma-4">
+    <router-link :to="ROUTES.SIGNUP">
+      <v-btn>Sign Up </v-btn>
+    </router-link>
+  </div>
+
+</div>
 </template>

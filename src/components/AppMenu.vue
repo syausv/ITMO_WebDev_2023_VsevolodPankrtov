@@ -8,18 +8,25 @@ defineProps({
 });
 </script>
 <template>
-  <div>
+  <div class="flex-row">
+
     <template
         v-for="menuItem in links"
         :key="menuItem.name"
     >
+
       <router-link
           v-if="menuItem.canRender"
           :to="menuItem.link"
           @click="menuItem.onClick"
       >
-        {{ menuItem.name }}
+
+     <v-btn class="ma-4"> {{ menuItem.name }} </v-btn>
+
+
       </router-link>
+
     </template>
-  </div>
+    </div>
+
 </template>

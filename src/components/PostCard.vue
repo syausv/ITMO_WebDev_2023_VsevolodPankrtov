@@ -17,7 +17,7 @@ const props = defineProps({
 });
 defineEmits(['delete']);
 
-const pathToEdit = computed(() => `/todos/${props.index}`);
+const pathToEdit = computed(() => `/postcards/${props.index}`);
 const Image = computed(() => `${props.image}`);
 
 
@@ -32,7 +32,7 @@ onMounted(() => {
 
 </script>
 <template>
-  <div>
+  <div class="pa-4">
       <v-card
           class="mx-auto"
           max-width="344"
@@ -63,12 +63,14 @@ onMounted(() => {
             Edit
           </v-btn>
           </router-link>
+          <v-btn @click="$emit('delete')"
+                 class="text-grey-lighten-1">
+            Delete
+          </v-btn>
         </v-card-actions>
 
       </v-card>
 
-    <button @click="$emit('delete')">
 
-    </button>
   </div>
 </template>

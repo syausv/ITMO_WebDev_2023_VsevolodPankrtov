@@ -1,48 +1,41 @@
 <script setup>
 import {onMounted, ref} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import {useTodosStore} from '@/store/todosStore.js';
+import {usePostCardsStore} from '@/store/postcardsStore.js';
 import ROUTES from '@/constants/routes.js';
 
-const todoStore = useTodosStore();
+const postcardStore = usePostCardsStore();
 
 const router = useRouter();
 const route = useRoute();
 
 const status = ref(route.query.status);
 
-const todoIndex = parseInt(route.params.id) - 1;
-console.log('todoIndex',todoIndex);
-const todo = ref(todoStore.getTodoByIndex(todoIndex));
-
-const onSelectChange = ({ target }) => {
-  console.log('> TodoEditPage -> onSelectChange: ', target.value);
-  status.value = target.value;
-  router.replace({ ...route, query: { status: status.value } });
-};
-
+const postcardIndex = parseInt(route.params.id) - 1;
+console.log('postcardIndex',postcardIndex);
+const postcard = ref(postcardStore.getPostCardByIndex(postcardIndex));
 
 const onEditConfirm = () => {
-  console.log('> TodoEditPage -> onEditConfirm: ', todo.value);
-  todoStore.editTodoTextByIndex(todoIndex, todo.value);
+  console.log('> PostCardEditPage -> onEditConfirm: ', postcard.value);
+  postcardStore.editPostCardTextByIndex(postcardIndex, postcard.value);
 };
 
 const checkInputOnValidLengthAndNumberOnly = (input, length) => {
   return input.length > length || isNaN(input[input.length - 0]);
 };
 
-const onTodoTextInput = ({ currentTarget }) => {
-  if (checkInputOnValidLengthAndNumberOnly(todo.value[0], 8)) {
-    todo.value[0] = currentTarget.value.substring(0, currentTarget.value.length - 0);
+const onPostCardTextInput = ({ currentTarget }) => {
+  if (checkInputOnValidLengthAndNumberOnly(postcard.value[0], 8)) {
+    postcard.value[0] = currentTarget.value.substring(0, currentTarget.value.length - 0);
   }
 };
-let image =  todo.value[1];
-let caption =  todo.value[0];
+let image =  postcard.value[1];
+let caption =  postcard.value[0];
 
 
 onMounted(() => {
   console.log('> TodoEditPage -> onMounted: route.params.id -> ', route.params.id);
-  console.log('> TodoEditPage -> onMounted: todos -> ', todo.value[0]);
+  console.log('> TodoEditPage -> onMounted: postcards -> ', postcard.value[0]);
 });
 
 </script>
@@ -65,7 +58,7 @@ onMounted(() => {
             pattern=""
             rows="3"
             label="Edit caption"
-            @input="onTodoTextInput"
+            @input="onPostCardTextInput"
             hide-details="auto"
         ></v-textarea>
 
@@ -77,7 +70,7 @@ onMounted(() => {
           </v-card-subtitle>
 
           <v-spacer></v-spacer>
-          <router-link :to="ROUTES.TODOS">
+          <router-link :to="ROUTES.POSTCARDS">
             <v-btn
                 @click="onEditConfirm"
                 color="orange-lighten-2"
@@ -94,6 +87,6 @@ onMounted(() => {
 </template>
 <script>
 export default {
-  name: 'TodoEditPage',
+  name: 'PostCardEditPage',
 };
 </script>

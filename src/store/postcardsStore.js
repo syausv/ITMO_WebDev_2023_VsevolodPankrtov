@@ -1,29 +1,29 @@
 import {defineStore} from 'pinia';
 
 
-export const useTodosStore = defineStore('todos', {
-  state: () => ({ todos: [],}),
+export const usePostCardsStore = defineStore('postcards', {
+  state: () => ({ postcards: [],}),
   getters: {
-    getTodoByIndex: (state) => {
-      return (index) => state.todos[index];
+    getPostCardByIndex: (state) => {
+      return (index) => state.postcards[index];
     },
-    getTodosCount: (state) => state.todos.length,
+    getPostCardsCount: (state) => state.postcards.length,
   },
   actions: {
-    createTodo(todoText,picture) {
-      console.log('> useTodosStore -> createTodo: ', { todoText});
-     let ImageAndCaption = [todoText,picture];
-      this.todos.push(ImageAndCaption);
+    createPostCard(postcardText, picture) {
+      console.log('> useTodosStore -> createTodo: ', { todoText: postcardText});
+     let ImageAndCaption = [postcardText,picture];
+      this.postcards.push(ImageAndCaption);
 
-      console.log('createTodo',this.createTodo);
+      console.log('createTodo',this.createPostCard);
     },
-    deleteTodoByIndex(index) {
+    deletePostCardByIndex(index) {
       console.log('> useTodosStore -> deleteTodoByIndex: ', { index });
-      this.todos.splice(index, 1);
+      this.postcards.splice(index, 1);
     },
-    editTodoTextByIndex(index, text) {
+    editPostCardTextByIndex(index, text) {
       console.log('> useTodosStore -> editTodoTextByIndex: ', { index, text });
-      this.todos[index] = text;
+      this.postcards[index] = text;
     },
   },
   persist: true

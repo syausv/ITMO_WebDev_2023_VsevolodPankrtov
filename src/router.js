@@ -11,12 +11,12 @@ const router = createRouter({
       component: () => import('./pages/IndexPage.vue'),
     },
     {
-      path: ROUTES.TODOS,
-      component: () => import('./pages/todos/ImageCaption.vue')
+      path: ROUTES.POSTCARDS,
+      component: () => import('./pages/postcards/PostCardsPage.vue')
     },
     {
-      path: ROUTES.TODOS_ID,
-      component: () => import('./pages/todos/TodoEditPage.vue')
+      path: ROUTES.POSTCARD_ID,
+      component: () => import('./pages/postcards/PostCardEditPage.vue')
     },
     {
       path: ROUTES.SIGNIN,

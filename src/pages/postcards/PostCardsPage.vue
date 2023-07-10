@@ -1,30 +1,40 @@
 <script setup>
 import {computed, ref, watch} from 'vue';
-import TodoItem from '@/components/PostCard.vue';
+import PostCard from '@/components/PostCard.vue';
 import InputImage from '@/components/InputImage.vue';
 import {parseLocalStorage, saveToLocalStorage} from '@/utils/storageUtils.js';
-import {useTodosStore} from '@/store/todosStore.js';
+import {usePostCardsStore} from '@/store/postcardsStore.js';
 import {storeToRefs} from 'pinia';
 
 const LOCAL_KEY_INPUT_TEXT = 'input_text';
 
 const inputText = ref(parseLocalStorage(LOCAL_KEY_INPUT_TEXT, ''));
 
-const todoStore = useTodosStore();
+const postcardStore = usePostCardsStore();
 
-const { todos, getTodosCount } = storeToRefs(todoStore);
+const { postcards, getPostCardsCount } = storeToRefs(postcardStore);
 
-const canAddItemToTodoList = computed(() => true);
-const getTodoText = computed(() => inputText.value?.trim());
 
-const onInputEnterKeyUp = () => {
-  console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
-  todoStore.createTodo(getTodoText.value);
+const getPostCardText = computed(() => inputText.value?.trim());
+
+let picture;
+
+
+const onSelectImage = (data) => {
+  console.log('> PostCardsPage -> onSelectImage: data base64');
+  picture = data;
+};
+
+const onSendClick = async () => {
+
+  console.log('> PostCardsPage -> onSendClick:', getPostCardText.value);
+  postcardStore.createPostCard(getPostCardText.value, picture);
   inputText.value = '';
 };
-const onDeleteTodo = (index) => {
-  console.log('> TodosPage -> onDeleteTodo:', index);
-  todoStore.deleteTodoByIndex(index);
+
+const onDeletePostCard = (index) => {
+  console.log('> TodosPage -> onDeletePostCard:', index);
+  postcardStore.deletePostCardByIndex(index);
 };
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
@@ -33,49 +43,62 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 
 </script>
 <template>
+  <v-card
+      class="mx-auto"
+      width="800px"
+  >
+    <v-row class="pa-2 ma-2 mb-2" >
+      <InputImage  @picture='onSelectImage'></InputImage>
+    <v-col>
+      <v-textarea
+          v-model="inputText"
+          ref="domInput"
+          label="Your caption"
+          auto-grow
+          variant="outlined"
+          rows="3"
+          row-height="25"
+          shaped
 
-  <div style="margin: 5rem 10rem 10rem">
-    <InputImage/>
+      ></v-textarea>
+      <v-btn
+          @click="onSendClick"
+          :loading="loading"
+          type="submit"
+          block
+          variant="outlined"
+          class="mt-2 align-self-end"
+          text="Post"
+          shaped
+      ></v-btn>
+    </v-col>
+      </v-row>
     <div>
 
-
-
-    </div>
-    <div>
-      <input
-        ref="domInput"
-        v-model="inputText"
-        @keyup.enter="canAddItemToTodoList && onInputEnterKeyUp()"
-    >
-    </div>
-
-    <div>
-      List:
-      <span v-if="todos.length">
-      {{ getTodosCount }}
+      <span v-if="postcards.length"
+            class="text-grey-lighten-1 text-s"> posts:
+      {{ getPostCardsCount }}
     </span>
-      <span v-else>empty</span>
+       <span v-else
+             class="text-grey-lighten-1">there's no posts here</span>
       <template
-          v-for="(item, index) in todos"
+          v-for="(item, index) in postcards"
           :key="item"
-      > Проверка 3
-        <TodoItem
+      >
+        <PostCard
             :index="index + 1"
-            :text="item"
-            @delete="onDeleteTodo(index)"
+            :text="item[0]"
+            :image = "item[1]"
+            @delete="onDeletePostCard(index)"
         />
       </template>
     </div>
-  </div>
-
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: 'TodosPage'
+  name: 'ImageCaption'
 };
 </script>
 
-<style scoped>
-
-</style>
