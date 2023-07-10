@@ -20,8 +20,8 @@ const onSelectChange = ({ target }) => {
   status.value = target.value;
   router.replace({ ...route, query: { status: status.value } });
 };
-let caption =  todo.value[0];
-let image =  todo.value[1];
+
+
 const onEditConfirm = () => {
   console.log('> TodoEditPage -> onEditConfirm: ', todo.value);
   todoStore.editTodoTextByIndex(todoIndex, todo.value);
@@ -36,8 +36,8 @@ const onTodoTextInput = ({ currentTarget }) => {
     todo.value[0] = currentTarget.value.substring(0, currentTarget.value.length - 0);
   }
 };
-
-
+let image =  todo.value[1];
+let caption =  todo.value[0];
 
 
 onMounted(() => {

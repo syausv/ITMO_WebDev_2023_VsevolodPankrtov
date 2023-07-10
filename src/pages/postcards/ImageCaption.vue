@@ -1,6 +1,6 @@
 <script setup>
 import {computed, ref, watch} from 'vue';
-import TodoItem from '@/components/TodoItem.vue';
+import TodoItem from '@/components/PostCard.vue';
 import InputImage from '@/components/InputImage.vue';
 import {parseLocalStorage, saveToLocalStorage} from '@/utils/storageUtils.js';
 import {useTodosStore} from '@/store/todosStore.js';
