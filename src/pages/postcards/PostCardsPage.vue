@@ -43,9 +43,10 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 
 </script>
 <template>
+  <v-row>
   <v-card
       class="mx-auto"
-      width="800px"
+      width="1000px"
   >
     <v-row class="pa-2 ma-2 mb-2" >
       <InputImage  @picture='onSelectImage'></InputImage>
@@ -81,6 +82,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
     </span>
        <span v-else
              class="text-grey-lighten-1">there's no posts here</span>
+      <v-row class="ma-2">
       <template
           v-for="(item, index) in postcards"
           :key="item"
@@ -92,8 +94,10 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
             @delete="onDeletePostCard(index)"
         />
       </template>
+      </v-row>
     </div>
   </v-card>
+  </v-row>
 </template>
 
 <script>

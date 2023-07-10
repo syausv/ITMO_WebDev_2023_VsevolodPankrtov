@@ -32,9 +32,9 @@ onMounted(() => {
 
 </script>
 <template>
-  <div class="pa-4">
+
       <v-card
-          class="mx-auto"
+          class="mx-auto ma-4"
           max-width="344"
       >
         <v-img v-bind:src="Image"
@@ -72,5 +72,5 @@ onMounted(() => {
       </v-card>
 
 
-  </div>
+
 </template>

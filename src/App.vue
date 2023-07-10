@@ -40,7 +40,7 @@ const menuLinks = reactive([
     />
   <AppAccountOwnerName>
       <div class="ma-6 text-h6 text-grey-darken-1">
-        <span v-if="hasUser">{{ user.name }}'s cards</span>
+        <span v-if="hasUser">{{ user.name }}'s account</span>
         <span v-else>Please create an account or log in to an existing account</span>
       </div>
   </AppAccountOwnerName>
