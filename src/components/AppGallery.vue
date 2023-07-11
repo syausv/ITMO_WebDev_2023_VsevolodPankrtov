@@ -6,6 +6,7 @@ const pb = inject(PROVIDE.PB);
 const postCollection = pb.collection('posts');
 const posts = ref([]);
 pb.autoCancellation(false);
+let loading = ref(true);
 
 postCollection.subscribe('*', function (e) {
   console.log(e.record);
@@ -20,16 +21,28 @@ postCollection.subscribe('RECORD_ID', function (e) {
    console.log('> result.items', result.items);
    posts.value = result.items;
   // console.log('> posts.value', posts.value);
+   loading.value = false;
  });
 
 </script>
 
 
-<template>
+<template  class="w-1220">
+<v-col
+
+width="1220px"
+min-height="600px">
+  <v-text-field v-if="loading"
+                color="success"
+                loading
+                disabled>
+    Gallery is loading...
+  </v-text-field>
   <v-card
       class="mx-auto ma-2"
-      max-width="1200"
+      max-width="1200px"
   >
+
     <v-container fluid>
       <v-row dense>
         <v-col v-for="post in posts"
@@ -79,6 +92,7 @@ postCollection.subscribe('RECORD_ID', function (e) {
       </v-row>
     </v-container>
   </v-card>
+</v-col>
 </template>
 
 

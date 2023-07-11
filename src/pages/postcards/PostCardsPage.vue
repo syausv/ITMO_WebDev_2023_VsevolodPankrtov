@@ -11,7 +11,7 @@ import PROVIDE from '@/constants/provides.js';
 const pb = inject(PROVIDE.PB);
 const postCollection = pb.collection('posts');
 const posts = ref([]);
-let loading = ref(false);
+let loading = ref(true);
 
 const subscribePB = () => {
 
@@ -22,17 +22,18 @@ const subscribePB = () => {
 subscribePB();
 
 const getListOFCardsPB = () => {
-  loading.value = true;
- postCollection.getList(1).then((result) => {
-    // console.log('> result', result);
-    console.log('> result.items', result.items);
-    posts.value = result.items;
-    // console.log('> posts.value', posts.value);
-  });
 
+    postCollection.getList(1).then((result) => {
+      // console.log('> result', result);
+      console.log('> result.items', result.items);
+      posts.value = result.items;
+      loading.value = false;
+      // console.log('> posts.value', posts.value);
+    });
 };
 
 getListOFCardsPB();
+
 
 const insertPost = async (post) => {
   await postCollection.create(post).then((record) => {
@@ -71,7 +72,6 @@ const onSendClick = async () => {
   inputText.value = '';
 
   getListOFCardsPB();
-
 };
 
 const onDeletePostCard = async (index) => {
@@ -82,7 +82,6 @@ const onDeletePostCard = async (index) => {
 };
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
-
 
 
 </script>
@@ -106,7 +105,6 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
             shaped
           />
           <v-btn
-            :loading="loading"
             type="submit"
             block
             variant="outlined"
