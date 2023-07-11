@@ -10,6 +10,29 @@ import PROVIDE from '@/constants/provides.js';
 
 const pb = inject(PROVIDE.PB);
 const postCollection = pb.collection('posts');
+const posts = ref([]);
+let loading = ref(false);
+
+const subscribePB = () => {
+
+  postCollection.subscribe('*', function (e) {
+    console.log(e.record);
+  });
+};
+subscribePB();
+
+const getListOFCardsPB = () => {
+  loading.value = true;
+ postCollection.getList(1).then((result) => {
+    // console.log('> result', result);
+    console.log('> result.items', result.items);
+    posts.value = result.items;
+    // console.log('> posts.value', posts.value);
+  });
+
+};
+
+getListOFCardsPB();
 
 const insertPost = async (post) => {
   await postCollection.create(post).then((record) => {
@@ -19,17 +42,13 @@ const insertPost = async (post) => {
 
 const LOCAL_KEY_INPUT_TEXT = 'input_text';
 const inputText = ref(parseLocalStorage(LOCAL_KEY_INPUT_TEXT, ''));
-const isLoading = ref(false);
-const postcardStore = usePostCardsStore();
+//const postcardStore = usePostCardsStore();
 
-const { postcards, getPostCardsCount } = storeToRefs(postcardStore);
-
+//const { postcards, getPostCardsCount } = storeToRefs(postcardStore);
 
 const getPostCardText = computed(() => inputText.value?.trim());
 
 let picture;
-
-
 const onSelectImage = (data) => {
   console.log('> PostCardsPage -> onSelectImage: data base64');
   picture = data;
@@ -37,16 +56,12 @@ const onSelectImage = (data) => {
 
 const onSendClick = async () => {
   let postcardtext = getPostCardText.value;
-
   console.log('> PostCardsPage -> onSendClick:', postcardtext);
-
-  postcardStore.createPostCard(postcardtext, picture);
-
+  //postcardStore.createPostCard(postcardtext, picture);
   const postForBase = {
     'title': postcardtext,
     'base64_string': picture
   };
-
   console.log('> PostCardsPage -> onSendClick:', postForBase);
   try {
     await insertPost(postForBase);
@@ -54,11 +69,16 @@ const onSendClick = async () => {
     console.log(e);
   }
   inputText.value = '';
+
+  getListOFCardsPB();
+
 };
 
-const onDeletePostCard = (index) => {
-  console.log('> TodosPage -> onDeletePostCard:', index);
-  postcardStore.deletePostCardByIndex(index);
+const onDeletePostCard = async (index) => {
+  console.log('> TodosPage -> onDeletePostCard:',index);
+ // postcardStore.deletePostCardByIndex(index);
+  await postCollection.delete(index);
+  getListOFCardsPB();
 };
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
@@ -73,10 +93,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
       width="1000px"
     >
       <v-row class="pa-2 ma-2 mb-2">
-        <InputImage @picture="onSelectImage" />
-        <div v-if="isLoading">
-          File is loading, wait please...
-        </div>
+        <InputImage @picture="onSelectImage"/>
         <v-col>
           <v-textarea
             ref="domInput"
@@ -98,14 +115,17 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
             shaped
             @click="onSendClick"
           />
-          <div v-if="isLoading">
-            File is loading, wait please...
-          </div>
         </v-col>
       </v-row>
       <div>
+        <v-text-field v-if="loading"
+            color="success"
+                      loading
+                      disabled>
+posts are loading...
+        </v-text-field>
         <span
-          v-if="postcards.length"
+          v-if="posts.length"
           class="text-grey-lighten-1 text-s"
         > posts:
           {{ getPostCardsCount }}
@@ -116,14 +136,15 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
         >there's no posts here</span>
         <v-row class="ma-2">
           <template
-            v-for="(item, index) in postcards"
-            :key="item"
+              v-for="post in posts"
+              :key="post.title"
           >
             <PostCard
-              :index="index + 1"
-              :text="item[0]"
-              :image="item[1]"
-              @delete="onDeletePostCard(index)"
+              :index="post.id"
+              :text="post.title"
+              :image="post.base64_string"
+              @delete="onDeletePostCard(post.id)"
+
             />
           </template>
         </v-row>

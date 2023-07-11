@@ -1,23 +1,45 @@
 <script setup>
-import {onMounted, ref} from 'vue';
+import {inject, onMounted, ref} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import {usePostCardsStore} from '@/store/postcardsStore.js';
 import ROUTES from '@/constants/routes.js';
+import PROVIDE from '@/constants/provides.js';
 
+const pb = inject(PROVIDE.PB);
+const postCollection = pb.collection('posts');
+const posts = ref([]);
+pb.autoCancellation(false);
 const postcardStore = usePostCardsStore();
 
 const router = useRouter();
 const route = useRoute();
 
-const status = ref(route.query.status);
 
-const postcardIndex = parseInt(route.params.id) - 1;
-console.log('postcardIndex',postcardIndex);
-const postcard = ref(postcardStore.getPostCardByIndex(postcardIndex));
+  console.log('>getCardFromPB route.params.id', route.params.id);
+  postCollection.getOne(route.params.id).then((result) => {
+     console.log('> result', result);
+
+     console.log('> result.items', result);
+    posts.value = result;
+    // console.log('> posts.value', posts.value);
+  }).catch((e)=>{console.log(e);});
+
+
+
+console.log('> posts.value', posts.value);
+console.log('> route.params.id', route.params.id);
+// const postcardIndex = parseInt(route.params.id) - 1;
+// console.log('postcardIndex',postcardIndex);
+// const postcard = ref(postcardStore.getPostCardByIndex(postcardIndex));
+
 
 const onEditConfirm = () => {
-  console.log('> PostCardEditPage -> onEditConfirm: ', postcard.value);
-  postcardStore.editPostCardTextByIndex(postcardIndex, postcard.value);
+ // console.log('> PostCardEditPage -> onEditConfirm: ', postcard.value);
+ // postcardStore.editPostCardTextByIndex(postcardIndex, postcard.value);
+  const data = {
+    'title': posts.value.title ,
+  };
+  postCollection.update( route.params.id, data);
 };
 
 const checkInputOnValidLengthAndNumberOnly = (input, length) => {
@@ -25,17 +47,18 @@ const checkInputOnValidLengthAndNumberOnly = (input, length) => {
 };
 
 const onPostCardTextInput = ({ currentTarget }) => {
-  if (checkInputOnValidLengthAndNumberOnly(postcard.value[0], 8)) {
-    postcard.value[0] = currentTarget.value.substring(0, currentTarget.value.length - 0);
+  if (checkInputOnValidLengthAndNumberOnly(posts.value.title, 8)) {
+    posts.value.title = currentTarget.value.substring(0, currentTarget.value.length - 0);
   }
 };
-let image =  postcard.value[1];
-let caption =  postcard.value[0];
+
+// let image =  postcard.value[1];
+// let caption =  postcard.value[0];
 
 
 onMounted(() => {
-  console.log('> TodoEditPage -> onMounted: route.params.id -> ', route.params.id);
-  console.log('> TodoEditPage -> onMounted: postcards -> ', postcard.value[0]);
+   console.log('> EditPage -> onMounted: route.params.id -> ', route.params.id);
+   //console.log('> EditPage -> onMounted: postcards -> ', post.title);
 });
 
 </script>
@@ -48,21 +71,19 @@ onMounted(() => {
       <v-card
           class="mx-auto"
           max-width="344"
+
       >
-        <v-img v-bind:src="image"
+        <v-img v-bind:src="posts.base64_string"
                cover/>
 
         <v-textarea
-            id="inpTodoEdit"
-            v-model="caption"
+            v-model="posts.title"
             pattern=""
             rows="3"
             label="Edit caption"
             @input="onPostCardTextInput"
             hide-details="auto"
         ></v-textarea>
-
-
 
         <v-card-actions>
           <v-card-subtitle>

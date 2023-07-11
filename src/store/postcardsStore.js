@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia';
 
-
 export const usePostCardsStore = defineStore('postcards', {
   state: () => ({ postcards: [],}),
   getters: {
@@ -20,6 +19,7 @@ export const usePostCardsStore = defineStore('postcards', {
     deletePostCardByIndex(index) {
       console.log('> useTodosStore -> deleteTodoByIndex: ', { index });
       this.postcards.splice(index, 1);
+
     },
     editPostCardTextByIndex(index, text) {
       console.log('> useTodosStore -> editTodoTextByIndex: ', { index, text });

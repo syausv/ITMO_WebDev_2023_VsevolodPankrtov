@@ -13,18 +13,24 @@ const props = defineProps({
   image: {
     type: String,
     default: '-'
+  },
+  date: {
+    type: Date,
+    default:'today'
   }
 });
 defineEmits(['delete']);
 
 const pathToEdit = computed(() => `/postcards/${props.index}`);
 const Image = computed(() => `${props.image}`);
+const date = computed(() => `${props.date}`);
 
 
 
 
 onMounted(() => {
-  console.log('> TodoItem -> onMounted: props.text =', props.text);
+  console.log('> PostCard -> onMounted: props.text =', props.text);
+  console.log('> PostCard -> onMounted: props.text =', props.date);
 
 });
 
@@ -50,7 +56,7 @@ onMounted(() => {
 
         <v-card-actions>
           <v-card-subtitle class="text-grey-lighten-1">
-            post: {{ index }}
+            posted: {{ date }}
           </v-card-subtitle>
 
           <v-spacer></v-spacer>

@@ -6,13 +6,14 @@ const pb = inject(PROVIDE.PB);
 const postCollection = pb.collection('posts');
 const posts = ref([]);
 pb.autoCancellation(false);
-/*postCollection.subscribe('*', function (e) {
+
+postCollection.subscribe('*', function (e) {
   console.log(e.record);
 });
 
 postCollection.subscribe('RECORD_ID', function (e) {
   console.log(e.record);
-});*/
+});
 
  postCollection.getList(1).then((result) => {
   // console.log('> result', result);
@@ -27,7 +28,7 @@ postCollection.subscribe('RECORD_ID', function (e) {
 <template>
   <v-card
       class="mx-auto ma-2"
-      max-width="900"
+      max-width="1200"
   >
     <v-container fluid>
       <v-row dense>
@@ -40,6 +41,7 @@ postCollection.subscribe('RECORD_ID', function (e) {
                 class="align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="200px"
+                min-width="150px"
                 cover
             >
               <v-card-title
