@@ -65,7 +65,7 @@ onMounted(() => {
 <template>
   <div>
     <div>
-      Edit card: {{ route.params.id }}
+      
     </div>
     <div>
       <v-card
@@ -86,9 +86,7 @@ onMounted(() => {
         ></v-textarea>
 
         <v-card-actions>
-          <v-card-subtitle>
-            <div class="text-start">posted: </div> {{ (posts.updated).slice(0,19) }}
-          </v-card-subtitle>
+
 
           <v-spacer></v-spacer>
           <router-link :to="ROUTES.POSTCARDS">
