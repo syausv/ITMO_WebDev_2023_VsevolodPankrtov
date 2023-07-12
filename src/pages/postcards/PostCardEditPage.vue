@@ -65,7 +65,7 @@ onMounted(() => {
 <template>
   <div>
     <div>
-      
+
     </div>
     <div>
       <v-card

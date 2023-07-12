@@ -139,7 +139,9 @@ posts are loading...
           <template
               v-for="post in posts"
               :key="post.title"
+
           >
+            <v-col class="h-auto">
             <PostCard
               :index="post.id"
               :text="post.title"
@@ -148,6 +150,7 @@ posts are loading...
               @delete="onDeletePostCard(post.id)"
 
             />
+            </v-col>
           </template>
         </v-row>
       </div>
