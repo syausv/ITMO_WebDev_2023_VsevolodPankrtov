@@ -12,17 +12,14 @@ postCollection.subscribe('*', function (e) {
   console.log(e.record);
 });
 
-postCollection.subscribe('RECORD_ID', function (e) {
-  console.log(e.record);
-});
 
  postCollection.getList(1).then((result) => {
-  // console.log('> result', result);
+   console.log('> result', result);
    console.log('> result.items', result.items);
    posts.value = result.items;
-  // console.log('> posts.value', posts.value);
+   console.log('> posts.value', posts.value);
    loading.value = false;
- });
+ }).catch((e) => {console.log(e);});
 
 </script>
 
@@ -45,9 +42,9 @@ min-height="600px">
 
     <v-container fluid>
       <v-row dense>
-        <v-col v-for="post in posts"
-               :key="post.title"
-               :cols="post.flex">
+        <v-col  v-for="post in posts"
+                :key="post.title"
+                :cols="post.flex">
           <v-card>
             <v-img
                 :src="post.base64_string"

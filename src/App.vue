@@ -7,6 +7,8 @@ import {useUserStore} from '@/store/userStore.js';
 import PROVIDE from '@/constants/provides.js';
 import ROUTES from '@/constants/routes.js';
 import {useRoute} from 'vue-router';
+import IndexPage from '@/pages/IndexPage.vue';
+
 
 
 const pb = inject(PROVIDE.PB);
@@ -22,7 +24,7 @@ const hasUser = computed(() => !!user.value);
 const checkRouteIsNotCurrent = (routePath) => useRoute().path !== routePath;
 
 const menuLinks = reactive([
-  { name: 'Index', link: ROUTES.INDEX, canRender: computed(() => checkRouteIsNotCurrent(ROUTES.INDEX)) },
+  { name: 'Gallery', link: ROUTES.INDEX, canRender: computed(() => checkRouteIsNotCurrent(ROUTES.INDEX)) },
   { name: 'PostCards', link: ROUTES.POSTCARDS, canRender: computed(() => hasUser.value && checkRouteIsNotCurrent(ROUTES.POSTCARDS)) },
   { name: 'Sign In', link: ROUTES.SIGNIN, canRender: computed(() => !hasUser.value && checkRouteIsNotCurrent(ROUTES.SIGNIN)) },
   { name: 'Sign Out', link: ROUTES.INDEX, canRender: computed(() => hasUser.value), onClick: () => {
@@ -38,9 +40,12 @@ const menuLinks = reactive([
         style="margin: 2rem 0;"
         :links="menuLinks"
     />
-  <AppAccountOwnerName>
+ <AppAccountOwnerName>
+
       <div class="ma-6 text-h6 text-grey-darken-1">
-        <span v-if="hasUser">{{ user.name }}'s account</span>
+        <span
+              v-if="hasUser">
+          {{ user.name }}'s account</span>
         <span v-else>Please create an account or log in to an existing account</span>
       </div>
   </AppAccountOwnerName>
