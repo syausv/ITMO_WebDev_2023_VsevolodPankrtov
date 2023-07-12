@@ -48,13 +48,12 @@ const onLogin = (dto) => {
   </div>
 
   <div v-else>
-    <div>You have been successfully logged in</div>
-    <router-link :to="ROUTES.INDEX">
-      Home
-    </router-link>
+    <div>You have been successfully logged in. Creat postcards to add them to global gallery. Do not forget to think of a cation!</div>
+
   </div>
   <div class="pa-4 ma-4">
-    <router-link :to="ROUTES.SIGNUP">
+    <router-link :to="ROUTES.SIGNUP"
+    v-if="!isSuccess">
       <v-btn>Sign Up </v-btn>
     </router-link>
   </div>

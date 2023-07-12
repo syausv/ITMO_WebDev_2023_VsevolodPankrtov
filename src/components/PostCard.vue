@@ -45,18 +45,15 @@ onMounted(() => {
       >
         <v-img v-bind:src="Image"
                cover/>
-
         <v-card-text>
           {{ text }}
         </v-card-text>
-
-        <v-card-subtitle>
-          today at time
-        </v-card-subtitle>
-
-        <v-card-actions>
-          <v-card-subtitle class="text-grey-lighten-1">
-            posted: {{ date }}
+        <v-spacer></v-spacer>
+        <v-card-actions class="align-end">
+          <v-card-subtitle class="text-grey-lighten-1
+          flex-col w-40">
+            <div class="text-start">posted:</div>
+            <div> {{ (date).slice(0,19) }} </div>
           </v-card-subtitle>
 
           <v-spacer></v-spacer>

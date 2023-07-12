@@ -86,7 +86,10 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
 
 </script>
 <template>
-  <v-row>
+  <div class="flex-row font-weight-bold text-grey-darken-1 text-start mb-4">
+    POST CARDS
+  </div>
+  <v-row class="mt-6">
     <v-card
       class="mx-auto"
       width="1000px"
@@ -141,6 +144,7 @@ posts are loading...
               :index="post.id"
               :text="post.title"
               :image="post.base64_string"
+              :date="post.updated"
               @delete="onDeletePostCard(post.id)"
 
             />

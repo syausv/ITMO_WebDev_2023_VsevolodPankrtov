@@ -46,7 +46,7 @@ const menuLinks = reactive([
         <span
               v-if="hasUser">
           {{ user.name }}'s account</span>
-        <span v-else>Please create an account or log in to an existing account</span>
+        <span v-else>Please create an account or sign in to an existing one</span>
       </div>
   </AppAccountOwnerName>
     <router-view />

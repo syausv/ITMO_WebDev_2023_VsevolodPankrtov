@@ -87,7 +87,7 @@ onMounted(() => {
 
         <v-card-actions>
           <v-card-subtitle>
-            post: {{ route.params.id }}
+            <div class="text-start">posted: </div> {{ (posts.updated).slice(0,19) }}
           </v-card-subtitle>
 
           <v-spacer></v-spacer>

@@ -17,6 +17,7 @@ postCollection.subscribe('*', function (e) {
    console.log('> result', result);
    console.log('> result.items', result.items);
    posts.value = result.items;
+
    console.log('> posts.value', posts.value);
    loading.value = false;
  }).catch((e) => {console.log(e);});
@@ -50,39 +51,27 @@ min-height="600px">
                 :src="post.base64_string"
                 class="align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                height="200px"
+                height="300px"
                 min-width="150px"
                 cover
             >
               <v-card-title
                   :text="post.title"
                   class="text-white"
-              ></v-card-title>
+              >{{post.title}}</v-card-title>
             </v-img>
 
             <v-card-actions>
               <v-spacer></v-spacer>
 
-              <v-btn
-                  size="small"
-                  color="surface-variant"
-                  variant="text"
-                  icon="mdi-heart"
-              ></v-btn>
+              <v-row
+                  :text="post.updated"
+                 class="text-grey-lighten-1 text-xs"
 
-              <v-btn
-                  size="small"
-                  color="surface-variant"
-                  variant="text"
-                  icon="mdi-bookmark"
-              ></v-btn>
 
-              <v-btn
-                  size="small"
-                  color="surface-variant"
-                  variant="text"
-                  icon="mdi-share-variant"
-              ></v-btn>
+              > {{ (post.updated).slice(0,10)}}</v-row>
+
+
             </v-card-actions>
           </v-card>
         </v-col>
