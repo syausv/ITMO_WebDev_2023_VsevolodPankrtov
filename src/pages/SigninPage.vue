@@ -3,11 +3,15 @@ import RegistrationForm from '@/components/RegistrationForm.vue';
 import ROUTES from '@/constants/routes.js';
 import PROVIDE from '@/constants/provides.js';
 import {inject, ref} from 'vue';
-
+import {usePostCardsStore} from '@/store/postcardsStore.js';
 
 const pb = inject(PROVIDE.PB);
 const isSuccess = ref(false);
 const errors = ref([]);
+const postCollection = pb.collection('posts');
+const postsFromPocketBase = [];
+pb.autoCancellation(false);
+const postcardStore = usePostCardsStore();
 
 const onLogin = (dto) => {
   errors.value = [];
@@ -32,7 +36,20 @@ const onLogin = (dto) => {
         errors.value.push(error.message);
       }
     });
-  }
+  };
+  
+
+    postCollection.getList(1).then((result) => {
+     console.log('>onLogin result', result);
+     console.log('>onLogin result.items', result.items);
+     postsFromPocketBase.value = result.items;
+     if ( postsFromPocketBase.value != null) {
+       postcardStore.createPostCards(postsFromPocketBase.value);
+     }
+     console.log('>onLogin postsFromPocketBase.value', postsFromPocketBase.value);
+   });
+
+
 
 };
 </script>

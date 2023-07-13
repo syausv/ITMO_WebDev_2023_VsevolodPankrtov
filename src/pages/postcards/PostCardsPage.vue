@@ -10,10 +10,10 @@ import PROVIDE from '@/constants/provides.js';
 
 const pb = inject(PROVIDE.PB);
 const postCollection = pb.collection('posts');
-const posts = ref([]);
+let posts = ref([]);
 let loading = ref(true);
 
-const subscribePB = () => {
+/*const subscribePB = () => {
 
   postCollection.subscribe('*', function (e) {
     console.log(e.record);
@@ -30,9 +30,9 @@ const getListOFCardsPB = () => {
       loading.value = false;
       // console.log('> posts.value', posts.value);
     });
-};
+};*/
 
-getListOFCardsPB();
+/*getListOFCardsPB();*/
 
 
 const insertPost = async (post) => {
@@ -43,6 +43,13 @@ const insertPost = async (post) => {
 
 const LOCAL_KEY_INPUT_TEXT = 'input_text';
 const inputText = ref(parseLocalStorage(LOCAL_KEY_INPUT_TEXT, ''));
+
+const result = localStorage.getItem('postcardsFromPocketBase')? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
+posts.value = result;
+posts.value = posts.value.postcards;
+console.log('posts.value ',posts.value);
+
+loading.value = false;
 //const postcardStore = usePostCardsStore();
 
 //const { postcards, getPostCardsCount } = storeToRefs(postcardStore);
@@ -71,7 +78,7 @@ const onSendClick = async () => {
   }
   inputText.value = '';
 
-  getListOFCardsPB();
+
 };
 
 const onDeletePostCard = async (index) => {
@@ -150,6 +157,7 @@ posts are loading...
               @delete="onDeletePostCard(post.id)"
 
             />
+              {{post.id}}
             </v-col>
           </template>
         </v-row>

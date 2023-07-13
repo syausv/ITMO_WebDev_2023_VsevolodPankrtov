@@ -7,11 +7,14 @@ import {useUserStore} from '@/store/userStore.js';
 import PROVIDE from '@/constants/provides.js';
 import ROUTES from '@/constants/routes.js';
 import {useRoute} from 'vue-router';
+import {usePostCardsStore} from '@/store/postcardsStore.js';
 import IndexPage from '@/pages/IndexPage.vue';
 
 
 
 const pb = inject(PROVIDE.PB);
+const postcards = inject(PROVIDE.POSTCARDS);
+const postcardStore = usePostCardsStore();
 const user = ref(pb.authStore.model);
 pb.authStore.onChange(() => {
   console.log('> App -> authStore.onChange', pb.authStore.onChange.model);
@@ -30,6 +33,8 @@ const menuLinks = reactive([
   { name: 'Sign Out', link: ROUTES.INDEX, canRender: computed(() => hasUser.value), onClick: () => {
       console.log('SignOUT');
       pb.authStore.clear();
+      console.log('postcards',postcards);
+      localStorage.removeItem('postcards');
     } },
 ]);
 

@@ -1,4 +1,5 @@
 const PROVIDE = {
-  PB: 'pb'
+  PB: 'pb',
+  POSTCARDS: 'postcards'
 };
 export default PROVIDE;

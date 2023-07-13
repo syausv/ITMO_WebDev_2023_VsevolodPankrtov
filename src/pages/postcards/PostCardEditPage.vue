@@ -14,19 +14,32 @@ const postcardStore = usePostCardsStore();
 const router = useRouter();
 const route = useRoute();
 
+const result = localStorage.getItem('postcardsFromPocketBase')? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
+posts.value = result;
+posts.value = posts.value.postcards;
+const idOfPost =  route.params.id;
+const onePost =ref([]);
 
+onePost.value = posts.value.find(function (item) {
+  return item.id === idOfPost;
+});
+
+//onePost.value = posts[idOfPost];
   console.log('>getCardFromPB route.params.id', route.params.id);
-  postCollection.getOne(route.params.id).then((result) => {
+  console.log('>getCardFromPB idOfPost', idOfPost);
+  console.log('>>>>>>>>>> onePost', onePost);
+ // console.log('>>>>>>>>>> posts[idOfPost]', posts[idOfPost]);
+/*  postCollection.getOne(route.params.id).then((result) => {
      console.log('> result', result);
 
      console.log('> result.items', result);
     posts.value = result;
     // console.log('> posts.value', posts.value);
-  }).catch((e)=>{console.log(e);});
+  }).catch((e)=>{console.log(e);});*/
 
 
 
-console.log('> posts.value', posts.value);
+console.log('> post.value', posts.value);
 console.log('> route.params.id', route.params.id);
 // const postcardIndex = parseInt(route.params.id) - 1;
 // console.log('postcardIndex',postcardIndex);
@@ -34,23 +47,49 @@ console.log('> route.params.id', route.params.id);
 
 
 const onEditConfirm = () => {
- // console.log('> PostCardEditPage -> onEditConfirm: ', postcard.value);
- // postcardStore.editPostCardTextByIndex(postcardIndex, postcard.value);
+  console.log('> PostCardEditPage -> onEditConfirm: postcard.value', posts.value);
+  console.log('> PostCardEditPage -> onEditConfirm: onePost.value.title', onePost.value.title);
+  const title =  onePost.value.title;
+ // postcardStore.editPostCardTextByIndex(idOfPost, title);
+
+ /* posts.value.find(function (item) {
+        if (item.id === idOfPost) {
+          console.log('item',item);
+          console.log('item.title',item.title);
+      item.title = title;
+        }
+
+  });*/
+
+  
+
+  const newPosts = posts.value.map((post) => (
+      post.id === idOfPost
+          ? { ...post, title: title }
+          : post
+  ));
+  postcardStore.createPostCards(newPosts);
+  console.log('newPosts',newPosts);
+
+
   const data = {
-    'title': posts.value.title ,
+    'title': title ,
   };
-  postCollection.update( route.params.id, data);
+  postCollection.update( idOfPost, data);
+
 };
 
-const checkInputOnValidLengthAndNumberOnly = (input, length) => {
+/*const checkInputOnValidLengthAndNumberOnly = (input, length) => {
   return input.length > length || isNaN(input[input.length - 0]);
-};
+};*/
 
+/*
 const onPostCardTextInput = ({ currentTarget }) => {
   if (checkInputOnValidLengthAndNumberOnly(posts.value.title, 8)) {
     posts.value.title = currentTarget.value.substring(0, currentTarget.value.length - 0);
   }
 };
+*/
 
 // let image =  postcard.value[1];
 // let caption =  postcard.value[0];
@@ -73,15 +112,14 @@ onMounted(() => {
           max-width="344"
 
       >
-        <v-img v-bind:src="posts.base64_string"
+        <v-img v-bind:src="onePost.base64_string"
                cover/>
 
         <v-textarea
-            v-model="posts.title"
+            v-model="onePost.title"
             pattern=""
             rows="3"
             label="Edit caption"
-            @input="onPostCardTextInput"
             hide-details="auto"
         ></v-textarea>
 
