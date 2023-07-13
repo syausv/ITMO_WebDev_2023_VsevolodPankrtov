@@ -13,15 +13,18 @@ const postCollection = pb.collection('posts');
 let posts = ref([]);
 let loading = ref(true);
 const postcardStore = usePostCardsStore();
-/*
+let idFromPocketBase;
+
 const subscribePB = () => {
 
   postCollection.subscribe('*', function (e) {
     console.log(e.record);
+    idFromPocketBase = e.record.id;
+    console.log('idFromPocketBase',idFromPocketBase);
   });
 };
 subscribePB();
-*/
+
 
 /*const getListOFCardsPB = () => {
 
@@ -71,7 +74,7 @@ const onSelectImage = (data) => {
 const onSendClick = async () => {
   let postcardtext = getPostCardText.value;
   console.log('> PostCardsPage -> onSendClick: {postcardtext,picture}', {postcardtext,picture});
-  postcardStore.createPostCard(postcardtext, picture);
+  //postcardStore.createPostCard(postcardtext, picture);
 
   const postForBase = {
     'title': postcardtext,
@@ -86,6 +89,18 @@ const onSendClick = async () => {
   }
 
   inputText.value = '';
+
+  setTimeout(function() {
+    const idLocal = idFromPocketBase;
+    console.log('> SET TIMEOUT');
+    const postForLocal = {
+      id: idLocal,
+      title : postcardtext,
+      base64_string : picture,
+      created: 'recently'
+    };
+    postcardStore.createPostCard(postForLocal);
+  }, 4000);
 };
 
 const onDeletePostCard = async (index) => {

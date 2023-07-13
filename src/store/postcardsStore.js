@@ -12,14 +12,15 @@ export const usePostCardsStore = defineStore('postcardsFromPocketBase', {
    async  createPostCards(postsFromPocketBase) {
       console.log('> usePostCardsStore -> createPostCards from PocketBase: ', postsFromPocketBase);
 
-      this.postcards.push(postsFromPocketBase);
+      this.postcards = postsFromPocketBase;
       console.log('> usePostCardsStore -> createPostCards this.postcards:',this.postcards);
 
     },
-    createPostCard(postcardText, picture) {
-      console.log('> usePostCardsStore -> createPostCard: ', { todoText: postcardText});
-      let ImageAndCaption = [postcardText,picture];
-      this.postcards.push(ImageAndCaption);
+    createPostCard(postForLocal) {
+      //console.log('> usePostCardsStore -> createPostCard: ', { todoText: postcardText});
+      console.log('> usePostCardsStore -> createPostCard: ',postForLocal);
+     // let ImageAndCaption = [postcardText,picture];
+      this.postcards.push(postForLocal);
 
       console.log('>>>>>>>>>>>>>>>>>>createPostCard',this.postcards);
     },

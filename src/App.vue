@@ -33,7 +33,7 @@ const menuLinks = reactive([
       console.log('SignOUT');
       pb.authStore.clear();
       //console.log('postcards',postcards);
-      localStorage.removeItem('postcards');
+      localStorage.removeItem('postcardsFromPocketBase');
     } },
 ]);
 

@@ -24,6 +24,16 @@ onePost.value = posts.value.find(function (item) {
   return item.id === idOfPost;
 });
 
+const subscribePB = () => {
+
+  postCollection.subscribe('*', function (e) {
+    console.log(e.record);
+  });
+};
+subscribePB();
+
+
+
 //onePost.value = posts[idOfPost];
   console.log('>getCardFromPB route.params.id', route.params.id);
   console.log('>getCardFromPB idOfPost', idOfPost);
