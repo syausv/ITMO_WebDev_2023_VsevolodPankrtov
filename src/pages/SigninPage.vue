@@ -40,11 +40,11 @@ const onLogin = (dto) => {
   
 
     postCollection.getList(1).then((result) => {
-     console.log('>onLogin result', result);
      console.log('>onLogin result.items', result.items);
      postsFromPocketBase.value = result.items;
      if ( postsFromPocketBase.value != null) {
        postcardStore.createPostCards(postsFromPocketBase.value);
+
      }
      console.log('>onLogin postsFromPocketBase.value', postsFromPocketBase.value);
    });

@@ -9,22 +9,19 @@ export const usePostCardsStore = defineStore('postcardsFromPocketBase', {
     getPostCardsCount: (state) => state.postcards.length,
   },
   actions: {
-    async createPostCards(postsFromPocketBase) {
-     // this.postcards.value
-      console.log('> usePostCardsStore -> before this.postcards:',this.postcards);
+   async  createPostCards(postsFromPocketBase) {
       console.log('> usePostCardsStore -> createPostCards from PocketBase: ', postsFromPocketBase);
 
-     // let ImageAndCaption = [postcardText,picture];
-      this.postcards = postsFromPocketBase;
-
+      this.postcards.push(postsFromPocketBase);
       console.log('> usePostCardsStore -> createPostCards this.postcards:',this.postcards);
+
     },
     createPostCard(postcardText, picture) {
       console.log('> usePostCardsStore -> createPostCard: ', { todoText: postcardText});
-     let ImageAndCaption = [postcardText,picture];
+      let ImageAndCaption = [postcardText,picture];
       this.postcards.push(ImageAndCaption);
 
-      console.log('createTodo',this.createPostCard);
+      console.log('>>>>>>>>>>>>>>>>>>createPostCard',this.postcards);
     },
     deletePostCardByIndex(index) {
       console.log('> usePostCardsStore -> deletePostCardByIndex: ', { index });

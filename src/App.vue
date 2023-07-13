@@ -13,7 +13,6 @@ import IndexPage from '@/pages/IndexPage.vue';
 
 
 const pb = inject(PROVIDE.PB);
-const postcards = inject(PROVIDE.POSTCARDS);
 const postcardStore = usePostCardsStore();
 const user = ref(pb.authStore.model);
 pb.authStore.onChange(() => {
@@ -33,7 +32,7 @@ const menuLinks = reactive([
   { name: 'Sign Out', link: ROUTES.INDEX, canRender: computed(() => hasUser.value), onClick: () => {
       console.log('SignOUT');
       pb.authStore.clear();
-      console.log('postcards',postcards);
+      //console.log('postcards',postcards);
       localStorage.removeItem('postcards');
     } },
 ]);

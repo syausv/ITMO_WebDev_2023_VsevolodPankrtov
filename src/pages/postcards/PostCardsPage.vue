@@ -12,16 +12,18 @@ const pb = inject(PROVIDE.PB);
 const postCollection = pb.collection('posts');
 let posts = ref([]);
 let loading = ref(true);
-
-/*const subscribePB = () => {
+const postcardStore = usePostCardsStore();
+/*
+const subscribePB = () => {
 
   postCollection.subscribe('*', function (e) {
     console.log(e.record);
   });
 };
 subscribePB();
+*/
 
-const getListOFCardsPB = () => {
+/*const getListOFCardsPB = () => {
 
     postCollection.getList(1).then((result) => {
       // console.log('> result', result);
@@ -35,11 +37,7 @@ const getListOFCardsPB = () => {
 /*getListOFCardsPB();*/
 
 
-const insertPost = async (post) => {
-  await postCollection.create(post).then((record) => {
-    console.log('record created',record);
-  }).catch((e)=> console.log(e));
-};
+
 
 const LOCAL_KEY_INPUT_TEXT = 'input_text';
 const inputText = ref(parseLocalStorage(LOCAL_KEY_INPUT_TEXT, ''));
@@ -57,6 +55,14 @@ loading.value = false;
 const getPostCardText = computed(() => inputText.value?.trim());
 
 let picture;
+
+
+const insertPost = async (post) => {
+  await postCollection.create(post).then((record) => {
+    console.log('record created',record);
+  }).catch((e)=> console.log(e));
+};
+
 const onSelectImage = (data) => {
   console.log('> PostCardsPage -> onSelectImage: data base64');
   picture = data;
@@ -64,28 +70,29 @@ const onSelectImage = (data) => {
 
 const onSendClick = async () => {
   let postcardtext = getPostCardText.value;
-  console.log('> PostCardsPage -> onSendClick:', postcardtext);
-  //postcardStore.createPostCard(postcardtext, picture);
+  console.log('> PostCardsPage -> onSendClick: {postcardtext,picture}', {postcardtext,picture});
+  postcardStore.createPostCard(postcardtext, picture);
+
   const postForBase = {
     'title': postcardtext,
     'base64_string': picture
   };
   console.log('> PostCardsPage -> onSendClick:', postForBase);
+
   try {
     await insertPost(postForBase);
   } catch (e) {
     console.log(e);
   }
+
   inputText.value = '';
-
-
 };
 
 const onDeletePostCard = async (index) => {
   console.log('> TodosPage -> onDeletePostCard:',index);
  // postcardStore.deletePostCardByIndex(index);
   await postCollection.delete(index);
-  getListOFCardsPB();
+ // getListOFCardsPB();
 };
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
@@ -132,16 +139,7 @@ watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
                       disabled>
 posts are loading...
         </v-text-field>
-        <span
-          v-if="posts.length"
-          class="text-grey-lighten-1 text-s"
-        > posts:
-          {{ getPostCardsCount }}
-        </span>
-        <span
-          v-else
-          class="text-grey-lighten-1"
-        >there's no posts here</span>
+
         <v-row class="ma-2">
           <template
               v-for="post in posts"

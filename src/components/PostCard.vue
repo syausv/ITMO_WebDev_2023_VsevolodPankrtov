@@ -29,9 +29,9 @@ const date = computed(() => `${props.date}`);
 
 
 onMounted(() => {
- // console.log('> PostCard -> onMounted: props.index =', props.index);
-  //console.log('> PostCard -> onMounted: props.text =', props.text);
- // console.log('> PostCard -> onMounted: props.date =', props.date);
+  console.log('> PostCard -> onMounted: props.index =', props.index);
+  console.log('> PostCard -> onMounted: props.text =', props.text);
+  console.log('> PostCard -> onMounted: props.date =', props.date);
   //console.log('> PostCard -> onMounted: props.image =', props.image);
 
 });
