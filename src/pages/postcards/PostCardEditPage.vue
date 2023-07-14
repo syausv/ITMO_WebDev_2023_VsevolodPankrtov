@@ -138,8 +138,9 @@ onMounted(() => {
             v-model="post.title"
             pattern=""
             rows="3"
-            label="Edit caption"
+            label="Edit caption (60 symbols)"
             hide-details="auto"
+            maxlength="60"
         ></v-textarea>
 
         <v-card-actions>

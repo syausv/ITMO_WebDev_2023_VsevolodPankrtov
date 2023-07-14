@@ -141,12 +141,13 @@ loading.value = false;
           <v-textarea
             ref="domInput"
             v-model="inputText"
-            label="Your caption"
+            label="Your caption (60 symbols)"
             auto-grow
             variant="outlined"
             rows="3"
             row-height="25"
             shaped
+            maxlength="60"
           />
           <v-btn
             type="submit"
