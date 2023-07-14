@@ -131,10 +131,12 @@ loading.value = false;
   <v-row class="mt-6">
     <v-card
       class="mx-auto"
-      max-width="1000px"
+      width="1000px"
     >
-      <v-row class="pa-2 ma-2 mb-2">
-        <InputImage @picture="onSelectImage"/>
+      <v-row class=" pa-2 ma-2 mb-2 justify-center">
+        <v-col>
+          <InputImage @picture="onSelectImage"/>
+        </v-col>
         <v-col>
           <v-textarea
             ref="domInput"
@@ -182,7 +184,6 @@ posts are loading...
               @delete="onDeletePostCard(post.id,index)"
 
             />
-              {{post.id}}
             </v-col>
           </template>
         </v-row>
