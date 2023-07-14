@@ -24,6 +24,13 @@ export const usePostCardsStore = defineStore('postcardsFromPocketBase', {
 
       console.log('>>>>>>>>>>>>>>>>>>createPostCard',this.postcards);
     },
+    getListOFCardsLocal() {
+     // const result = localStorage.getItem('postcardsFromPocketBase') ? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
+     return  this.postcards;
+     // posts.value = posts.value.postcards;
+     // console.log('posts.value ', posts.value);
+      console.log('>>>>>>>>>>>>>>>>>>createPostCard',this.postcards);
+    },
     deletePostCardByIndex(index) {
       console.log('> usePostCardsStore -> deletePostCardByIndex: ', { index });
       this.postcards.splice(index, 1);

@@ -45,12 +45,18 @@ subscribePB();
 const LOCAL_KEY_INPUT_TEXT = 'input_text';
 const inputText = ref(parseLocalStorage(LOCAL_KEY_INPUT_TEXT, ''));
 
-const result = localStorage.getItem('postcardsFromPocketBase')? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
-posts.value = result;
-posts.value = posts.value.postcards;
-console.log('posts.value ',posts.value);
+posts.value = postcardStore.getListOFCardsLocal();
+console.log('> PostCardsPage -> posts.value:', posts.value);
+/*const getListOFCardsLocal = () => {
 
-loading.value = false;
+  const result = localStorage.getItem('postcardsFromPocketBase') ? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
+  posts.value = result;
+  posts.value = posts.value.postcards;
+  console.log('posts.value ', posts.value);
+
+};*/
+
+//getListOFCardsLocal();
 //const postcardStore = usePostCardsStore();
 
 //const { postcards, getPostCardsCount } = storeToRefs(postcardStore);
@@ -100,7 +106,8 @@ const onSendClick = async () => {
       created: 'recently'
     };
     postcardStore.createPostCard(postForLocal);
-  }, 4000);
+  }, 2000);
+  posts.value = postcardStore.getListOFCardsLocal();
 };
 
 const onDeletePostCard = async (index) => {
@@ -111,7 +118,9 @@ const onDeletePostCard = async (index) => {
 };
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
+watch(posts);
 
+loading.value = false;
 
 </script>
 <template>
@@ -160,8 +169,10 @@ posts are loading...
               v-for="post in posts"
               :key="post.title"
 
+
           >
-            <v-col class="h-auto">
+            <v-col class="h-auto"
+                 >
             <PostCard
               :index="post.id"
               :text="post.title"
