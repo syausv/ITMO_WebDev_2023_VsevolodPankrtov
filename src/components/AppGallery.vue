@@ -44,7 +44,7 @@ min-height="600px">
     <v-container fluid>
       <v-row dense>
         <v-col  v-for="post in posts"
-                :key="post.title"
+                :key="post.index"
                 :cols="post.flex">
           <v-card>
             <v-img

@@ -110,15 +110,16 @@ const onSendClick = async () => {
   posts.value = postcardStore.getListOFCardsLocal();
 };
 
-const onDeletePostCard = async (index) => {
+const onDeletePostCard = async (id, index) => {
+  console.log('> TodosPage -> onDeletePostCard:',id);
   console.log('> TodosPage -> onDeletePostCard:',index);
- // postcardStore.deletePostCardByIndex(index);
-  await postCollection.delete(index);
- // getListOFCardsPB();
+  postcardStore.deletePostCardByIndex(index);
+  postCollection.delete(id);
+  posts.value = postcardStore.getListOFCardsLocal();
 };
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_KEY_INPUT_TEXT, v));
-watch(posts);
+//watch(posts);
 
 loading.value = false;
 
@@ -130,7 +131,7 @@ loading.value = false;
   <v-row class="mt-6">
     <v-card
       class="mx-auto"
-      width="1000px"
+      max-width="1000px"
     >
       <v-row class="pa-2 ma-2 mb-2">
         <InputImage @picture="onSelectImage"/>
@@ -166,19 +167,19 @@ posts are loading...
 
         <v-row class="ma-2">
           <template
-              v-for="post in posts"
-              :key="post.title"
-
+              v-for="(post, index) in posts"
+              :key="post"
 
           >
             <v-col class="h-auto"
                  >
             <PostCard
-              :index="post.id"
+              :index="index + 1"
+              :id="post.id"
               :text="post.title"
               :image="post.base64_string"
               :date="post.updated"
-              @delete="onDeletePostCard(post.id)"
+              @delete="onDeletePostCard(post.id,index)"
 
             />
               {{post.id}}

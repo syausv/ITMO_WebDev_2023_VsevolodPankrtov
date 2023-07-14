@@ -17,36 +17,23 @@ export const usePostCardsStore = defineStore('postcardsFromPocketBase', {
 
     },
     createPostCard(postForLocal) {
-      //console.log('> usePostCardsStore -> createPostCard: ', { todoText: postcardText});
+
       console.log('> usePostCardsStore -> createPostCard: ',postForLocal);
-     // let ImageAndCaption = [postcardText,picture];
+
       this.postcards.push(postForLocal);
 
       console.log('>>>>>>>>>>>>>>>>>>createPostCard',this.postcards);
     },
     getListOFCardsLocal() {
-     // const result = localStorage.getItem('postcardsFromPocketBase') ? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
      return  this.postcards;
-     // posts.value = posts.value.postcards;
-     // console.log('posts.value ', posts.value);
+
       console.log('>>>>>>>>>>>>>>>>>>createPostCard',this.postcards);
     },
     deletePostCardByIndex(index) {
-      console.log('> usePostCardsStore -> deletePostCardByIndex: ', { index });
+      console.log('> usePostCardsStore -> deletePostCardByIndex: ',  index );
+
+      console.log('> usePostCardsStore -> deletePostCardByIndex: ',  index );
       this.postcards.splice(index, 1);
-
-    },
-    editPostCardTextByIndex(index, text) {
-      //console.log('> useTodosStore -> editTodoTextByIndex: ', { index, text });
-      //console.log('> useTodosStore -> editTodoTextByIndex:  this.postcards',  this.postcards);
-     // console.log('> useTodosStore -> editTodoTextByIndex:  this.postcards[index]',  this.postcards.id);
-     // this.postcards.index = text;
-      // this.postcards.value
-
-
-      /*const car = this.postcards.find(function (item) {
-        return item.id === index;
-      });*/
 
     },
   },

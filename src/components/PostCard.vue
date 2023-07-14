@@ -3,8 +3,12 @@ import {computed, onMounted} from 'vue';
 
 const props = defineProps({
   index: {
+    type: Number,
+    default: 0
+  },
+  id: {
     type: String,
-    default: '0'
+    default: '-'
   },
   text: {
     type: String,
@@ -16,20 +20,21 @@ const props = defineProps({
   },
   date: {
     type: String,
-    default:'today'
+    default:'recently'
   }
 });
 defineEmits(['delete']);
 
 const pathToEdit = computed(() => `/postcards/${props.index}`);
 const Image = computed(() => `${props.image}`);
+const id = computed(() => `${props.id}`);
 const date = computed(() => `${props.date}`);
 
 
 
 
 onMounted(() => {
-  console.log('> PostCard -> onMounted: props.index =', props.index);
+  console.log('> PostCard -> onMounted: props.id =', props.id);
   console.log('> PostCard -> onMounted: props.text =', props.text);
   console.log('> PostCard -> onMounted: props.date =', props.date);
   //console.log('> PostCard -> onMounted: props.image =', props.image);
@@ -54,6 +59,7 @@ onMounted(() => {
         <v-card-actions class="align-end">
           <v-card-subtitle class="text-grey-lighten-1
           flex-col w-40">
+            {{index}}
             <div class="text-start">posted:</div>
             <div> {{ (date).slice(0,19) }} </div>
           </v-card-subtitle>
