@@ -36,6 +36,10 @@ export const usePostCardsStore = defineStore('postcardsFromPocketBase', {
       this.postcards.splice(index, 1);
 
     },
+    editPostCardTextByIndex(index, data) {
+      console.log('> useTodosStore -> editTodoTextByIndex: ', { index, data });
+      this.postcards[index] = data;
+    },
   },
   persist: true
 });

@@ -14,7 +14,10 @@ const postcardStore = usePostCardsStore();
 const router = useRouter();
 const route = useRoute();
 
-const result = localStorage.getItem('postcardsFromPocketBase')? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
+const postIndex = parseInt(route.params.id) - 1;
+const post = ref(postcardStore.getPostCardByIndex(postIndex));
+
+/*const result = localStorage.getItem('postcardsFromPocketBase')? JSON.parse(localStorage.getItem('postcardsFromPocketBase')) : [];
 posts.value = result;
 posts.value = posts.value.postcards;
 const idOfPost =  route.params.id;
@@ -22,7 +25,7 @@ const onePost =ref([]);
 
 onePost.value = posts.value.find(function (item) {
   return item.id === idOfPost;
-});
+});*/
 
 const subscribePB = () => {
 
@@ -35,9 +38,9 @@ subscribePB();
 
 
 //onePost.value = posts[idOfPost];
-  console.log('>getCardFromPB route.params.id', route.params.id);
+/*  console.log('>getCardFromPB route.params.id', route.params.id);
   console.log('>getCardFromPB idOfPost', idOfPost);
-  console.log('>>>>>>>>>> onePost', onePost);
+  console.log('>>>>>>>>>> onePost', onePost);*/
  // console.log('>>>>>>>>>> posts[idOfPost]', posts[idOfPost]);
 /*  postCollection.getOne(route.params.id).then((result) => {
      console.log('> result', result);
@@ -58,9 +61,15 @@ console.log('> route.params.id', route.params.id);
 
 const onEditConfirm = () => {
   console.log('> PostCardEditPage -> onEditConfirm: postcard.value', posts.value);
-  console.log('> PostCardEditPage -> onEditConfirm: onePost.value.title', onePost.value.title);
-  const title =  onePost.value.title;
- // postcardStore.editPostCardTextByIndex(idOfPost, title);
+ // console.log('> PostCardEditPage -> onEditConfirm: onePost.value.title', onePost.value.title);
+  //const title =  onePost.value.title;
+  postcardStore.editPostCardTextByIndex(postIndex, post.value);
+  const data = {
+    'title': post.value.title ,
+  };
+  postCollection.update( post.value.id, data);
+
+};
 
  /* posts.value.find(function (item) {
         if (item.id === idOfPost) {
@@ -73,7 +82,7 @@ const onEditConfirm = () => {
 
   
 
-  const newPosts = posts.value.map((post) => (
+ /* const newPosts = posts.value.map((post) => (
       post.id === idOfPost
           ? { ...post, title: title }
           : post
@@ -87,7 +96,7 @@ const onEditConfirm = () => {
   };
   postCollection.update( idOfPost, data);
 
-};
+};*/
 
 /*const checkInputOnValidLengthAndNumberOnly = (input, length) => {
   return input.length > length || isNaN(input[input.length - 0]);
@@ -114,7 +123,7 @@ onMounted(() => {
 <template>
   <div>
     <div>
-
+      Todo Edit Page: {{ route.params.id }})
     </div>
     <div>
       <v-card
@@ -122,11 +131,11 @@ onMounted(() => {
           max-width="344"
 
       >
-        <v-img v-bind:src="onePost.base64_string"
+        <v-img v-bind:src="post.base64_string"
                cover/>
 
         <v-textarea
-            v-model="onePost.title"
+            v-model="post.title"
             pattern=""
             rows="3"
             label="Edit caption"
