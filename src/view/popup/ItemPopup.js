@@ -23,6 +23,7 @@ class ItemPopup {
   #itemTotal = '';
 
 
+
   set itemTitle(value) {
     this.#itemTitle = value;
   }
@@ -87,6 +88,52 @@ class ItemPopup {
     const domBtnConfirm = popup.querySelector('[ data-id="btnConfirm"]');
     const domInpTitle = popup.querySelector('[ data-id="inpTitle"]');
     const domInpDescription = popup.querySelector('[ data-id="inpDescription"]');
+
+    domInpQty.addEventListener("change", updateQty, updateTotal);
+    domInpCost.addEventListener("change", updateCost, updateTotal);
+
+    let qty;
+    let cost;
+    let total;
+
+
+    function updateQty(e)  {
+      console.log("qty updated",e.target.value);
+      if (e.target.value != null) {
+        qty = e.target.value;
+      } else {
+        qty = 0;
+      }
+      updateTotal(qty,cost);
+    };
+
+    function updateCost(e)  {
+      console.log("cost updated",e.target.value);
+      if (e.target.value != null) {
+        cost = e.target.value;
+      } else {
+        cost = 0;
+      }
+      updateTotal(qty,cost);
+    };
+
+   // console.log('domInpTotal.value',domInpTotal);
+
+    function updateTotal(qty,cost) {
+      console.log('updateTotal -> qty',qty);
+      console.log('updateTotal -> cost',cost);
+
+      if ((qty != undefined) && (cost != undefined)) {
+        total = qty * cost;
+        console.log('updateTotal ->if total',total);
+      } else {
+        total = 0;
+        console.log('updateTotal ->else total',total);
+      }
+      console.log('updateTotal -> total',total);
+      popup.querySelector('[ data-id="inpTotal"]').value = total;
+      //this.#itemTotal = total;
+    };
 
 
 
