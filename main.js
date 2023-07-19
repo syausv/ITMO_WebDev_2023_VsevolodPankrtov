@@ -78,6 +78,9 @@ domTotalList.addEventListener("input", function (event){
     totalResultDom.innerText = Math.round(totalGlobal);
   } else {
     console.log('> totalGlobal ',totalGlobal);
+    discountGlobal = 0;
+    totalGlobal = subtotalGlobal;
+    totalResultDom.innerText = Math.round(totalGlobal);
   }
   totalResultDom.innerText = Math.round(totalGlobal);
   discountResultDomValue.innerText = Math.round(discountGlobal);
@@ -88,7 +91,7 @@ domTotalList.addEventListener("input", function (event){
 
 function countSubtotal () {
   let subtotal = 0;
-  items.forEach(item => {
+   items.forEach(item => {
     subtotal += Number(item.total);
   });
   subtotalDom.innerText = subtotal;
@@ -97,6 +100,10 @@ function countSubtotal () {
   console.log('>countSubtotal subtotal ', subtotal);
  // console.log('>countSubtotal e ', e.value);
  return subtotalGlobal = subtotal;
+
+  discountGlobal = 0;
+  totalGlobal = subtotalGlobal;
+  totalResultDom.innerText = Math.round(totalGlobal);
 }
 /*  if(e.value === undefined) {
     discountResultDom.value = 0;
