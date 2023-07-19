@@ -2,12 +2,13 @@ import Dom from './src/constants/Dom';
 
 
 const KEY_LOCAL_ITEM = 'item';
+const KEY_lOCAL_OPERATIONS = 'operations';
 
 class ItemVO {
   static fromJSON(json) {
     return new ItemVO(json.id, json.title, json.description, json.qty, json.cost, json.total);
   }
-  constructor( id, title, description, qty, cost, total) {
+  constructor(id, title, description, qty, cost, total) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -16,6 +17,16 @@ class ItemVO {
     this.total = total;
   }
 }
+
+class Operations {
+  constructor(subtotal, discount, total) {
+    this.subtotal = subtotal;
+    this.discount = discount;
+    this.total = total;
+  }
+}
+
+const operations = [];
 
 const getDOM = (id) => document.getElementById(id);
 const QUERY = (container, id) => container.querySelector(`[data-id='${id}']`);
@@ -32,6 +43,83 @@ const rawItem = localStorage.getItem(KEY_LOCAL_ITEM);
 const items = rawItem ? JSON.parse(rawItem).map((json) => ItemVO.fromJSON(json)) : [] ;
 items.forEach((itemVO) => renderItem(itemVO));
 //console.log('> items', items);
+
+let localDiscount = {};
+let localSubtotal = {};
+let localTotal = {};
+
+let subtotalGlobal;
+let discountGlobal;
+let totalGlobal;
+
+const domTotalList = document.querySelector('[ id="totalList"]');
+
+const subtotalDom = document.querySelector('[ id="subtotal"]');
+const discountResultDom = document.querySelector('[ id="discountResult"]');
+const discountResultDomValue = document.querySelector('[ id="discountResultValue"]');
+const totalResultDom = document.querySelector('[ id="totalResult"]');
+console.log('>discountResultDom ',discountResultDom);
+/*discountResultDom.addEventListener("change", countSubtotal);*/
+
+domTotalList.addEventListener("input", function (event){
+  localDiscount[event.target.id] = event.target.value;
+  localStorage.setItem("localDiscount",JSON.stringify(localDiscount));
+  countSubtotal();
+  console.log('> if discountGlobal ',discountGlobal);
+  console.log('> if subtotalGlobal ',subtotalGlobal);
+  console.log('> if localDiscount.discountResult ',localDiscount.discountResult);
+  if ( localDiscount.discountResult >= 0 && localDiscount.discountResult <= 100) {
+    discountGlobal = (subtotalGlobal * (localDiscount.discountResult/100));
+    console.log('> if discountGlobal ',discountGlobal);
+    console.log('> if subtotalGlobal ',subtotalGlobal);
+    console.log('> if localDiscount.value ',localDiscount.value);
+    totalGlobal = subtotalGlobal - discountGlobal;
+    console.log('> totalGlobal ',totalGlobal);
+    totalResultDom.innerText = Math.round(totalGlobal);
+  } else {
+    console.log('> totalGlobal ',totalGlobal);
+  }
+  totalResultDom.innerText = Math.round(totalGlobal);
+  discountResultDomValue.innerText = Math.round(discountGlobal);
+  console.log('>subtotalGlobal ', subtotalGlobal);
+});
+
+
+
+function countSubtotal () {
+  let subtotal = 0;
+  items.forEach(item => {
+    subtotal += Number(item.total);
+  });
+  subtotalDom.innerText = subtotal;
+  localStorage.setItem("localSubtotal",JSON.stringify(subtotal));
+  // operations.push({"subtotal": subtotal});
+  console.log('>countSubtotal subtotal ', subtotal);
+ // console.log('>countSubtotal e ', e.value);
+ return subtotalGlobal = subtotal;
+}
+/*  if(e.value === undefined) {
+    discountResultDom.value = 0;
+  } else {
+    discountResultDom.value = e.value;
+  }
+  console.log('>discountResultDom ',discountResultDom);
+  let total;
+  let discount;
+
+  if ( discountResultDom.value >= 0 && discountResultDom.value <= 100) {
+    discount = (subtotal * (discountResultDom.value/100));
+    total = subtotal - discount;
+    console.log('>countSubtotal total ',total);
+    totalResultDom.innerText = Math.round(total);
+  }
+  operations.push({"discount": discount},{"total": total});
+  localStorage.setItem(KEY_lOCAL_OPERATIONS,JSON.stringify(operations));
+};
+
+countSubtotal(discountResultDom);
+*!/*/
+
 
 let itemId;
 let domItemElement;
@@ -139,6 +227,8 @@ function deleteItem (itemVO) {
 
   domItemColumn.removeChild(domItemElement);
   saveItem();
+  countSubtotal(e);
+
 }
 
 async function renderItemPopup(
@@ -193,4 +283,5 @@ domPopupContainer.append(itemPopupInstance.render());
 
 function saveItem() {
   localStorage.setItem(KEY_LOCAL_ITEM,JSON.stringify(items));
+  countSubtotal();
 }
