@@ -45,7 +45,7 @@ items.forEach((itemVO) => renderItem(itemVO));
 //console.log('> items', items);
 
 let localDiscount = {};
-let localSubtotal = {};
+let localNumberOfList = {};
 let localTotal = {};
 
 let subtotalGlobal;
@@ -53,6 +53,7 @@ let discountGlobal;
 let totalGlobal;
 
 const domTotalList = document.querySelector('[ id="totalList"]');
+const domNumberOfList = document.querySelector('[ id="numberOfList"]');
 
 const subtotalDom = document.querySelector('[ id="subtotal"]');
 const discountResultDom = document.querySelector('[ id="discountResult"]');
@@ -60,11 +61,33 @@ const discountResultDomValue = document.querySelector('[ id="discountResultValue
 const totalResultDom = document.querySelector('[ id="totalResult"]');
 console.log('>discountResultDom ',discountResultDom);
 /*discountResultDom.addEventListener("change", countSubtotal);*/
+countSubtotal();
+domNumberOfList.addEventListener("input", function (event){
+  localNumberOfList[event.target.id] = event.target.value;
+  localStorage.setItem("localNumberOfList",JSON.stringify(localNumberOfList));
+});
 
+if (localStorage.getItem('localNumberOfList')) {
+  localNumberOfList = JSON.parse(localStorage.getItem('localNumberOfList'));
+  console.log('if in LS localDiscount:',localNumberOfList.numberOfList);
+  domNumberOfList.value = localNumberOfList.numberOfList;
+}
+
+
+if (localStorage.getItem('localDiscount')) {
+  localDiscount = JSON.parse(localStorage.getItem('localDiscount'));
+  console.log('if in LS localDiscount:',localDiscount.discountResult);
+  discountResultDom.value = localDiscount.discountResult;
+  countDiscount();
+}
 domTotalList.addEventListener("input", function (event){
   localDiscount[event.target.id] = event.target.value;
   localStorage.setItem("localDiscount",JSON.stringify(localDiscount));
   countSubtotal();
+   countDiscount();
+});
+
+function countDiscount () {
   console.log('> if discountGlobal ',discountGlobal);
   console.log('> if subtotalGlobal ',subtotalGlobal);
   console.log('> if localDiscount.discountResult ',localDiscount.discountResult);
@@ -85,9 +108,7 @@ domTotalList.addEventListener("input", function (event){
   totalResultDom.innerText = Math.round(totalGlobal);
   discountResultDomValue.innerText = Math.round(discountGlobal);
   console.log('>subtotalGlobal ', subtotalGlobal);
-});
-
-
+}
 
 function countSubtotal () {
   let subtotal = 0;
@@ -99,40 +120,21 @@ function countSubtotal () {
   // operations.push({"subtotal": subtotal});
   console.log('>countSubtotal subtotal ', subtotal);
  // console.log('>countSubtotal e ', e.value);
- return subtotalGlobal = subtotal;
+  subtotalGlobal = subtotal;
 
   discountGlobal = 0;
   totalGlobal = subtotalGlobal;
+  console.log('>countSubtotal totalGlobal ', totalGlobal);
   totalResultDom.innerText = Math.round(totalGlobal);
-}
-/*  if(e.value === undefined) {
-    discountResultDom.value = 0;
-  } else {
-    discountResultDom.value = e.value;
-  }
-  console.log('>discountResultDom ',discountResultDom);
-  let total;
-  let discount;
-
-  if ( discountResultDom.value >= 0 && discountResultDom.value <= 100) {
-    discount = (subtotal * (discountResultDom.value/100));
-    total = subtotal - discount;
-    console.log('>countSubtotal total ',total);
-    totalResultDom.innerText = Math.round(total);
-  }
-  operations.push({"discount": discount},{"total": total});
-  localStorage.setItem(KEY_lOCAL_OPERATIONS,JSON.stringify(operations));
+  return subtotalGlobal;
 };
-
-countSubtotal(discountResultDom);
-*!/*/
 
 
 let itemId;
 let domItemElement;
 
 domItemColumn.onclick = (e) => {
-
+  e.stopPropagation()
   e.stopPropagation();
   domItemElement = e.target;
   itemId = domItemElement.dataset.id;
@@ -234,8 +236,8 @@ function deleteItem (itemVO) {
 
   domItemColumn.removeChild(domItemElement);
   saveItem();
-  countSubtotal(e);
-
+  countSubtotal();
+  countDiscount();
 }
 
 async function renderItemPopup(
@@ -291,4 +293,5 @@ domPopupContainer.append(itemPopupInstance.render());
 function saveItem() {
   localStorage.setItem(KEY_LOCAL_ITEM,JSON.stringify(items));
   countSubtotal();
+  countDiscount();
 }
